@@ -14,7 +14,7 @@ function searchPostCode() {
                 addr = data.jibunAddress;
             }
 
-            const api_key = "f56f8461b6c1bd3d445e592479cd7a79"; 
+            const api_key = config.apikey;
             const address = addr;
             const base_url = "https://dapi.kakao.com/v2/local/search/address.json";
 

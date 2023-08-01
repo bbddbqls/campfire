@@ -328,6 +328,7 @@
 	<!-- 우편번호 js -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="../../resources/js/postCode.js"></script>
+	<script src="../assets/js/api.js"></script>
 
 </body>
 
