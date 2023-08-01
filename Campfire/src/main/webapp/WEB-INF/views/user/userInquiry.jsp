@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@ include file="../common/head.jsp"%>
+	<link rel="stylesheet" href="../../resources/css/inquiry.css" />
 </head>
 <body class="is-preload">
 

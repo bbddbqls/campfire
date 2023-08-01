@@ -1,3 +1,36 @@
+.camp-info{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#main-img-box{
+    width: 58%;
+    height: 480px;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid silver;
+}
+#main-img-box > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.camp-table-box{
+    width: 40%;
+    float: right;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1280px) {
+    #main-img-box{
+        width: 100%;
+        height: 400px;
+        
+    }
+    .camp-table-box{
+        width: 100%;
+    }
+}
 .centered-container {
     display: flex;
     justify-content: center;
