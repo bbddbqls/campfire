@@ -1,0 +1,131 @@
+/* table */
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table th {
+    text-align: center;
+}
+
+.td-num {
+    width: 50px;
+    text-align: center;
+}
+
+
+.td-id {
+    width: 100px;
+    text-align: center;
+}
+
+.td-time {
+    width: 80px;
+    text-align: center;
+}
+
+.td-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* .list_tap{
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    display: flex; 
+  justify-content: center; 
+  align-items: center;
+  border-bottom: 1px solid #8d8d8d;
+}
+.list_tap > li{
+    width: 20%;
+    height: 100%;
+    background-color: #8d8d8d;
+    color: white;
+    text-align: center;
+    float: left;
+    font-size: 14px;
+    line-height: 50px;
+    padding: 0;
+} */
+.tr-reply{
+    font-size: smaller;
+}
+.section-pagination > ul{
+    text-align: center;
+}
+th{
+padding: 9px !important;
+}
+.write-btn{
+    float: right;
+}
+.section-search{
+    width: 100%;
+    /* border: 1px solid rgb(221, 225, 227); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.section-search>select{
+    width: 150px;
+    height: 28px;
+    margin-right: 10px;
+    
+}
+.section-search>input{
+    width: 50%;
+    height: 28px;
+    margin-right: 10px;
+}
+.section-search>.button{
+    width: 30px;
+    height: 50%;
+    padding: 0;
+}
+.section-search>.button::before{
+    margin: 0;
+}
+/* .btn_box{
+    float: right;
+} */
+textarea {
+    resize: none;
+}
+.btn-box {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 첫 번째 div와 두 번째 div를 양쪽 끝으로 정렬 */
+}
+
+/* 첫 번째 div 내부 요소 정렬 */
+.btn-box > div:nth-child(1) {
+    display: flex; 
+    justify-content: flex-start;
+}
+
+
+/* 체크박스 스타일링 (예시) */
+.btn-box input[type="radio"] {
+    margin-right: 10px; /* 체크박스와 텍스트 사이에 간격 설정 */
+}
+
+.right-btn-box{
+    
+    float: right;
+}
+
+.reply-wrapper {
+    display: flex; /* Flexbox를 사용하여 요소를 일자로 배치 */
+    align-items: center; /* 요소들을 세로 중앙 정렬 */
+}
+
+.reply-line {
+    flex: 1; /* 남은 공간을 균등하게 분배하여 선을 만듦 */
+    height: 1px; /* 선의 높이를 설정 */
+    background-color: #000; /* 선의 색상을 설정 */
+    margin: 0 10px; /* "답글"과 선 사이의 간격을 조정 (필요에 따라 조정) */
+}

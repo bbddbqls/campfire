@@ -1,0 +1,118 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+
+
+button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+#previewContainer {
+    width: 100%;
+    max-height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    margin-bottom: 5px;
+}
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#photo-select-box {
+    width: 100%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+}
+
+#photo-select-box h3 {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#photo-select-box p {
+    text-align: center;
+}
+
+.centered-container button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.previewImage {
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    object-fit: cover;
+}
+
+#main-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#main-img-box p {
+    display: block;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+.table_w {
+    position: relative;
+    width: 99.5%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.table_w tr,
+.table_w td,
+.table_w th {
+    vertical-align: middle !important;
+    text-align: center !important;
+    border: solid 2px rgba(210, 215, 217, 0.75);
+    padding: 5px !important;
+}

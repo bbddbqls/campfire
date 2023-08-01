@@ -1,0 +1,61 @@
+#tag{
+    width: 100%;
+    border-radius: 20px;
+    background-color: white;
+    display: none;
+    position: relative;
+    top: -25px; 
+    left: 0%; 
+}
+.tag-box{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    /* grid-gap: 10px; */
+    /* justify-content: center; */
+
+}
+.tag-box > .div2 {
+    width: 90px;
+    height: 30px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+    margin: auto;
+    margin-bottom: 5px;
+}
+.tag-box > .div2.selected {
+    border: 2px solid transparent;
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(40deg, hsl(54, 68%, 85%), #00571d) border-box;
+}
+.tag-box > .div2:hover {
+    border-color: #00a4b9;
+}
+.tag-box > .div2 > label{
+    margin: 0;
+    /* width: 40px;
+    height: 40px; */
+}
+
+
+.tag-box > .div2 span {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tag-box > .div2 > label > input[type="checkbox"] {
+    display: none;
+}
+
+
+.selectedTag{
+    display: none;
+}
+
