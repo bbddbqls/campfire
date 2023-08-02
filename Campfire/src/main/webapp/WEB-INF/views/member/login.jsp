@@ -202,7 +202,6 @@
         </article>
 
 
-
         <article id="joinj">
           <div>
             <a
