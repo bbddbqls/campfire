@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UPaa
-	html5up.net | @ajlkn
+	html5up.net | @ajlknaaa
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
