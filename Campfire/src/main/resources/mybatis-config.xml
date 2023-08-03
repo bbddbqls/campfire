@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="kr.co.campfire.member.dto.MemberDto" alias="member" />
+<!-- 		<typeAlias type="kr.co.greenart.board.model.dto.Board" alias="board" />
+		<typeAlias type="kr.co.greenart.notice.model.dto.Notice" alias="notice" />
+		<typeAlias type="kr.co.greenart.free.model.dto.Free" alias="free" /> -->
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="/mappers/member/member-mapper.xml" />
+<!-- 		<mapper resource="/mappers/board/board-mapper.xml" />
+		<mapper resource="/mappers/notice/notice-mapper.xml" />
+		<mapper resource="/mappers/free/free-mapper.xml" /> -->
+	</mappers>
+</configuration>

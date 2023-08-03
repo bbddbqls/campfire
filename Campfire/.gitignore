@@ -1,0 +1,4 @@
+git rm --cached src/main/webapp/WEB-INF/spring/root-context.xml
+
+src/main/webapp/WEB-INF/spring/root-context.xml
+src/main/webapp/resources/js/api.js
