@@ -8,15 +8,20 @@
 	
 	<typeAliases>
 		<typeAlias type="kr.co.campfire.member.dto.MemberDto" alias="member" />
+		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="BusinessRegistration" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationDto" alias="CampRegistration" />
+		<!-- <typeAlias type="kr.co.campfire.user.dto.userDto" alias="user" /> -->
 <!-- 		<typeAlias type="kr.co.greenart.board.model.dto.Board" alias="board" />
-		<typeAlias type="kr.co.greenart.notice.model.dto.Notice" alias="notice" />
 		<typeAlias type="kr.co.greenart.free.model.dto.Free" alias="free" /> -->
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/mappers/member/member-mapper.xml" />
+		<mapper resource="/mappers/campSearch/campSearch-mapper.xml" />
+		<mapper resource="/mappers/business/registration-mapper.xml" />
+		<!-- <mapper resource="/mappers/user/user-mapper.xml" /> -->
 <!-- 		<mapper resource="/mappers/board/board-mapper.xml" />
-		<mapper resource="/mappers/notice/notice-mapper.xml" />
 		<mapper resource="/mappers/free/free-mapper.xml" /> -->
 	</mappers>
 </configuration>

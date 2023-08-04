@@ -30,6 +30,7 @@ public class MemberController {
 		if (!Objects.isNull(loginUser)) {
 			session.setAttribute("memberNum", loginUser.getMemberNum());
 			session.setAttribute("memberName", loginUser.getMemberName());
+			session.setAttribute("memberDivision", loginUser.getMemberDivision());
 			return "redirect:/user/campSearch.do";
 		} else {
 //			model.addAttribute("msg", "아이디 비밀번호를 확인해 주세요!");

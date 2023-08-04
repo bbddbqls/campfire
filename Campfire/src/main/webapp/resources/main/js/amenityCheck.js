@@ -19,7 +19,7 @@ const tagBoxElement1 = document.getElementById('tag');
 // button.setAttribute("class", "button fit small amenity-btn");
 // button.setAttribute("onclick", "showAmenity()")
 function showSelectedAmenity() {
-    const checkboxes = document.getElementsByName("amenityItem");
+    const checkboxes = document.getElementsByName("campAmenity");
     const selected = [];
 
     for (let i = 0; i < checkboxes.length; i++) {

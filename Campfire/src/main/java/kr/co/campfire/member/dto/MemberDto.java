@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDto {
-	private String memberNum;
+	private int memberNum;
 	private String memberId;
 	private String memberPassword;
 	private String memberPasswordChk;
@@ -26,6 +26,6 @@ public class MemberDto {
 	private String memberGoogle;	
 	private String memberKakao;	
 	private String memberNaver;	
-	private String memberDivision;	
+	private String memberDivision;
 }
 

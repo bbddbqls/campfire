@@ -216,4 +216,30 @@ function submitForm() {
     xhr.send(formData);
 }
 
+        function validateForm() {
+            var campOffsdPrice = document.getElementById("campOffsdPrice").value;
+            var campOffswPrice = document.getElementById("campOffswPrice").value;
+            var campSdPrice = document.getElementById("campSdPrice").value;
+            var campSwPrice = document.getElementById("campSwPrice").value;
+
+            // 유효성 검사
+            if (campOffsdPrice === "") {
+                document.getElementById("campOffsdPrice").value = -1; // 빈 값일 경우 -1로 설정
+            }
+
+            if (campOffswPrice === "") {
+                document.getElementById("campOffswPrice").value = -1;
+            }
+
+            if (campSdPrice === "") {
+                document.getElementById("campSdPrice").value = -1;
+            }
+
+            if (campSwPrice === "") {
+                document.getElementById("campSwPrice").value = -1;
+            }
+
+            return true; // 유효성 검사 후 폼 제출
+        }
+
 

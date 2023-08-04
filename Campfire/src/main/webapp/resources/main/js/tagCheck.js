@@ -17,7 +17,7 @@ const tagBoxElement = document.getElementById('tag');
 const amenityBoxElement1 = document.getElementById('amenity');
 
 function showSelectedTag() {
-    const checkboxes = document.getElementsByName("tagItem");
+    const checkboxes = document.getElementsByName("campTag");
     const selected = [];
 
     for (let i = 0; i < checkboxes.length; i++) {
