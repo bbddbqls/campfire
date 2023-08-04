@@ -31,9 +31,9 @@ public class BusinessRegistrationController {
 		if (brd.getBrArSttCd().equals("Y")) {
 			return "business/businessRegistration";
 		} else {
-//			model.addAttribute("msg", "아이디 비밀번호를 확인해 주세요!");
-//			model.addAttribute("status", "error");
-			return "";
+			model.addAttribute("msg", "사업자 승인이 되지 않은 사용자 입니다.");
+			model.addAttribute("status", "error");
+			return "user/userInquiry";
 		}
 	}
 	
