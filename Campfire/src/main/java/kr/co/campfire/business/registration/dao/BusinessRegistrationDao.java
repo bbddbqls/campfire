@@ -11,4 +11,7 @@ public class BusinessRegistrationDao {
 	public BusinessRegistrationDto selectBusinessRegistration(SqlSessionTemplate sqlSession, int memberNum) {
 		return sqlSession.selectOne("registrationMapper.checkBusiness", memberNum);
 	}
+	public int checkBusinessRegistration(SqlSessionTemplate sqlSession, int memberNum) {
+		return sqlSession.selectOne("registrationMapper.checkRegistration", memberNum);
+	}
 }

@@ -19,5 +19,10 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	public BusinessRegistrationDto selectBusinessRegistration(int memberNum) {
 		return businessRegistrationDao.selectBusinessRegistration(sqlSession, memberNum);
 	}
+	
+	@Override
+	public int checkBusinessRegistration(int memberNum) {
+		return businessRegistrationDao.checkBusinessRegistration(sqlSession, memberNum);
+	}
 
 }

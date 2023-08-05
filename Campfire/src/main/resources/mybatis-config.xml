@@ -7,19 +7,40 @@
 	</settings>
 	
 	<typeAliases>
+		<!-- 로그인,회원가입 -->
 		<typeAlias type="kr.co.campfire.member.dto.MemberDto" alias="member" />
+		
+		<!-- User -->
 		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
+		
+		<!-- Business -->
 		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="BusinessRegistration" />
 		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationDto" alias="CampRegistration" />
+		
+		<!-- Admin -->
+		
+		<!-- Common -->
+		
 		<!-- <typeAlias type="kr.co.campfire.user.dto.userDto" alias="user" /> -->
 <!-- 		<typeAlias type="kr.co.greenart.board.model.dto.Board" alias="board" />
 		<typeAlias type="kr.co.greenart.free.model.dto.Free" alias="free" /> -->
 	</typeAliases>
 
 	<mappers>
+	<!-- 로그인,회원가입 -->
 		<mapper resource="/mappers/member/member-mapper.xml" />
-		<mapper resource="/mappers/campSearch/campSearch-mapper.xml" />
+	
+		<!-- User -->
+		<mapper resource="/mappers/user/campSearch-mapper.xml" />
+		
+		<!-- Business -->
 		<mapper resource="/mappers/business/registration-mapper.xml" />
+		
+		<!-- Admin -->
+		
+		<!-- Common -->
+		
+		
 		<!-- <mapper resource="/mappers/user/user-mapper.xml" /> -->
 <!-- 		<mapper resource="/mappers/board/board-mapper.xml" />
 		<mapper resource="/mappers/free/free-mapper.xml" /> -->

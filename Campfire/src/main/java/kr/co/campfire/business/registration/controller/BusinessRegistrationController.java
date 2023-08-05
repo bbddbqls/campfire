@@ -27,10 +27,15 @@ public class BusinessRegistrationController {
 		int memberNum = (int)session.getAttribute("memberNum");
 		
 		BusinessRegistrationDto brd = businessRegistrationService.selectBusinessRegistration(memberNum);
+		int checkBR = businessRegistrationService.checkBusinessRegistration(memberNum);
 		
 		if (brd.getBrArSttCd().equals("Y")) {
 			return "business/businessRegistration";
-		} else {
+		}else if(checkBR != 0) {
+			model.addAttribute("msg", "이미 캠핑장 정보를 입력한 사용자 입니다.");
+			model.addAttribute("status", "error");
+			return "user/userInquiry";
+		}else {
 			model.addAttribute("msg", "사업자 승인이 되지 않은 사용자 입니다.");
 			model.addAttribute("status", "error");
 			return "user/userInquiry";
@@ -38,9 +43,9 @@ public class BusinessRegistrationController {
 	}
 	
 	@PostMapping("/insertRegistration.do")
-	public String showRegistration(CampRegistrationDto cr, HttpSession session, Model model) {
+	public String showRegistration(CampRegistrationDto crd, HttpSession session, Model model) {
 		
-		System.out.println(cr);
+		System.out.println(crd);
 		return "";
 	}
 

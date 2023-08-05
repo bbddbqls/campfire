@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -9,8 +8,8 @@
 <html>
 
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<link rel="stylesheet" href="../../resources/css/inquiry.css" />
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="../../resources/main/css/inquiry.css" />
 </head>
 
 <body class="is-preload">
@@ -24,7 +23,9 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="u_inquiry.html" class="logo"><strong>Campfire</strong> 문의사항 글쓰기</a>
+					<a href="u_inquiry.html" class="logo">
+						<strong>Campfire</strong> 문의사항 글쓰기
+					</a>
 
 				</header>
 
@@ -32,24 +33,24 @@
 				<section>
 					<form action="">
 						<div class="title-box">
-							<input type="text" class="form-control" id="exampleFormControlInput1" name="title"
-								placeholder="제목을 입력하세요.">
+							<input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 입력하세요.">
 						</div>
 
 						<br>
 
 						<div class="content-box">
-							<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10"
-								placeholder="내용을 입력해주세요"></textarea>
+							<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10" placeholder="내용을 입력해주세요"></textarea>
 						</div>
 						<br>
 						<div class="btn-box">
 							<div>
 								<label>
-									<input type="radio" name="public" value="Y">공개
+									<input type="radio" name="publicFL" value="Y">
+									공개
 								</label>
 								<label>
-									<input type="radio" name="public" value="N" checked>비공개
+									<input type="radio" name="publicFL" value="N" checked>
+									비공개
 								</label>
 							</div>
 							<div>
@@ -64,16 +65,16 @@
 		</div>
 
 		<!-- Sidebar -->
-<%@ include file="../common/sidebar.jsp"%>
+		<%@ include file="../common/sidebar.jsp"%>
 
 	</div>
 
 	<!-- Scripts -->
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/browser.min.js"></script>
-	<script src="../../resources/js/breakpoints.min.js"></script>
-	<script src="../../resources/js/util.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources/main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
 
 </body>
 

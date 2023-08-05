@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<link rel="stylesheet" href="/resources/main/css/inquiry.css" />
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="/resources/main/css/inquiry.css" />
 </head>
 <body class="is-preload">
 
@@ -17,7 +16,9 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="u_inquiry.html" class="logo"><strong>Campfire</strong> 문의사항</a>
+					<a href="u_inquiry.html" class="logo">
+						<strong>Campfire</strong> 문의사항
+					</a>
 
 				</header>
 
@@ -43,8 +44,7 @@
 							<tbody>
 								<tr onclick="location.href='u_inquiryDetail.html'">
 									<td class="td-num">3</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
+									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis integ</td>
 									<td class="td-id">bbqdbqls</td>
 									<td class="td-time">07/18</td>
 								</tr>
@@ -56,22 +56,19 @@
 								</tr>
 								<tr>
 									<td class="td-num">2</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
+									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis integ</td>
 									<td class="td-id">29.99</td>
 									<td class="td-time">29.99</td>
 								</tr>
 								<tr>
 									<td class="td-num">2</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
+									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis integ</td>
 									<td class="td-id">29.99</td>
 									<td class="td-time">29.99</td>
 								</tr>
 								<tr>
 									<td class="td-num">1</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
+									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis integ</td>
 									<td class="td-id">29.99</td>
 									<td class="td-time">29.99</td>
 								</tr>
@@ -81,15 +78,33 @@
 					</div>
 					<div class="section-pagination">
 						<ul class="pagination">
-							<li><span class="button small disabled">Prev</span></li>
-							<li><a href="#" class="page active">1</a></li>
-							<li><a href="#" class="page">2</a></li>
-							<li><a href="#" class="page">3</a></li>
-							<li><span>…</span></li>
-							<li><a href="#" class="page">8</a></li>
-							<li><a href="#" class="page">9</a></li>
-							<li><a href="#" class="page">10</a></li>
-							<li><a href="#" class="button small">Next</a></li>
+							<li>
+								<span class="button small disabled">Prev</span>
+							</li>
+							<li>
+								<a href="#" class="page active">1</a>
+							</li>
+							<li>
+								<a href="#" class="page">2</a>
+							</li>
+							<li>
+								<a href="#" class="page">3</a>
+							</li>
+							<li>
+								<span>…</span>
+							</li>
+							<li>
+								<a href="#" class="page">8</a>
+							</li>
+							<li>
+								<a href="#" class="page">9</a>
+							</li>
+							<li>
+								<a href="#" class="page">10</a>
+							</li>
+							<li>
+								<a href="#" class="button small">Next</a>
+							</li>
 						</ul>
 					</div>
 					<form action="">

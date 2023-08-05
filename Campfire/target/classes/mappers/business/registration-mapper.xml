@@ -32,10 +32,15 @@
 		<result column="BR_AR_STTCD" property="brArSttCd"></result>
 	</resultMap>
 
-	<select id="checkBusiness" resultMap="businessRegistrationResultSet">
-	 	SELECT * FROM Business_Registration WHERE M_NUM = #{mNum} 
+	<select id="checkBusiness"
+		resultMap="businessRegistrationResultSet">
+		SELECT * FROM Business_Registration WHERE M_NUM = #{mNum}
 	</select>
-
+	
+	<select id="checkRegistration"
+		resultType="_int">
+		SELECT COUNT(*) FROM CAMP_INFO WHERE M_NUM = #{mNum}
+	</select>
 	<!-- <select id="checkEmail" resultType="_int"> SELECT COUNT(*) FROM M_MEMBER 
 		WHERE M_EMAIL = #{email} </select> -->
 
