@@ -14,12 +14,13 @@
 		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
 		
 		<!-- Business -->
-		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="BusinessRegistration" />
-		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationDto" alias="CampRegistration" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="businessRegistration" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationDto" alias="campRegistration" />
 		
 		<!-- Admin -->
 		
 		<!-- Common -->
+		<typeAlias type="kr.co.campfire.user.userInquiry.dto.UserInquiryDto" alias="inquiry" />
 		
 		<!-- <typeAlias type="kr.co.campfire.user.dto.userDto" alias="user" /> -->
 <!-- 		<typeAlias type="kr.co.greenart.board.model.dto.Board" alias="board" />
@@ -39,7 +40,7 @@
 		<!-- Admin -->
 		
 		<!-- Common -->
-		
+		<mapper resource="/mappers/common/inquiry-mapper.xml" />
 		
 		<!-- <mapper resource="/mappers/user/user-mapper.xml" /> -->
 <!-- 		<mapper resource="/mappers/board/board-mapper.xml" />

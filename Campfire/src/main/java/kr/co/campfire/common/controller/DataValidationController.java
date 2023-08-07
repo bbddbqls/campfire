@@ -15,7 +15,7 @@ public class DataValidationController {
       }
    }
    
-   public Boolean LanguageCheck(String data) {
+   public Boolean titleLanguageCheck(String data, int titleLenght) {
       int byteLength = 0;
       
       for ( char c : data.toCharArray()) {
@@ -30,7 +30,7 @@ public class DataValidationController {
       }
       
       //총 문자열의 크기(바이트)가 FREE가 테이블의 컬럼 크기(VARCHAR2()) 보다 큰 경우
-      if(byteLength > 100 ) {
+      if(byteLength > titleLenght ) {
          return false;
       } else {
          return true;
@@ -38,7 +38,7 @@ public class DataValidationController {
    }
    
    
-   public Boolean ContentLanguageCheck(String data) {
+   public Boolean contentLanguageCheck(String data, int contextLenght) {
       int byteLength = 0;
       
       for ( char c : data.toCharArray()) {
@@ -52,7 +52,7 @@ public class DataValidationController {
       }
       
       //총 문자열의 크기(바이트)가 FREE가 테이블의 컬럼 크기(VARCHAR2()) 보다 큰 경우
-      if(byteLength > 100 ) {
+      if(byteLength > contextLenght ) {
          return false;
       } else {
          return true;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="registrationMapper">
-	<resultMap type="CampRegistration"
+	<resultMap type="campRegistration"
 		id="campRegistrationResultSet">
 		<result column="C_NUM" property="campNum"></result>
 		<result column="M_NUM" property="memberNum"></result>
@@ -23,7 +23,7 @@
 		<result column="C_PHONENUM" property="campPhoneNum"></result>
 	</resultMap>
 
-	<resultMap type="BusinessRegistration"
+	<resultMap type="businessRegistration"
 		id="businessRegistrationResultSet">
 		<result column="BR_NUM" property="brNum"></result>
 		<result column="M_NUM" property="mNum"></result>

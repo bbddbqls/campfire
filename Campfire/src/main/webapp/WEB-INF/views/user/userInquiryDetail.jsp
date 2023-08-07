@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -9,8 +9,8 @@
 <html>
 
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<link rel="stylesheet" href="../../resources/main/css/inquiry.css" />
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="../../resources/main/css/inquiry.css" />
 </head>
 
 <body class="is-preload">
@@ -24,40 +24,76 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="u_inquiry.html" class="logo"><strong>Campfire</strong> 문의사항 글쓰기</a>
+					<a href="u_inquiry.html" class="logo">
+						<strong>Campfire</strong> 문의사항 글쓰기
+					</a>
 
 				</header>
 
 				<!-- Content -->
 				<section>
-					<div class="post-info">
-						<p><span class="info-user">작성자:bbqdbqls</span><span class="info-time">작성일:2023-07-24</span></p>
-					</div>
-					<div class="title-box">
-						<input type="text" class="form-control" id="exampleFormControlInput1" name="title"
-							value="제목입니다." disabled>
-					</div>
+					<form method="post" action="/user/modifyForm.do">
+						<input type="hidden" name="inquiryNum" value="${detail.inquiryNum }" />
+						<input type="hidden" name="memberNum" value="${detail.memberNum }" />
+						<input type="hidden" name="inquiryPublicFL" value="${detail.inquiryPublicFL }" />
+						<input type="hidden" name="inquiryTitle" value="${detail.inquiryTitle }" />
+						<input type="hidden" name="inquiryContext" value="${detail.inquiryContext }" />
+						
+						<div class="post-info">
+							<p>
+								<span class="info-user">작성자:${ detail.memberId }</span><span class="info-time">작성일:${ detail.inquiryNewDate }</span>
+							</p>
+						</div>
+						<div class="title-box">
+							<input type="text" class="form-control" id="exampleFormControlInput1" name="inquiryTitle" value="${ detail.inquiryTitle }" disabled>
+						</div>
 
-					<br>
+						<br>
 
-					<div class="content-box">
-						<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10"
-							disabled>본문 내용 입니다.</textarea>
-					</div>
-					<br>
-					<div class="right-btn-box">
-						<button type="button" class="button small" onclick="goBack()">취소</button>
-						<button type="button" class="button primary small"
-							onclick="location.href='u_inquiryModify.html'">수정</button>
-						<button type="button" class="button primary small" onclick="/* 삭제 주소*/">삭제</button>
-					</div>
+						<div class="content-box">
+							<textarea name="inquiryContext" id="editorTxt" class="form-control" rows="13" cols="10" disabled>${ detail.inquiryContext }</textarea>
+						</div>
+						<c:if test="${detail.inquiryAnswerFL eq 'Y'}">
+							<br>
+							<div class="reply-wrapper">
+								<div class="reply-line"></div>
+								<span>답글</span>
+								<div class="reply-line"></div>
+							</div>
+							<br>
+							<div class="post-info">
+								<p>
+									<span class="info-user">작성자:${ detail.answerAdmin }</span><span class="info-time">작성일:${ detail.answerNewDate }</span>
+								</p>
+							</div>
+							<div class="title-box">
+								<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="${ detail.answerTitle }">
+							</div>
+
+							<br>
+
+							<div class="content-box">
+								<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10">${ detail.answerContext }</textarea>
+							</div>
+						</c:if>
+						<br>
+						<div class="right-btn-box">
+							<button type="button" class="button small" onclick="goBack()">목록</button>
+							<c:if test="${sessionScope.memberNum == detail.memberNum && detail.inquiryAnswerFL eq 'N'}">
+								<button type="submit" class="button primary small">수정</button>
+							</c:if>
+							<c:if test="${sessionScope.memberNum == detail.memberNum || sessionScope.memberDivision eq 'admin'}">
+								<button type="button" class="button primary small" onclick="location.href='/user/deleteUserInquiry.do?inNum=${detail.inquiryNum}&memberNum=${detail.memberNum}'">삭제</button>
+							</c:if>
+						</div>
+					</form>
 				</section>
 
 			</div>
 		</div>
 
 		<!-- Sidebar -->
-<%@ include file="../common/sidebar.jsp"%>
+		<%@ include file="../common/sidebar.jsp"%>
 
 	</div>
 

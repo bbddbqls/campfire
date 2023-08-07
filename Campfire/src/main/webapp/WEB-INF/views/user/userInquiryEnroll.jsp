@@ -31,25 +31,25 @@
 
 				<!-- Content -->
 				<section>
-					<form action="">
+					<form action="/user/enrollUserInquiry.do" method="post">
 						<div class="title-box">
-							<input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 입력하세요.">
+							<input type="text" class="form-control" id="exampleFormControlInput1" name="inquiryTitle" placeholder="제목을 입력하세요.">
 						</div>
 
 						<br>
 
 						<div class="content-box">
-							<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10" placeholder="내용을 입력해주세요"></textarea>
+							<textarea name="inquiryContext" id="editorTxt" class="form-control" rows="13" cols="10" placeholder="내용을 입력해주세요"></textarea>
 						</div>
 						<br>
 						<div class="btn-box">
 							<div>
 								<label>
-									<input type="radio" name="publicFL" value="Y">
+									<input type="radio" name="inquiryPublicFL" value="Y">
 									공개
 								</label>
 								<label>
-									<input type="radio" name="publicFL" value="N" checked>
+									<input type="radio" name="inquiryPublicFL" value="N" checked>
 									비공개
 								</label>
 							</div>

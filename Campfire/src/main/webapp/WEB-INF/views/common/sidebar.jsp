@@ -41,9 +41,9 @@
 						</li>
 					</ul>
 				</li>
-				<c:if test="${sessionScope.memberDivision eq 'user'}">
+				<c:if test="${sessionScope.memberDivision eq 'user' || sessionScope.memberDivision eq 'admin'}">
 					<li>
-						<a href="elements.html">문의 사항</a>
+						<a href="/user/showUserInquiry.do">문의 사항</a>
 					</li>
 				</c:if>
 				<!--관리자만 보이게-->
@@ -58,7 +58,7 @@
 								<a href="#">캠핑장 등록</a>
 							</li>
 							<li>
-								<a href="../admin/a_inquiry.html">문의사항</a>
+								<a href="../admin/a_inquiry.html">문의사항 답변</a>
 							</li>
 						</ul>
 					</li>
