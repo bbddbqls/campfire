@@ -38,7 +38,7 @@
 						<input type="hidden" name="inquiryPublicFL" value="${detail.inquiryPublicFL }" />
 						<input type="hidden" name="inquiryTitle" value="${detail.inquiryTitle }" />
 						<input type="hidden" name="inquiryContext" value="${detail.inquiryContext }" />
-						
+
 						<div class="post-info">
 							<p>
 								<span class="info-user">작성자:${ detail.memberId }</span><span class="info-time">작성일:${ detail.inquiryNewDate }</span>
@@ -82,8 +82,11 @@
 							<c:if test="${sessionScope.memberNum == detail.memberNum && detail.inquiryAnswerFL eq 'N'}">
 								<button type="submit" class="button primary small">수정</button>
 							</c:if>
-							<c:if test="${sessionScope.memberNum == detail.memberNum || sessionScope.memberDivision eq 'admin'}">
+							<c:if test="${sessionScope.memberNum == detail.memberNum && detail.inquiryAnswerFL eq 'N'">
 								<button type="button" class="button primary small" onclick="location.href='/user/deleteUserInquiry.do?inNum=${detail.inquiryNum}&memberNum=${detail.memberNum}'">삭제</button>
+							</c:if>
+							<c:if test="${  sessionScope.memberDivision eq 'admin'}">
+								<button type="button" class="button primary small" onclick="location.href='/admin/deleteAdminInquiry.do?inNum=${detail.inquiryNum}'">문의사항 삭제</button>
 							</c:if>
 						</div>
 					</form>

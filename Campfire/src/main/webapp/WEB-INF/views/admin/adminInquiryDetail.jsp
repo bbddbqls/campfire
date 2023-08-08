@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -9,8 +9,8 @@
 <html>
 
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<link rel="stylesheet" href="../../resources/css/inquiry.css" />
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="../../resources/main/css/inquiry.css" />
 </head>
 
 <body class="is-preload">
@@ -24,31 +24,65 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="a_inquiry.html" class="logo"><strong>Campfire</strong> 문의사항 글쓰기</a>
+					<a href="a_inquiry.html" class="logo">
+						<strong>Campfire</strong> 문의사항 글쓰기
+					</a>
 
 				</header>
 
 				<!-- Content -->
 				<section>
 					<div class="post-info">
-						<p><span class="info-user">작성자:bbqdbqls</span><span class="info-time">작성일:2023-07-24</span></p>
+						<p>
+							<span class="info-user">작성자:${ detail.memberId }</span><span class="info-time">작성일:${ detail.inquiryNewDate }</span>
+						</p>
 					</div>
 					<div class="title-box">
-						<input type="text" class="form-control" id="exampleFormControlInput1" name="title"
-							value="제목입니다." disabled>
+						<input type="text" class="form-control" id="exampleFormControlInput1" name="inquiryTitle" value="${ detail.inquiryTitle }" disabled>
 					</div>
 
 					<br>
 
 					<div class="content-box">
-						<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10"
-							disabled>본문 내용 입니다.</textarea>
+						<textarea name="inquiryContext" id="editorTxt" class="form-control" rows="13" cols="10" disabled>${ detail.inquiryContext }</textarea>
 					</div>
+					<c:if test="${detail.inquiryAnswerFL eq 'Y'}">
+						<br>
+						<div class="reply-wrapper">
+							<div class="reply-line"></div>
+							<span>답글</span>
+							<div class="reply-line"></div>
+						</div>
+						<br>
+						<div class="post-info">
+							<p>
+								<span class="info-user">작성자:${ detail.answerAdmin }</span><span class="info-time">작성일:${ detail.answerNewDate }</span>
+							</p>
+						</div>
+						<div class="title-box">
+							<input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="${ detail.answerTitle }">
+						</div>
+
+						<br>
+
+						<div class="content-box">
+							<textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10">${ detail.answerContext }</textarea>
+						</div>
+					</c:if>
 					<br>
 					<div class="right-btn-box">
 						<button type="button" class="button small" onclick="goBack()">취소</button>
-						<button type="button" class="button primary small"
-							onclick="location.href='a_inquiryModify.html'">답글 달기</button>
+						<c:choose>
+							<c:when test="${detail.inquiryAnswerFL eq 'Y'}">
+								<button type="button" class="button primary small" onclick="location.href='/admin/deleteAdminInquiry.do?inNum=${detail.inquiryNum}'">문의사항 삭제</button>
+								<button type="button" class="button primary small" onclick="location.href='/admin/deleteAdminAnswer.do?inNum=${detail.inquiryNum}'">답글 삭제</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="button primary small" onclick="location.href='/admin/deleteAdminInquiry.do?inNum=${detail.inquiryNum}'">문의사항 삭제</button>
+								<button type="button" class="button primary small" onclick="location.href='/admin/answerForm.do?inNum=${detail.inquiryNum}'">답글 달기</button>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 				</section>
 			</div>
@@ -60,11 +94,11 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/browser.min.js"></script>
-	<script src="../../resources/js/breakpoints.min.js"></script>
-	<script src="../../resources/js/util.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources/main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
 
 </body>
 

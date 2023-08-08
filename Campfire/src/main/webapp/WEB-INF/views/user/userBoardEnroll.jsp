@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -9,9 +9,9 @@
 <html>
 
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<%@ include file="../common/smarteditor.jsp"%>
-	<link rel="stylesheet" href="../../resources/main/css/recommend.css" />
+<%@ include file="../common/head.jsp"%>
+<%@ include file="../common/smarteditor.jsp"%>
+<link rel="stylesheet" href="../../resources/main/css/recommend.css" />
 </head>
 
 <body class="is-preload">
@@ -25,7 +25,9 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="a_inquiry.html" class="logo"><strong>Campfire</strong> 글쓰기</a>
+					<a href="a_inquiry.html" class="logo">
+						<strong>Campfire</strong> 글쓰기
+					</a>
 
 				</header>
 
@@ -35,13 +37,12 @@
 					<form action="/free/insert.do" method="post" enctype="multipart/form-data">
 						<div class="mb-3 justify-content-center">
 							<label for="exampleFormControlInput1" class="form-label">제목</label>
-							<input type="text" class="form-control" name="title" id="exampleFormControlInput1"
-								placeholder="제목을 입력하세요.">
+							<input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="제목을 입력하세요.">
 						</div>
 
 						<div class="mb-3 justify-content-center">
-							<label for="categorySelect" class="form-label">카테고리</label> <select class="form-select"
-								id="categorySelect" name="category">
+							<label for="categorySelect" class="form-label">카테고리</label>
+							<select class="form-select" id="categorySelect" name="category">
 								<option value="chat">추천</option>
 								<option value="information">정보공유</option>
 							</select>
@@ -51,11 +52,11 @@
 							<label for="editorTxt" class="form-label">내용</label>
 							<!-- <textarea name="content" id="editorTxt" class="form-control" rows="13" cols="10"
 								placeholder="내용을 입력해주세요"></textarea> -->
-								<textarea name="content" id="editorTxt" rows="10" cols="100" style="width:100%; height:412px; min-width:500px; display:none;"></textarea>
+							<textarea name="content" id="editorTxt" rows="10" cols="100" style="width: 100%; height: 412px; min-width: 500px; display: none;"></textarea>
 						</div>
 						<div class="btn-box">
-								<button type="button" class="button small right-btn" onclick="history.back()">취소</button>
-								<button type="submit" class="button small primary right-btn" onclick="save()" class="btn btn-primary">작성</button>
+							<button type="button" class="button small right-btn" onclick="history.back()">취소</button>
+							<button type="submit" class="button small primary right-btn" onclick="save()" class="btn btn-primary">작성</button>
 						</div>
 					</form>
 				</section>
@@ -64,7 +65,7 @@
 		</div>
 
 		<!-- Sidebar -->
-<%@ include file="../common/sidebar.jsp"%>
+		<%@ include file="../common/sidebar.jsp"%>
 
 	</div>
 

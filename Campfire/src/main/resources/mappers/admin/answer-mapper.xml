@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="inquiryMapper">
-	<resultMap type="inquiry" id="inquiryResultSet">
+<mapper namespace="answerMapper">
+	<resultMap type="answer" id="answerResultSet">
 		<result column="IN_NUM" property="inquiryNum"></result>
 		<result column="M_NUM" property="memberNum"></result>
 		<result column="M_USER_ID" property="memberId"></result>
@@ -20,77 +20,68 @@
 	</resultMap>
 
 
-	<select id="selectListAllCount" resultType="_int">
-		SELECT COUNT(*) FROM inquiry
+	<select id="selectNoAnswerListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM inquiry
+		WHERE IN_ANSWER_FL = 'N'
 	</select>
 
-	<select id="selectListTitleCount" resultType="_int">
-		SELECT COUNT(*) FROM inquiry
-		WHERE IN_TITLE LIKE '%'||#{searchTxt}||'%'
-	</select>
-
-	<select id="selectListContextCount" resultType="_int">
-		SELECT COUNT(*) FROM inquiry
-		WHERE IN_CONTEXT LIKE '%'||#{searchTxt}||'%'
-	</select>
-
-	<select id="selectListWriterCount" resultType="_int">
-		SELECT COUNT(*) FROM inquiry
+	<select id="selectNoAnswerList" resultMap="answerResultSet">
+		SELECT * FROM inquiry
 		INNER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
-		WHERE MEMBER.M_USER_ID LIKE '%'||#{searchTxt}||'%'
+		LEFT
+		OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
+		WHERE
+		IN_ANSWER_FL ='N'
+		ORDER BY IN_DATETIME_CREATED DESC, inquiry.IN_NUM DESC
 	</select>
 
-	<select id="selectListAll" resultMap="inquiryResultSet">
+	<select id="selectAllAnswerListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM inquiry
+	</select>
+
+	<select id="selectAllAnswerList" resultMap="answerResultSet">
 		SELECT * FROM inquiry
 		INNER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
 		LEFT OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
 		ORDER BY IN_DATETIME_CREATED DESC, inquiry.IN_NUM DESC
 	</select>
 
-	<select id="selectListTitle" resultMap="inquiryResultSet">
-		SELECT * FROM inquiry
-		INNER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
-		LEFT OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
-		WHERE inquiry.IN_TITLE LIKE '%'||#{searchTxt}||'%'
-		ORDER BY IN_DATETIME_CREATED DESC, inquiry.IN_NUM DESC
-	</select>
-
-	<select id="selectListContext" resultMap="inquiryResultSet">
-		SELECT * FROM inquiry
-		INNER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
-		LEFT OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
-		WHERE inquiry.IN_CONTEXT LIKE '%'||#{searchTxt}||'%'
-		ORDER BY IN_DATETIME_CREATED DESC, inquiry.IN_NUM DESC
-	</select>
-
-	<select id="selectListWriter" resultMap="inquiryResultSet">
-		SELECT * FROM inquiry
-		INNER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
-		LEFT OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
-		WHERE MEMBER.M_USER_ID LIKE '%'||#{searchTxt}||'%'
-		ORDER BY IN_DATETIME_CREATED DESC, inquiry.IN_NUM DESC
-	</select>
-	
-	<select id="detailInquiry" resultMap="inquiryResultSet">
+	<select id="detailInquiry" resultMap="answerResultSet">
 		SELECT inquiry.*, INQUIRY_ANSWER.*, MEMBER.M_USER_ID FROM inquiry
 		LEFT OUTER JOIN INQUIRY_ANSWER ON inquiry.in_NUM = INQUIRY_ANSWER.in_NUM
 		LEFT OUTER JOIN MEMBER ON inquiry.M_NUM = MEMBER.M_NUM
 		WHERE inquiry.in_NUM = #{inNum}
-   </select>
-   
-   <insert id="insertInquiry">
-   		INSERT INTO inquiry(M_NUM, IN_TITLE, IN_CONTEXT, IN_PUBLIC_FL )
-    	VALUES(#{memberNum}, #{inquiryTitle}, #{inquiryContext}, #{inquiryPublicFL})
-   </insert>
-   
-   <delete id="deleteInquiry">
+	</select>
+
+	<insert id="insertAnswer">
+		INSERT INTO inquiry_answer(IN_NUM, IN_A_TITLE,
+		IN_A_CONTEXT, IN_A_ADMIN )
+		VALUES(#{inquiryNum}, #{answerTitle},
+		#{answerContext},
+		#{answerAdmin})
+	</insert>
+
+	<delete id="deleteInquiry">
 		DELETE FROM inquiry WHERE in_num = #{inquiryNum}
-   </delete>
-   
-   <update id="updateInquiry" parameterType="inquiry">
-   		UPDATE inquiry SET IN_TITLE = #{inquiryTitle}, IN_CONTEXT = #{inquiryContext}, IN_PUBLIC_FL = #{inquiryPublicFL}
-   		WHERE IN_NUM = #{inquiryNum}
-   </update>
+	</delete>
+
+	<delete id="deleteAnswer">
+		DELETE FROM inquiry_answer WHERE in_num =
+		#{inquiryNum}
+	</delete>
+
+	<update id="updateInquiryIA" parameterType="int">
+		UPDATE inquiry SET
+		IN_ANSWER_FL = 'Y'
+		WHERE IN_NUM = #{inquiryNum}
+	</update>
+		<update id="updateInquiryDA" parameterType="int">
+		UPDATE inquiry SET
+		IN_ANSWER_FL = 'N'
+		WHERE IN_NUM = #{inquiryNum}
+	</update>
 	<!-- <select id="checkBusiness" resultMap="businessRegistrationResultSet"> 
 		SELECT * FROM Business_Registration WHERE M_NUM = #{mNum} </select> -->
 

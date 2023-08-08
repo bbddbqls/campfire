@@ -85,7 +85,7 @@
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="showUserInquiry.do?cpage=${ pi.currentPage - 1 }" class="button small">Prev</a>
+										<a href="showUserInquiry.do?cpage=${ pi.currentPage - 1 }&searchCtg=${ searchCtg }&searchTxt=${ searchTxt }" class="button small">Prev</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -111,7 +111,7 @@
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="showUserInquiry.do?cpage=${ pi.currentPage + 1 }" class="button small">Next</a>
+										<a href="showUserInquiry.do?cpage=${ pi.currentPage + 1 }&searchCtg=${ searchCtg }&searchTxt=${ searchTxt }" class="button small">Next</a>
 									</li>
 								</c:otherwise>
 							</c:choose>

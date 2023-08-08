@@ -58,7 +58,7 @@
 								<a href="#">캠핑장 등록</a>
 							</li>
 							<li>
-								<a href="../admin/a_inquiry.html">문의사항 답변</a>
+								<a href="/admin/showAdminInquiry.do">문의사항 답변</a>
 							</li>
 						</ul>
 					</li>
