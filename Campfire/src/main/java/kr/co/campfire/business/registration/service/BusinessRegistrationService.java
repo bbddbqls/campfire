@@ -20,4 +20,5 @@ public interface BusinessRegistrationService {
 	int insertCampPhoto(CampPhotoItemDto cpd);
 	
 	int selectCampNum(CampRegistrationDto crd);
+	
 }
