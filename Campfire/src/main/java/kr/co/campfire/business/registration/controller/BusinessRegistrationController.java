@@ -76,7 +76,7 @@ public class BusinessRegistrationController {
 
 			session.removeAttribute("msg");
 			session.removeAttribute("status");
-			return "user/campSearch.do";
+			return "redirect:/user/campSearch.do";
 		}
 	}
 
