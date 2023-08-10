@@ -41,11 +41,10 @@
 						</li>
 					</ul>
 				</li>
-				<c:if test="${sessionScope.memberDivision eq 'user' || sessionScope.memberDivision eq 'admin'}">
-					<li>
-						<a href="/user/showUserInquiry.do">문의 사항</a>
-					</li>
-				</c:if>
+				<li>
+					<a href="/user/showUserInquiry.do">문의 사항</a>
+				</li>
+
 				<!--관리자만 보이게-->
 				<c:if test="${sessionScope.memberDivision eq 'admin'}">
 					<li>
@@ -71,9 +70,6 @@
 						<ul>
 							<li>
 								<a href="/business/registration/showRegistration.do">등록 요청</a>
-							</li>
-							<li>
-								<a href="">문의사항</a>
 							</li>
 						</ul>
 					</li>

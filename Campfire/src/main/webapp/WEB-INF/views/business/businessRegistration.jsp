@@ -32,7 +32,7 @@
 
 				<!-- Content -->
 				<section>
-					<form id="myForm" action="/business/registration/insertRegistration.do" method="post" onsubmit="return validateForm()">
+					<form id="myForm" action="/business/registration/insertRegistration.do" method="POST" enctype="multipart/form-data">
 						<div class="camp-info">
 							<div id="main-img-box">
 								<p id="explanation">(아래에서 사진을 추가해 주세요)</p>
@@ -52,7 +52,7 @@
 										<tr>
 											<th scope="col">우편번호<span class="required-field">*</span></th>
 											<td class="input-container">
-												<input type="text" id="postcode" name="campPostCode" disabled >
+												<input type="text" id="postcode" name="campPostCode" >
 												<button type="button" class="button fit small"
 													onclick="searchPostCode()">우편번호 찾기</button>
 											</td>
@@ -73,7 +73,7 @@
 											<th scope="col">캠핑장 유형<span class="required-field">*</span></th>
 											<td>
 												<select id="camp-type" name="campType">
-													<option value="#">캠핑장 유형을 골라주세요</option>
+													<option value="">캠핑장 유형을 골라주세요</option>
 													<option value="글램핑">글램핑</option>
 													<option value="카라반">카라반</option>
 													<option value="오토캠핑">오토캠핑</option>
@@ -306,7 +306,7 @@
 							</div>
 
 						</div>
-						<button type="submit" class="button small" >FORM으로 마지막에 보내기</button>
+						<button type="button" class="button small right-btn" onclick="submitForm()">등록</button>
 					</form>
 
 				</section>

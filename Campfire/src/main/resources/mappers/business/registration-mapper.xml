@@ -26,7 +26,7 @@
 	<resultMap type="businessRegistration"
 		id="businessRegistrationResultSet">
 		<result column="BR_NUM" property="brNum"></result>
-		<result column="M_NUM" property="mNum"></result>
+		<result column="M_NUM" property="memberNum"></result>
 		<result column="BR_COMPANY" property="brCompany"></result>
 		<result column="BR_STTCD" property="brSttCd"></result>
 		<result column="BR_AR_STTCD" property="brArSttCd"></result>
@@ -34,13 +34,40 @@
 
 	<select id="checkBusiness"
 		resultMap="businessRegistrationResultSet">
-		SELECT * FROM Business_Registration WHERE M_NUM = #{mNum}
+		SELECT * FROM Business_Registration WHERE M_NUM = #{memberNum}
 	</select>
 	
 	<select id="checkRegistration"
 		resultType="_int">
-		SELECT COUNT(*) FROM CAMP_INFO WHERE M_NUM = #{mNum}
+		SELECT COUNT(*) FROM CAMP_INFO WHERE M_NUM = #{memberNum}
 	</select>
+	
+	<select id="selectCampNum"
+		resultType="_int">
+		SELECT c_num FROM camp_info WHERE m_num=#{memberNum} AND c_postCode = #{campPostCode} AND c_name=#{campName}
+	</select>
+	
+	<insert id="insertCampInfo">
+		INSERT INTO CAMP_INFO
+		(C_NUM, m_num, c_name, c_postcode, c_addr, c_phoneNum, c_type, c_link, c_aplace, c_map_x, c_map_y, C_CHECK, c_intro, c_offsd_price, c_offsw_price, c_sd_price, c_sw_price, c_view, C_CREATE_DATE) VALUES 
+		(ci_num_seq.NEXTVAL, #{memberNum}, #{campName}, #{campPostCode}, #{campAddr}, #{campPhoneNum}, #{campType}, #{campLink}, #{campAPlace}
+		, #{campX}, #{campY}, DEFAULT, #{campIntro}, #{campOffsdPrice}, #{campOffswPrice}, #{campSdPrice}, #{campSwPrice}, DEFAULT, DEFAULT) 
+	</insert>
+	
+	<insert id="insertCampAmenity">
+		INSERT INTO CAMP_AMENITY
+		(c_num, ca_amenity, ca_ame_name) VALUES (#{campNum}, #{campAmenityPhoto}, #{campAmenityItem}) 
+	</insert>
+	
+	<insert id="insertCampTag">
+		INSERT INTO CAMP_TAG
+		(c_num, ct_tag) VALUES (#{campNum}, #{campTagItem}) 
+	</insert>
+	
+	<insert id="insertCampPhoto">
+		INSERT INTO CAMP_PHOTO
+		(c_num, cp_name, cp_URL) VALUES (#{campNum}, #{campPhotoName}, #{campPhotoURL}) 
+	</insert>
 	<!-- <select id="checkEmail" resultType="_int"> SELECT COUNT(*) FROM M_MEMBER 
 		WHERE M_EMAIL = #{email} </select> -->
 

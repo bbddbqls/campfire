@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class BusinessRegistrationDto {
 	private String brNum;
-	private int mNum;
+	private int memberNum;
 	private String brCompany;
 	private String brSttCd;
 	private String brArSttCd; 
