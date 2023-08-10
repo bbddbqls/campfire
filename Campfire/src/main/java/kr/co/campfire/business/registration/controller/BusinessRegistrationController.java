@@ -56,7 +56,7 @@ public class BusinessRegistrationController {
 			int checkBR = businessRegistrationService.checkBusinessRegistration(memberNum);
 			System.out.println(checkBR);
 
-			if (checkBR == 0 && brd.getBrArSttCd().equals("Y")) {
+			if (brd.getBrArSttCd().equals("Y")) {
 				model.addAttribute("msg", (String) session.getAttribute("msg"));
 				model.addAttribute("status", (String) session.getAttribute("status"));
 
@@ -64,8 +64,7 @@ public class BusinessRegistrationController {
 				session.removeAttribute("status");
 
 				return "business/businessRegistration";
-			} else if (checkBR != 0) {
-				sessionManage.setSessionMessage("이미 캠핑장 정보를 입력한 사용자 입니다.", "error", session);
+			
 			} else if(!brd.getBrArSttCd().equals("Y")){
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
 			}else {
