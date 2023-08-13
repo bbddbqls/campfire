@@ -39,6 +39,7 @@
 		
 		<!-- Admin -->
 		<mapper resource="/mappers/admin/answer-mapper.xml" />
+		
 		<!-- Common -->
 		<mapper resource="/mappers/common/inquiry-mapper.xml" />
 		

@@ -19,6 +19,7 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	@Autowired
 	private BusinessRegistrationDao businessRegistrationDao;
 	
+	//사업자 등록증
 	@Override
 	public BusinessRegistrationDto selectBusinessRegistration(int memberNum) {
 		return businessRegistrationDao.selectBusinessRegistration(sqlSession, memberNum);
@@ -28,7 +29,22 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	public int checkBusinessRegistration(int memberNum) {
 		return businessRegistrationDao.checkBusinessRegistration(sqlSession, memberNum);
 	}
+	
+	@Override
+	public int checkBusinessNum(String brNum) {
+		return businessRegistrationDao.checkBusinessNum(sqlSession, brNum);
+	}
+	
+	@Override
+	public int insertBusiness(BusinessRegistrationDto brd) {
+		return businessRegistrationDao.insertBusiness(sqlSession, brd);
+	}
 
+	@Override
+	public int deleteBusiness(int memberNum) {
+		return businessRegistrationDao.deleteBusiness(sqlSession, memberNum);
+	}
+	//캠핑장 등록
 	@Override
 	public int insertCampInfo(CampRegistrationDto crd) {
 		return businessRegistrationDao.insertCampInfo(sqlSession, crd);
@@ -53,4 +69,5 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	public int insertCampPhoto(CampPhotoItemDto cpd) {
 		return businessRegistrationDao.insertCampPhoto(sqlSession, cpd);
 	}
+
 }

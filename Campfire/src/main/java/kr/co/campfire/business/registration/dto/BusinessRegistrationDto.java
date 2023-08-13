@@ -17,4 +17,8 @@ public class BusinessRegistrationDto {
 	private String brCompany;
 	private String brSttCd;
 	private String brArSttCd; 
+	private String brRepname;
+	private String brCreateDate;
+	private String brReason;
+	
 }

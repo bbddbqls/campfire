@@ -1,0 +1,25 @@
+.searchBox {
+			width: 60%;
+			display: flex;
+			align-items: center;
+			margin-right: auto;
+			margin-left: auto;
+			margin-bottom: 10px;
+		}
+
+		.exBox {
+			width: 80%;
+			margin: auto;
+		}
+
+		.exBox p {
+			margin: 0;
+		}
+
+		.inputText {
+			margin-right: 10px;
+		}
+
+		.exText {
+			display: none;
+		}

@@ -23,7 +23,7 @@ import kr.co.campfire.common.controller.LoginCheckController;
 import kr.co.campfire.common.controller.SessionManageController;
 
 @Controller
-@RequestMapping("/business/registration")
+@RequestMapping("/business")
 public class BusinessRegistrationController {
 	@Autowired
 	private BusinessRegistrationServiceImpl businessRegistrationService;
@@ -37,49 +37,47 @@ public class BusinessRegistrationController {
 	@Autowired
 	private LoginCheckController loginCheck;
 
-	@GetMapping("/showRegistration.do")
+	// 캠핑장 등록 컨트롤러
+	@GetMapping("/showCampRegistration.do")
 	public String showRegistration(HttpSession session, Model model) {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
-			model.addAttribute("msg", (String) session.getAttribute("msg"));
-			model.addAttribute("status", (String) session.getAttribute("status"));
 
-			session.removeAttribute("msg");
-			session.removeAttribute("status");
-			return "user/userInquiry";
+			return "#################################"; // 캠핑장 서치
+		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
+			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
+
+			return "#################################"; // 캠핑장 서치
 		} else {
-
 			int memberNum = (int) session.getAttribute("memberNum");
+			if (businessRegistrationService.checkBusinessRegistration(memberNum) > 0) {
 
-			BusinessRegistrationDto brd = businessRegistrationService.selectBusinessRegistration(memberNum);
-			System.out.println(brd.toString());
-			int checkBR = businessRegistrationService.checkBusinessRegistration(memberNum);
-			System.out.println(checkBR);
+				BusinessRegistrationDto brd = businessRegistrationService.selectBusinessRegistration(memberNum);
 
-			if (brd.getBrArSttCd().equals("Y")) {
-				model.addAttribute("msg", (String) session.getAttribute("msg"));
-				model.addAttribute("status", (String) session.getAttribute("status"));
+				if (brd.getBrArSttCd().equals("Y")) {
+					model.addAttribute("msg", (String) session.getAttribute("msg"));
+					model.addAttribute("status", (String) session.getAttribute("status"));
 
-				session.removeAttribute("msg");
-				session.removeAttribute("status");
+					session.removeAttribute("msg");
+					session.removeAttribute("status");
 
-				return "business/businessRegistration";
-			
-			} else if(!brd.getBrArSttCd().equals("Y")){
+					return "business/campRegistration";
+
+				} else if (!brd.getBrArSttCd().equals("Y")) {
+					sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
+					return "redirect:/business/showBusinessRegistration.do";
+				} else {
+					sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
+					return "redirect:/user/campSearch.do";
+				}
+			} else {
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
-			}else {
-				sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
+				return "redirect:/business/showBusinessRegistration.do";
 			}
-			model.addAttribute("msg", (String) session.getAttribute("msg"));
-			model.addAttribute("status", (String) session.getAttribute("status"));
-
-			session.removeAttribute("msg");
-			session.removeAttribute("status");
-			return "redirect:/user/campSearch.do";
 		}
 	}
 
-	@RequestMapping("/insertRegistration.do")
+	@RequestMapping("/insertCampRegistration.do")
 	public String insertRegistration(@ModelAttribute CampRegistrationDto crd, HttpSession session, Model model) {
 		System.out.println(crd.toString());
 		if (loginCheck.loginCheck(session)) {
@@ -162,6 +160,11 @@ public class BusinessRegistrationController {
 								businessRegistrationService.insertCampPhoto(cpd);
 							}
 						}
+						model.addAttribute("msg", (String) session.getAttribute("msg"));
+						model.addAttribute("status", (String) session.getAttribute("status"));
+
+						session.removeAttribute("msg");
+						session.removeAttribute("status");
 						return "user/campSearch";
 					} else {
 						return "common/errorPage";
@@ -176,14 +179,98 @@ public class BusinessRegistrationController {
 			} else {
 				sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
 
-				//return "redirect:/user/showUserInquiry.do";
+				// return "redirect:/user/showUserInquiry.do";
 				return "";
 			}
 		} else {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			//return "redirect:/user/showUserInquiry.do";
+			// return "redirect:/user/showUserInquiry.do";
 			return "";
+		}
+	}
+
+	// 사업자 등록 컨트롤러
+	@RequestMapping("/showBusinessRegistration.do")
+	public String showBusinessRegistration(HttpSession session, Model model) {
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			return "user/userInquiry"; // 캠프서치로
+		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
+			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
+			return "user/userInquiry"; // 캠프서치로
+		} else {
+			int memberNum = (int) session.getAttribute("memberNum");
+			int result = businessRegistrationService.checkBusinessRegistration(memberNum);
+
+			// 등록된 사업자등록증이 있으면 보여주기
+			if (result > 0) {
+				BusinessRegistrationDto brd = businessRegistrationService.selectBusinessRegistration(memberNum);
+				model.addAttribute("businessList", brd);
+
+				return "business/businessList";
+			} else {
+				// 없으면 등록화면으로 이동
+				model.addAttribute("msg", (String) session.getAttribute("msg"));
+				model.addAttribute("status", (String) session.getAttribute("status"));
+
+				session.removeAttribute("msg");
+				session.removeAttribute("status");
+
+				return "business/businessRegistration";
+			}
+		}
+	}
+
+	@RequestMapping("/insertBusinessRegistration.do")
+	public String insertBusinessRegistration(BusinessRegistrationDto brd, HttpSession session, Model model) {
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			return "############################"; // 캠프서치 컨트롤러
+		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
+			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
+			return "############################"; // 캠프서치 컨트롤러
+		} else {
+			// 입력 정보 확인
+			if (brd.getBrNum() == null || brd.getBrCompany() == null || brd.getBrSttCd() == null
+					|| brd.getBrNum().isEmpty() || brd.getBrCompany().isEmpty() || brd.getBrSttCd().isEmpty()) {
+				sessionManage.setSessionMessage("입력 정보를 다시 확인해 주세요.", "error", session);
+			} else {
+				// 사업자 등록증 번호 중복 체크
+				int resultCheckBusinessNum = businessRegistrationService.checkBusinessNum(brd.getBrNum());
+				if (resultCheckBusinessNum > 0) {
+					sessionManage.setSessionMessage("이미 등록된 사업자 번호 입니다.", "error", session);
+				} else {
+					brd.setMemberNum((int) session.getAttribute("memberNum"));
+					int result = businessRegistrationService.insertBusiness(brd);
+
+					if (result > 0) {
+						sessionManage.setSessionMessage("등록이 완료 되었습니다.", "success", session);
+					} else {
+						sessionManage.setSessionMessage("다시한번 확인해 주세요.", "error", session);
+					}
+				}
+			}
+			return "redirect:/business/showBusinessRegistration.do";
+		}
+	}
+	
+	@RequestMapping("/deleteBusinessRegistration.do")
+	public String deleteBusinessRegistration(HttpSession session, Model model) {
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			return "############################"; // 캠프서치 컨트롤러
+		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
+			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
+			return "############################"; // 캠프서치 컨트롤러
+		} else {
+			int memberNum = (int)session.getAttribute("memberNum");
+			
+			int result = businessRegistrationService.deleteBusiness(memberNum);
+			if (result > 0) {
+				sessionManage.setSessionMessage("삭제가 완료 되었습니다.", "success", session);
+			}
+			return "redirect:/business/showBusinessRegistration.do";
 		}
 	}
 

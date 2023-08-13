@@ -191,7 +191,7 @@ function submitForm() {
     }
 
 
-    fetch('/business/registration/insertRegistration.do', {
+    fetch('/business/insertCampRegistration.do', {
         method: 'POST',
         body: formData
     })
@@ -202,7 +202,7 @@ function submitForm() {
             window.location.href = "/user/campSearch.do";
             console.log(response.url);
         } else {
-        	window.location.href = "/business/registration/showRegistration.do";
+        	window.location.href = "/business/showRegistration.do";
             // Handle submission failure, e.g., display an error message
         }
     })

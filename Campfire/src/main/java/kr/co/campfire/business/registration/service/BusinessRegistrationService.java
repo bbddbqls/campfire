@@ -11,6 +11,12 @@ public interface BusinessRegistrationService {
 	
 	int checkBusinessRegistration(int memberNum);
 	
+	int checkBusinessNum(String brNum);
+	
+	int insertBusiness(BusinessRegistrationDto brd);
+	
+	int deleteBusiness(int memberNum);
+	
 	int insertCampInfo(CampRegistrationDto crd);
 	
 	int insertCampAmenity(CampAmenityDto cad);
@@ -20,5 +26,4 @@ public interface BusinessRegistrationService {
 	int insertCampPhoto(CampPhotoItemDto cpd);
 	
 	int selectCampNum(CampRegistrationDto crd);
-	
 }

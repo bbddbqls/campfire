@@ -12,27 +12,43 @@ import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampTagDto;
 @Repository
 public class BusinessRegistrationDao {
 	public BusinessRegistrationDto selectBusinessRegistration(SqlSessionTemplate sqlSession, int memberNum) {
-		return sqlSession.selectOne("registrationMapper.checkBusiness", memberNum);
+		return sqlSession.selectOne("registrationMapper.selectBusinessRegistration", memberNum);
 	}
+
 	public int checkBusinessRegistration(SqlSessionTemplate sqlSession, int memberNum) {
-		return sqlSession.selectOne("registrationMapper.checkRegistration", memberNum);
+		return sqlSession.selectOne("registrationMapper.checkBusinessRegistration", memberNum);
 	}
+	
+	public int checkBusinessNum(SqlSessionTemplate sqlSession, String brNum) {
+		return sqlSession.selectOne("registrationMapper.checkBusinessNum", brNum);
+	}
+
+	public int insertBusiness(SqlSessionTemplate sqlSession, BusinessRegistrationDto brd) {
+		return sqlSession.insert("registrationMapper.insertBusiness", brd);
+	}
+	
+	public int deleteBusiness(SqlSessionTemplate sqlSession, int memberNum) {
+		return sqlSession.insert("registrationMapper.deleteBusiness", memberNum);
+	}
+
 	public int insertCampInfo(SqlSessionTemplate sqlSession, CampRegistrationDto crd) {
 		return sqlSession.insert("registrationMapper.insertCampInfo", crd);
 	}
-	
+
 	public int insertCampAmenity(SqlSessionTemplate sqlSession, CampAmenityDto cad) {
 		return sqlSession.insert("registrationMapper.insertCampAmenity", cad);
 	}
-	
+
 	public int insertCampTag(SqlSessionTemplate sqlSession, CampTagDto ctd) {
 		return sqlSession.insert("registrationMapper.insertCampTag", ctd);
 	}
-	
+
 	public int insertCampPhoto(SqlSessionTemplate sqlSession, CampPhotoItemDto cpd) {
 		return sqlSession.insert("registrationMapper.insertCampPhoto", cpd);
 	}
+
 	public int selectCampNum(SqlSessionTemplate sqlSession, CampRegistrationDto crd) {
 		return sqlSession.selectOne("registrationMapper.selectCampNum", crd);
 	}
+
 }

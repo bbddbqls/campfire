@@ -66,10 +66,13 @@
 				<c:if test="${sessionScope.memberDivision eq 'business'}">
 
 					<li>
-						<span class="opener">buisnessman</span>
+						<span class="opener">businessman</span>
 						<ul>
 							<li>
-								<a href="/business/registration/showRegistration.do">등록 요청</a>
+								<a href="/business/showBusinessRegistration.do">사업자 등록 요청</a>
+							</li>
+							<li>
+								<a href="/business/showCampRegistration.do">캠핑장 등록 요청</a>
 							</li>
 						</ul>
 					</li>
