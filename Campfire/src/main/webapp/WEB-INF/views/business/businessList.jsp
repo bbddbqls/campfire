@@ -53,13 +53,13 @@
 									<td class="td-brNum">${businessList.brNum }</td>
 									<td class="td-brCompany">${businessList.brCompany }</td>
 									<td class="td-brRepname">${businessList.brRepname }</td>
-									<c:if test="${businessList.brSttCd eq '01,01'}">
+									<c:if test="${businessList.brSttCd eq '01'}">
 										<td class="td-brSttCd">계속사업자</td>
 									</c:if>
-									<c:if test="${businessList.brSttCd eq '03,02'}">
+									<c:if test="${businessList.brSttCd eq '02'}">
 										<td class="td-brSttCd">휴업자</td>
 									</c:if>
-									<c:if test="${businessList.brSttCd eq '03,03'}">
+									<c:if test="${businessList.brSttCd eq '03'}">
 										<td class="td-brSttCd">폐업자</td>
 									</c:if>
 									<td class="td-brCreateDate">${businessList.brCreateDate }</td>

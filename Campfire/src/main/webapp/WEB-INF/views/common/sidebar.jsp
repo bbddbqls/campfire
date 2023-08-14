@@ -51,7 +51,7 @@
 						<span class="opener">admin</span>
 						<ul>
 							<li>
-								<a href="../admin/a_management.html">회원 관리</a>
+								<a href="/adminRegistration/showBusinessRegistrationList.do">사업자 등록증 등록</a>
 							</li>
 							<li>
 								<a href="#">캠핑장 등록</a>

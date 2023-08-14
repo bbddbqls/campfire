@@ -66,9 +66,6 @@
 									console.log(result.data[0].valid);
 
 									if (result.data[0].valid == 01) {
-										test = 1;
-										console.log(test);
-										console.log("result.data[0].status.b_stt_cd =" + result.data[0].status.b_stt_cd);
 										brSTTCD = result.data[0].status.b_stt_cd;
 
 										const form = document.getElementById('searchForm');

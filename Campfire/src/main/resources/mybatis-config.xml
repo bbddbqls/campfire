@@ -19,6 +19,7 @@
 		
 		<!-- Admin -->
 		<typeAlias type="kr.co.campfire.admin.inquiry.dto.AdminInquiryDto" alias="answer" />
+		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminBusinessRegistrationDto" alias="adminBusinessRegistration" />
 		<!-- Common -->
 		<typeAlias type="kr.co.campfire.user.userInquiry.dto.UserInquiryDto" alias="inquiry" />
 		
@@ -39,6 +40,7 @@
 		
 		<!-- Admin -->
 		<mapper resource="/mappers/admin/answer-mapper.xml" />
+		<mapper resource="/mappers/admin/adminRegistration-mapper.xml" />
 		
 		<!-- Common -->
 		<mapper resource="/mappers/common/inquiry-mapper.xml" />
