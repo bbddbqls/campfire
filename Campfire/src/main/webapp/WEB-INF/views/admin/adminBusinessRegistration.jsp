@@ -97,7 +97,7 @@ margin-right: 10px;
 											</tr>
 											<tr>
 												<td class="td-approval" colspan="3">
-													<button type="button" class="button primary small">승인</button>
+													<button type="button" class="button primary small" onclick="goToApproval(${item.brNum})">승인</button>
 												</td>
 												<td class="td-refuse" colspan="3">
 												<form id="refuseForm" action="/adminRegistration/refuseBusinessRegistration.do" method="post" >
@@ -172,6 +172,7 @@ margin-right: 10px;
 	<script src="../../resources/main/js/breakpoints.min.js"></script>
 	<script src="../../resources/main/js/util.js"></script>
 	<script src="../../resources/main/js/main.js"></script>
+	<script src="../../resources/main/js/adminBusinessRegistration.js"></script>
 	
 </body>
 

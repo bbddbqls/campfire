@@ -3826,10 +3826,7 @@ table {
   text-align: right;
 }
 
-tbody tr:hover {
-  background-color: #ececec !important;
-  cursor: pointer;
-}
+
 
 .image {
   border-radius: 5px;

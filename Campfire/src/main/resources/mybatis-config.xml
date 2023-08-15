@@ -20,6 +20,10 @@
 		<!-- Admin -->
 		<typeAlias type="kr.co.campfire.admin.inquiry.dto.AdminInquiryDto" alias="answer" />
 		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminBusinessRegistrationDto" alias="adminBusinessRegistration" />
+		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminCampRegistrationDto" alias="adminCampRegistration" />
+		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminCampRegistrationPhotoDto" alias="adminCampRegistrationPhoto" />
+		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminCampRegistrationAmenityDto" alias="adminCampRegistrationAmenity" />
+		<typeAlias type="kr.co.campfire.admin.registration.dto.AdminCampRegistrationTagDto" alias="adminCampRegistrationTag" />
 		<!-- Common -->
 		<typeAlias type="kr.co.campfire.user.userInquiry.dto.UserInquiryDto" alias="inquiry" />
 		

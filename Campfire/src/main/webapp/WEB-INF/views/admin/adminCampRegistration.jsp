@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -9,7 +9,17 @@
 <html>
 
 <head>
-	<%@ include file="../common/head.jsp"%>
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="/resources/main/css/campSearch.css" />
+<style>
+.section-pagination>ul {
+	text-align: center;
+}
+
+.text-center {
+	text-align: center;
+}
+</style>
 </head>
 
 <body class="is-preload">
@@ -23,43 +33,89 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="index.html" class="logo"><strong>Campfire</strong> 회원 관리</a>
+					<a href="index.html" class="logo">
+						<strong>Campfire</strong> 캠핑장 등록 관리
+					</a>
 
 				</header>
 
 				<!-- Content -->
 				<section>
-					<h4>사업자 승인</h4>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									
-									<th class="td-bNum">사업자 번호</th>
-									<th class="td-id">아이디</th>
-									<th class="td-name">이름</th>
-									<th class="td-company">회사명</th>
-									<th class="td-representative">대표명</th>
-									<th class="td-stt">사업자 상태</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									
-									<td class="td-bNum">398-87-01116</td>
-									<td class="td-id">bbqdbqls</td>
-									<td class="td-name">황유빈</td>
-									<td class="td-company">(주)우리금융지주</td>
-									<td class="td-representative">황유빈</td>
-									<td class="td-stt">계속사업자</td>
-								</tr>
-								<tr>
-									<td class="td-approval" colspan="3"><button class="button primary small">승인</button></td>
-									<td class="td-refuse"colspan="3"><button class="button small">거절</button></td>
-								</tr>
-								
-							</tbody>
-						</table>
+					<h4>캠핑장 등록 승인</h4>
+					<c:choose>
+						<c:when test="${empty campList }">
+							<div>
+								<h4>등록된 글이 없습니다.</h4>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="item" items="${campList }">
+								<div class="camping_info" onclick="goToDetailPage('/adminRegistration/detailCampRegistration.do?campNum=${item.campNum}')">
+
+									<c:set var="campPhotos" value="${item.campPhotoList}" />
+									<c:choose>
+										<c:when test="${empty campPhotos}">
+											<img src="/resources/images/KakaoTalk_20230717_140006896_02.png" alt="기본사진대체텍스트">
+										</c:when>
+										<c:otherwise>
+											<img src="${campPhotos[0].campPhotoURL}" alt="${campPhotos[0].campPhotoName}">
+										</c:otherwise>
+									</c:choose>
+
+									<div class="camping_data">
+										<h4>${item.campName }<span class="small-text">(${item.campType })</span>
+										</h4>
+										<p>캠핑장 정보 : ${item.campIntro }</p>
+										<p>캠핑장 주소 : ${item.campAddr }</p>
+										<p>등록 시간 : ${item.newCampCreateDate }</p>
+									</div>
+								</div>
+								<hr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+
+					<div class="section-pagination">
+						<ul class="pagination">
+							<c:choose>
+								<c:when test="${pi.currentPage eq 1}">
+									<li>
+										<a href="#" class="button small disabled">Prev</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<a href="showCampRegistrationList.do?cpage=${ pi.currentPage - 1 }" class="button small">Prev</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endPage }">
+								<li>
+									<c:choose>
+										<c:when test="${page eq pi.currentPage}">
+											<a class="page active" href="showCampRegistrationList.do?cpage=${ page }">${ page }</a>
+										</c:when>
+										<c:otherwise>
+											<a class="page" href="showCampRegistrationList.do?cpage=${ page }">${ page }</a>
+										</c:otherwise>
+									</c:choose>
+								</li>
+							</c:forEach>
+
+							<c:choose>
+								<c:when test="${pi.currentPage eq pi.maxPage}">
+									<li>
+										<a href="#" class="button small disabled">Next</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<a href="showCampRegistrationList.do?cpage=${ pi.currentPage + 1 }" class="button small">Next</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
 					</div>
 				</section>
 
@@ -72,11 +128,12 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/browser.min.js"></script>
-	<script src="../../resources/js/breakpoints.min.js"></script>
-	<script src="../../resources/js/util.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources/main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
+	<script src="../../resources/main/js/adminCampRegistration.js"></script>
 
 </body>
 

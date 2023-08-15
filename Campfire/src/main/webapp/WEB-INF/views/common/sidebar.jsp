@@ -54,7 +54,7 @@
 								<a href="/adminRegistration/showBusinessRegistrationList.do">사업자 등록증 등록</a>
 							</li>
 							<li>
-								<a href="#">캠핑장 등록</a>
+								<a href="/adminRegistration/showCampRegistrationList.do">캠핑장 등록</a>
 							</li>
 							<li>
 								<a href="/admin/showAdminInquiry.do">문의사항 답변</a>

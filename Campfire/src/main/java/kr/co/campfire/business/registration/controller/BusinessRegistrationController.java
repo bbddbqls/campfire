@@ -138,7 +138,8 @@ public class BusinessRegistrationController {
 										.collect(Collectors.joining());
 
 								// 새로운 파일이름
-								String campPhotoName = crd.getCampName() + i + "_" + randomString + extension;
+								int memberNum = (int)session.getAttribute("memberNum");
+								String campPhotoName =   memberNum + "camping"+ i + "_" + randomString + extension;
 								String filePathName = uploadFolder + campPhotoName;
 								Path filePath = Paths.get(filePathName);
 								long size = file.getSize();
