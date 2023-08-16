@@ -21,6 +21,28 @@
 		<result column="C_SD_PRICE" property="campSdPrice"></result>
 		<result column="C_SW_PRICE" property="campSwPrice"></result>
 		<result column="C_PHONENUM" property="campPhoneNum"></result>
+		<result column="C_CREATE_DATE" property="campCreateDate"></result>
+		<result column="C_REASON" property="campReason"></result>
+	</resultMap>
+	
+	<resultMap type="campRegistrationPhoto"
+		id="campRegistrationPhotoResultSet">
+		<result column="C_NUM" property="campNum"></result>
+		<result column="CP_NAME" property="campPhotoName"></result>
+		<result column="CP_URL" property="campPhotoURL"></result>
+	</resultMap>
+	
+	<resultMap type="campRegistrationAmenity"
+		id="campRegistrationAmenityResultSet">
+		<result column="C_NUM" property="campNum"></result>
+		<result column="CA_AMENITY" property="campAmenityPhoto"></result>
+		<result column="CA_AME_NAME" property="campAmenityItem"></result>
+	</resultMap>
+	
+	<resultMap type="campRegistrationTag"
+		id="campRegistrationTagResultSet">
+		<result column="C_NUM" property="campNum"></result>
+		<result column="CT_TAG" property="campTagItem"></result>
 	</resultMap>
 
 	<resultMap type="businessRegistration"
@@ -34,6 +56,7 @@
 		<result column="BR_REPNAME" property="brRepname"></result>
 		<result column="BR_CREATE_DATE" property="brCreateDate"></result>
 	</resultMap>
+
 
 	
 	<select id="checkBusinessNum"
@@ -87,10 +110,53 @@
 		INSERT INTO CAMP_PHOTO
 		(c_num, cp_name, cp_URL) VALUES (#{campNum}, #{campPhotoName}, #{campPhotoURL}) 
 	</insert>
-	<!-- <select id="checkEmail" resultType="_int"> SELECT COUNT(*) FROM M_MEMBER 
-		WHERE M_EMAIL = #{email} </select> -->
+	<select id="selectCampRegistration"
+		resultMap="campRegistrationResultSet">
+		SELECT * FROM CAMP_INFO WHERE c_num = #{campNum}
+	</select>
+	<select id="selectCampRegistrationPhotoList"
+		resultMap="campRegistrationPhotoResultSet">
+		SELECT * FROM CAMP_PHOTO WHERE c_num = #{campNum}
+		ORDER BY
+		cp_name
+	</select>
+	
+	<select id="selectCampRegistrationAmenityList"
+		resultMap="campRegistrationAmenityResultSet">
+		SELECT * FROM CAMP_AMENITY WHERE c_num = #{campNum}
+	</select>
+	
+	<select id="selectCampRegistrationTagList"
+		resultMap="campRegistrationTagResultSet">
+		SELECT * FROM CAMP_TAG WHERE c_num = #{campNum}
+	</select>
+	
+		<select id="selectMyCampRegistrationListCount" resultType="_int">
+		SELECT
+		COUNT(*) FROM CAMP_INFO WHERE m_num = #{memberNum}
+	</select>
 
-	<!-- <insert id="singupMember" parameterType="member"> INSERT INTO M_MEMBER(M_IDX, 
-		M_EMAIL, M_NAME, M_PASSWORD, M_INDATE, M_REMOVE_DATE) VALUES (M_SEQ.NEXTVAL, 
-		#{memberEmail}, #{memberName}, #{memberPassword},SYSDATE, NULL) </insert> -->
+	<select id="selectMyCampRegistrationList"
+		resultMap="campRegistrationResultSet">
+		SELECT * FROM CAMP_INFO WHERE m_num = #{memberNum}
+		ORDER BY
+		C_CREATE_DATE DESC
+	</select>
+	
+	<delete id="deleteCampRegistrationAmenityList">
+		DELETE FROM CAMP_AMENITY WHERE c_num = #{campNum}
+	</delete>
+	
+	<delete id="deleteCampRegistrationTagList">
+		DELETE FROM CAMP_TAG WHERE c_num = #{campNum}
+	</delete>
+	
+	<delete id="deleteCampRegistrationPhotoList">
+		DELETE FROM CAMP_PHOTO WHERE c_num = #{campNum}
+	</delete>
+	
+	<delete id="deleteCampRegistration">
+		DELETE FROM CAMP_INFO  WHERE c_num = #{campNum}
+	</delete>
+	
 </mapper>

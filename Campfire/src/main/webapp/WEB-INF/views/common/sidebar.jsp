@@ -72,7 +72,7 @@
 								<a href="/business/showBusinessRegistration.do">사업자 등록 요청</a>
 							</li>
 							<li>
-								<a href="/business/showCampRegistration.do">캠핑장 등록 요청</a>
+								<a href="/business/showMyCampList.do">캠핑장 등록 요청</a>
 							</li>
 						</ul>
 					</li>

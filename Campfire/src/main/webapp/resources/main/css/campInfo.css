@@ -8,12 +8,6 @@ h2 {
   margin-right: auto; /* 다온숲을 왼쪽 끝으로 붙임 */
 }
 
-span {
-  display: flex;
-  align-items: center;
-  margin-left: 10px; /* 아이콘과 숫자 사이 간격 조정 */
-}
-
 .heart-icon,
 .star-icon {
   width: 24px;

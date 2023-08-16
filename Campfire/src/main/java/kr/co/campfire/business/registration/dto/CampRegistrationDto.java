@@ -1,5 +1,6 @@
 package kr.co.campfire.business.registration.dto;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -34,37 +35,11 @@ public class CampRegistrationDto {
 	private int campSdPrice;
 	private int campSwPrice;
 	private int campViews;
-	private int campCreateDate;
+	private Date campCreateDate;
+	private String newCampCreateDate;
 	private String campAmenity[];
 	private String campTag[];
 	private List<MultipartFile> files;
-	
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	@AllArgsConstructor
-	public class CampAmenityDto{
-		private String campAmenityPhoto;
-		private String campAmenityItem;
-		private int campNum;
-	}
-	
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	@AllArgsConstructor
-	public class CampTagDto{
-		private String campTagItem;
-		private int campNum;
-	}
-	
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	@AllArgsConstructor
-	public class CampPhotoItemDto{
-		private int campNum;
-		private String campPhotoName;
-		private String campPhotoURL;
-	}
+	private List<CampRegistrationPhotoDto> campPhotoList;
+	private String campReason;
 }

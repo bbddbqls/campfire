@@ -34,14 +34,14 @@
 				<!-- Header -->
 				<header id="header">
 					<a href="index.html" class="logo">
-						<strong>Campfire</strong> 캠핑장 등록 관리
+						<strong>Campfire</strong> 캠핑장 등록
 					</a>
 
 				</header>
 
 				<!-- Content -->
 				<section>
-					<h4>캠핑장 등록 승인</h4>
+					<h4>캠핑장 등록</h4>
 					<c:choose>
 						<c:when test="${empty campList }">
 							<div>
@@ -50,7 +50,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="item" items="${campList }">
-								<div class="camping_info" onclick="goToDetailPage('/adminRegistration/detailCampRegistration.do?campNum=${item.campNum}')">
+								<div class="camping_info" onclick="goToDetailPage('/business/detailCampRegistration.do?campNum=${item.campNum}')">
 
 									<c:set var="campPhotos" value="${item.campPhotoList}" />
 									<c:choose>
@@ -74,8 +74,17 @@
 												<p>등록 시간: ${item.newCampCreateDate}</p>
 											</div>
 											<div style="display: inline-block; vertical-align: top;">
-												<p>등록 여부: ${item.campAddr}</p>
-												<p>등록 시간: ${item.newCampCreateDate}</p>
+												<c:if test="${item.campCheck eq 'Y'}">
+													<p>등록 여부: 승인 완료</p>
+												</c:if>
+												<c:if test="${item.campCheck eq 'N'}">
+													<p>등록 여부: 승인 대기</p>
+												</c:if>
+												<c:if test="${item.campCheck eq 'R'}">
+													<p>등록 여부: 거절</p>
+													<p>거절 사유: ${item.campReason}</p>
+												</c:if>
+												
 											</div>
 										</div>
 
@@ -85,7 +94,7 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-
+					<button class="button small primary right-btn" onclick="location.href='showCampRegistration.do';">등록</button>
 					<div class="section-pagination">
 						<ul class="pagination">
 							<c:choose>
@@ -144,7 +153,7 @@
 	<script src="../../resources/main/js/breakpoints.min.js"></script>
 	<script src="../../resources/main/js/util.js"></script>
 	<script src="../../resources/main/js/main.js"></script>
-	<script src="../../resources/main/js/detailCampRegistration.js"></script>
+	<script src="../../resources/main/js/adminCampRegistration.js"></script>
 
 </body>
 

@@ -16,6 +16,9 @@
 		<!-- Business -->
 		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="businessRegistration" />
 		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationDto" alias="campRegistration" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationPhotoDto" alias="campRegistrationPhoto" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationAmenityDto" alias="campRegistrationAmenity" />
+		<typeAlias type="kr.co.campfire.business.registration.dto.CampRegistrationTagDto" alias="campRegistrationTag" />
 		
 		<!-- Admin -->
 		<typeAlias type="kr.co.campfire.admin.inquiry.dto.AdminInquiryDto" alias="answer" />

@@ -1,15 +1,21 @@
 package kr.co.campfire.business.registration.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationAmenityDto;
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationPhotoDto;
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationTagDto;
 import kr.co.campfire.business.registration.dao.BusinessRegistrationDao;
 import kr.co.campfire.business.registration.dto.BusinessRegistrationDto;
+import kr.co.campfire.business.registration.dto.CampRegistrationAmenityDto;
 import kr.co.campfire.business.registration.dto.CampRegistrationDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampAmenityDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampPhotoItemDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampTagDto;
+import kr.co.campfire.business.registration.dto.CampRegistrationTagDto;
+import kr.co.campfire.common.dto.PageInfo;
+import kr.co.campfire.business.registration.dto.CampRegistrationPhotoDto;
 
 @Service
 public class BusinessRegistrationServiceImpl implements BusinessRegistrationService{
@@ -51,12 +57,12 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	}
 
 	@Override
-	public int insertCampAmenity(CampAmenityDto cad) {
+	public int insertCampAmenity(CampRegistrationAmenityDto cad) {
 		return businessRegistrationDao.insertCampAmenity(sqlSession, cad);
 	}
 
 	@Override
-	public int insertCampTag(CampTagDto ctd) {
+	public int insertCampTag(CampRegistrationTagDto ctd) {
 		return businessRegistrationDao.insertCampTag(sqlSession, ctd);
 	}
 	
@@ -66,8 +72,60 @@ public class BusinessRegistrationServiceImpl implements BusinessRegistrationServ
 	}
 
 	@Override
-	public int insertCampPhoto(CampPhotoItemDto cpd) {
+	public int insertCampPhoto(CampRegistrationPhotoDto cpd) {
 		return businessRegistrationDao.insertCampPhoto(sqlSession, cpd);
+	}
+
+	@Override
+	public int selectMyCampRegistrationListCount(int memberNum) {
+		return businessRegistrationDao.selectMyCampRegistrationListCount(sqlSession, memberNum);
+	}
+
+	@Override
+	public List<CampRegistrationDto> selectMyCampRegistrationList(PageInfo pi, int memberNum) {
+		return businessRegistrationDao.selectMyCampRegistrationList(sqlSession, pi, memberNum);
+	}
+	@Override
+	public List<CampRegistrationPhotoDto> selectCampRegistrationPhotoList(int campNum) {
+		return businessRegistrationDao.selectCampRegistrationPhotoList(sqlSession, campNum);
+	}
+
+	@Override
+	public List<CampRegistrationAmenityDto> selectCampRegistrationAmenityList(int campNum) {
+		return businessRegistrationDao.selectCampRegistrationAmenityList(sqlSession, campNum);
+	}
+
+	@Override
+	public List<CampRegistrationTagDto> selectCampRegistrationTagList(int campNum) {
+		return businessRegistrationDao.selectCampRegistrationTagList(sqlSession, campNum);
+	}
+
+	@Override
+	public CampRegistrationDto selectCampRegistration(int campNum) {
+		return businessRegistrationDao.selectCampRegistration(sqlSession, campNum);
+	}
+
+	@Override
+	public int deleteCampRegistration(int campNum) {
+		return businessRegistrationDao.deleteCampRegistration(sqlSession, campNum);
+	}
+
+	@Override
+	public int deleteCampRegistrationAmenityList(int campNum) {
+		// TODO Auto-generated method stub
+		return businessRegistrationDao.deleteCampRegistrationAmenityList(sqlSession, campNum);
+	}
+
+	@Override
+	public int deleteCampRegistrationTagList(int campNum) {
+		// TODO Auto-generated method stub
+		return businessRegistrationDao.deleteCampRegistrationTagList(sqlSession, campNum);
+	}
+
+	@Override
+	public int deleteCampRegistrationPhotoList(int campNum) {
+		// TODO Auto-generated method stub
+		return businessRegistrationDao.deleteCampRegistrationPhotoList(sqlSession, campNum);
 	}
 
 }

@@ -202,8 +202,7 @@ function submitForm() {
             window.location.href = "/user/campSearch.do";
             console.log(response.url);
         } else {
-        	window.location.href = "/business/showRegistration.do";
-            // Handle submission failure, e.g., display an error message
+        	window.location.href = "/business/showCampRegistration.do";
         }
     })
     .catch(error => {

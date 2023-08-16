@@ -1,10 +1,17 @@
 package kr.co.campfire.business.registration.service;
 
+import java.util.List;
+
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationAmenityDto;
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationDto;
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationPhotoDto;
+import kr.co.campfire.admin.registration.dto.AdminCampRegistrationTagDto;
 import kr.co.campfire.business.registration.dto.BusinessRegistrationDto;
+import kr.co.campfire.business.registration.dto.CampRegistrationAmenityDto;
 import kr.co.campfire.business.registration.dto.CampRegistrationDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampAmenityDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampPhotoItemDto;
-import kr.co.campfire.business.registration.dto.CampRegistrationDto.CampTagDto;
+import kr.co.campfire.business.registration.dto.CampRegistrationPhotoDto;
+import kr.co.campfire.business.registration.dto.CampRegistrationTagDto;
+import kr.co.campfire.common.dto.PageInfo;
 
 public interface BusinessRegistrationService {
 	BusinessRegistrationDto selectBusinessRegistration(int memberNum);
@@ -19,11 +26,31 @@ public interface BusinessRegistrationService {
 	
 	int insertCampInfo(CampRegistrationDto crd);
 	
-	int insertCampAmenity(CampAmenityDto cad);
+	int insertCampAmenity(CampRegistrationAmenityDto cad);
 	
-	int insertCampTag(CampTagDto ctd);
+	int insertCampTag(CampRegistrationTagDto ctd);
 	
-	int insertCampPhoto(CampPhotoItemDto cpd);
+	int insertCampPhoto(CampRegistrationPhotoDto cpd);
 	
 	int selectCampNum(CampRegistrationDto crd);
+	
+	int selectMyCampRegistrationListCount(int memberNum);
+	
+	List<CampRegistrationDto> selectMyCampRegistrationList(PageInfo pi, int memberNum);
+	
+	CampRegistrationDto selectCampRegistration(int campNum);
+	
+	List<CampRegistrationPhotoDto> selectCampRegistrationPhotoList(int campNum);
+	
+	List<CampRegistrationAmenityDto> selectCampRegistrationAmenityList(int campNum);
+	
+	List<CampRegistrationTagDto> selectCampRegistrationTagList(int campNum);
+	
+	int deleteCampRegistration(int campNum);
+	
+	int deleteCampRegistrationAmenityList(int campNum);
+	
+	int deleteCampRegistrationTagList(int campNum);
+	
+	int deleteCampRegistrationPhotoList(int campNum);
 }

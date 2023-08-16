@@ -252,3 +252,7 @@ nextBtn.addEventListener("click", () => changeImage(1));
   function goToApproval(campNum) {
         window.location.href = "/adminRegistration/approvalCampRegistration.do?campNum="+campNum;
     }
+    //삭제버튼
+  function goToDelete(campNum, memberNum) {
+        window.location.href = "/business/deleteCampRegistration.do?campNum="+campNum+"&memberNum="+memberNum;
+    }
