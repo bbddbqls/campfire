@@ -140,8 +140,63 @@ public class UserBoardController {
 			String output = result.toString();
 			item.setPostContent(output);
 		}
+		
+		List<UserBoardDto> popularList = userBoardService.selectListPopular(ubd);
+		
+		for (UserBoardDto item : popularList) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Timestamp postTimestamp = item.getPostCreateDate(); //
+			Date postDate = new Date(postTimestamp.getTime());
+			String formattedinquiryDate = sdf.format(postDate);
+			item.setNewCreateDate(formattedinquiryDate);
+			
+			item.setLikeCount(userBoardService.selectLikeCount(item.getPostNum()));
+
+			String postContent = item.getPostContent();
+
+			String imgTag = "<img src=\"";
+			int imgTagStart = postContent.indexOf(imgTag);
+			if (imgTagStart != -1) {
+				int srcStart = imgTagStart + imgTag.length();
+				int srcEnd = postContent.indexOf("\"", srcStart);
+				if (srcEnd != -1) {
+					String src = postContent.substring(srcStart, srcEnd);
+					System.out.println("Image Source: " + src);
+
+					String uploadPath = "/resources/upload";
+					if (src.startsWith(uploadPath)) {
+						String imageName = src.substring(uploadPath.length() + 1);
+						System.out.println("Image Name: " + imageName);
+						item.setImageName(imageName);
+					}
+				}
+			}
+
+			String input = item.getPostContent();
+			StringBuilder result = new StringBuilder();
+			boolean withinTag = false;
+
+			for (char c : input.toCharArray()) {
+				if (c == '<') {
+					withinTag = true;
+					continue;
+				}
+				if (c == '>') {
+					withinTag = false;
+					continue;
+				}
+				if (!withinTag) {
+					result.append(c);
+				}
+			}
+
+			String output = result.toString();
+			item.setPostContent(output);
+		}
 
 		model.addAttribute("boardList", list);
+		model.addAttribute("boardPopularList", popularList);
 		model.addAttribute("postCategory", postCategory);
 		model.addAttribute("pi", pi);
 

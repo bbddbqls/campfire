@@ -32,6 +32,10 @@ public class UserBoardDao {
 		return sqlSession.selectOne("boardMapper.selectListWriterCount", ubd);
 	}
 
+	public List<UserBoardDto> selectListPopular(SqlSessionTemplate sqlSession, UserBoardDto ubd) {
+		return sqlSession.selectList("boardMapper.selectListPopular",ubd);
+	}
+	
 	public List<UserBoardDto> selectListAll(SqlSessionTemplate sqlSession, PageInfo pi, UserBoardDto ubd) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();

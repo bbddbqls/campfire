@@ -47,10 +47,10 @@
 					<div>
 						<div class="row gtr-50 gtr-uniform">
 							<c:choose>
-								<c:when test="${empty boardList}">
+								<c:when test="${empty boardPopularList}">
 								</c:when>
 								<c:otherwise>
-									<c:forEach var="item" items="${boardList}" begin="0" end="3">
+									<c:forEach var="item" items="${boardPopularList}" begin="0" end="3">
 										<div class="col-3">
 											<div class="item-box">
 												<c:choose>
@@ -106,7 +106,7 @@
 												</p>
 												<p class="my-margin content-main">${item.postContent }</p>
 												<p class="my-margin content-function">
-													<i id="heart" class="fa-solid fa-heart fa-xl" style="color: #ff8fb6;"></i> ${item.likeCount } <img src="/resources/images/comment.png" alt=""> 0 <span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
+													<i id="heart" class="fa-solid fa-heart fa-xl" style="color: #ff8fb6;"></i> ${item.likeCount }  <img src="/resources/images/comment.png" alt=""> 0 <span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
 												</p>
 											</div>
 										</div>

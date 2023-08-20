@@ -17,6 +17,8 @@ public interface UserBoardService {
 
 	int selectListWriterCount(UserBoardDto ubd);
 
+	List<UserBoardDto> selectListPopular(UserBoardDto ubd);
+	
 	List<UserBoardDto> selectListAll(PageInfo pi, UserBoardDto ubd);
 
 	List<UserBoardDto> selectListTitle(PageInfo pi, UserBoardDto ubd);

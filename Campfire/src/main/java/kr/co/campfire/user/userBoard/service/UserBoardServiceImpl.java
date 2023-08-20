@@ -46,6 +46,11 @@ public class UserBoardServiceImpl implements UserBoardService{
 	}
 
 	@Override
+	public List<UserBoardDto> selectListPopular(UserBoardDto ubd) {
+		return userBoardDao.selectListPopular(sqlSession, ubd);
+	}
+	
+	@Override
 	public List<UserBoardDto> selectListAll(PageInfo pi, UserBoardDto ubd) {
 		return userBoardDao.selectListAll(sqlSession, pi, ubd);
 	}

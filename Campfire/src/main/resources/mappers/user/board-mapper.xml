@@ -42,6 +42,12 @@
 	</select>
 	
 	
+	<select id="selectListPopular" resultMap="boardResultSet">
+		SELECT * FROM POST
+		INNER JOIN MEMBER ON post.M_NUM = MEMBER.M_NUM WHERE POST.P_CATEGORY = #{postCategory}
+		ORDER BY POST.P_VIEW_COUNT DESC
+	</select>
+	
 	<select id="selectListAll" resultMap="boardResultSet">
 		SELECT * FROM POST
 		INNER JOIN MEMBER ON post.M_NUM = MEMBER.M_NUM WHERE POST.P_CATEGORY = #{postCategory}
