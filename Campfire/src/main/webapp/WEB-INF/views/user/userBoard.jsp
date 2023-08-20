@@ -106,7 +106,8 @@
 												</p>
 												<p class="my-margin content-main">${item.postContent }</p>
 												<p class="my-margin content-function">
-													<i id="heart" class="fa-solid fa-heart fa-xl" style="color: #ff8fb6;"></i> ${item.likeCount }  <img src="/resources/images/comment.png" alt=""> 0 <span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
+													<i id="heart" class="fa-solid fa-heart fa-lg" style="color: #ff8fb6;"></i> ${item.likeCount }  <img src="/resources/images/comment.png" alt=""> 0 <i class="fa-solid fa-tree fa-lg" style="color: #155b3a;"></i> ${item.memberId}
+													<span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
 												</p>
 											</div>
 										</div>
@@ -139,7 +140,8 @@
 											<h3>${item.postTitle}</h3>
 											<p class="content-text">${item.postContent }</p>
 											<p class="no-margin content-function">
-												<i id="heart" class="fa-solid fa-heart fa-xl" style="color: #ff8fb6;"></i> ${item.likeCount } <img src="/resources/images/comment.png" alt=""> 0 <span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
+												<i id="heart" class="fa-solid fa-heart fa-lg" style="color: #ff8fb6;"></i> ${item.likeCount }  <img src="/resources/images/comment.png" alt=""> 0 <i class="fa-solid fa-tree fa-lg" style="color: #155b3a;"></i> ${item.memberId}
+												<span class="font-small content-time right-align1">${item.newCreateDate }</span> <span class="font-small content-view right-align2"><i class="fa-solid fa-eye fa-sm" style="color: #5c5c5c; margin-right: 3px;"></i>${item.postViewCount }</span>
 											</p>
 										</div>
 									</div>

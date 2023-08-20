@@ -20,6 +20,7 @@ import lombok.ToString;
 public class UserBoardDto {
 	private int postNum;
 	private int memberNum;
+	private String memberId;
 	private String postCategory;
 	private Timestamp postCreateDate;
 	private String postTitle;

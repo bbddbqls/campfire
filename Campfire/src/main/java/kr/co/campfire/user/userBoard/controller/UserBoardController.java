@@ -215,6 +215,13 @@ public class UserBoardController {
 
 		UserBoardDto ubd = userBoardService.selectPost(postNum);
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		Timestamp postTimestamp = ubd.getPostCreateDate(); //
+		Date postDate = new Date(postTimestamp.getTime());
+		String formattedinquiryDate = sdf.format(postDate);
+		ubd.setNewCreateDate(formattedinquiryDate);
+		
 		//좋아요 카운트 가져오기
 		int likeCount = userBoardService.selectLikeCount(postNum);
 		//현재 로그인한 사용자가 좋아요 했는지 구별

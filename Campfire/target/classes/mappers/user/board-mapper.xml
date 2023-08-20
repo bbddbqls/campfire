@@ -5,6 +5,7 @@
 	<resultMap type="board" id="boardResultSet">
 		<result column="P_NUM" property="postNum"></result>
 		<result column="M_NUM" property="memberNum"></result>
+		<result column="M_USER_ID" property="memberId"></result>
 		<result column="P_CATEGORY" property="postCategory"></result>
 		<result column="P_DATETIME_CREATED" property="postCreateDate"></result>
 		<result column="P_TITLE" property="postTitle"></result>
@@ -56,14 +57,16 @@
 
 	<select id="selectListTitle" resultMap="boardResultSet">
 		SELECT * FROM POST
-		WHERE P_TITLE LIKE '%'||#{searchTxt}||'%' AND P_CATEGORY = #{postCategory}
-		ORDER BY P_DATETIME_CREATED DESC, P_NUM DESC
+		INNER JOIN MEMBER ON post.M_NUM = MEMBER.M_NUM 
+		WHERE POST.P_TITLE LIKE '%'||#{searchTxt}||'%' AND POST.P_CATEGORY = #{postCategory}
+		ORDER BY POST.P_DATETIME_CREATED DESC, POST.P_NUM DESC
 	</select>
 
 	<select id="selectListContext" resultMap="boardResultSet">
 		SELECT * FROM POST
-		WHERE P_CONTENT LIKE '%'||#{searchTxt}||'%' AND P_CATEGORY = #{postCategory}
-		ORDER BY P_DATETIME_CREATED DESC, P_NUM DESC
+		INNER JOIN MEMBER ON post.M_NUM = MEMBER.M_NUM 
+		WHERE POST.P_CONTENT LIKE '%'||#{searchTxt}||'%' AND POST.P_CATEGORY = #{postCategory}
+		ORDER BY POST.P_DATETIME_CREATED DESC, POST.P_NUM DESC
 	</select>
 
 	<select id="selectListWriter" resultMap="boardResultSet">
@@ -74,7 +77,9 @@
 	</select>
 	
 	<select id="selectPost" resultMap="boardResultSet">
-		SELECT * FROM POST WHERE P_NUM = #{postNum}
+		SELECT * FROM POST
+		INNER JOIN MEMBER ON post.M_NUM = MEMBER.M_NUM 
+		WHERE post.P_NUM = #{postNum}
 	</select>
 	
 	<update id="updateViewCount">

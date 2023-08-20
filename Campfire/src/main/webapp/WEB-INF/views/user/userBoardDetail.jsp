@@ -44,7 +44,7 @@
 							</c:otherwise>
 						</c:choose>
 						<span id="like-count">${likeCount }</span> 
-						<i class="fa-solid fa-eye fa-lg" style="color: #5c5c5c; margin-right: 3px;"></i><span>${boardList.postViewCount }</span> <span>등록 날짜 : ${boardList.newCreateDate }</span>
+						<i class="fa-solid fa-eye fa-lg" style="color: #5c5c5c; margin-right: 3px;"></i><span>${board.postViewCount }</span> <span>등록 날짜 : ${board.newCreateDate }</span>
 					</div>
 					<div class="board-title">
 						<c:choose>
@@ -59,7 +59,7 @@
 					</div>
 
 					<p class="user-id">
-						<i class="fa-solid fa-tree fa-2xl" style="color: #155b3a;"></i><strong>userId</strong>
+						<i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i><strong> ${board.memberId}</strong>
 					</p>
 					<div id="main-text">
 						<br> ${board.postContent }
