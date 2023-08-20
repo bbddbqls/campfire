@@ -79,13 +79,11 @@
 						<br>
 						<div class="right-btn-box">
 							<button type="button" class="button small" onclick="goBack()">목록</button>
-							<c:if test="${sessionScope.memberNum == detail.memberNum && detail.inquiryAnswerFL eq 'N'}">
+							<c:if test="${(sessionScope.memberNum == detail.memberNum) && (detail.inquiryAnswerFL eq 'N')}">
 								<button type="submit" class="button primary small">수정</button>
-							</c:if>
-							<c:if test="${sessionScope.memberNum == detail.memberNum && detail.inquiryAnswerFL eq 'N'">
 								<button type="button" class="button primary small" onclick="location.href='/user/deleteUserInquiry.do?inNum=${detail.inquiryNum}&memberNum=${detail.memberNum}'">삭제</button>
 							</c:if>
-							<c:if test="${  sessionScope.memberDivision eq 'admin'}">
+							<c:if test="${sessionScope.memberDivision eq 'admin'}">
 								<button type="button" class="button primary small" onclick="location.href='/admin/deleteAdminInquiry.do?inNum=${detail.inquiryNum}'">문의사항 삭제</button>
 							</c:if>
 						</div>

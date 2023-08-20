@@ -145,6 +145,7 @@
 	<script src="../../resources/main/js/util.js"></script>
 	<script src="../../resources/main/js/main.js"></script>
 	<script src="../../resources/main/js/detailCampRegistration.js"></script>
+	<script src="../../resources/main/js/adminCampRegistration.js"></script>
 
 </body>
 

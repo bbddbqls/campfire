@@ -2721,7 +2721,7 @@ button:disabled,
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin: 0 0 2em -3em;
+  /*margin: 0 0 2em -3em;*/
   width: calc(100% + 3em);
 }
 
@@ -3780,11 +3780,6 @@ button:disabled,
   white-space: nowrap;
 }
 
-.content-title {
-  
-  height: 30%;
-}
-
 .content-main {
   height: 40%;
 }
@@ -3888,4 +3883,7 @@ height: 30px;
 }
 select{
   height: 30px;
+}
+img{
+	object-fit: cover;
 }

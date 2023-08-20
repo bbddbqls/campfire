@@ -51,8 +51,10 @@ function showSlide(n) {
 
 //지도
 const mapTest = document.getElementById('map');
+
 let mapX = document.getElementById('mapX').getAttribute('data-jstl-value');
 let mapY = document.getElementById('mapY').getAttribute('data-jstl-value');
+
 function apicall() {
   mapTest.innerHTML='';
 	console.log(mapX);
@@ -253,6 +255,7 @@ nextBtn.addEventListener("click", () => changeImage(1));
         window.location.href = "/adminRegistration/approvalCampRegistration.do?campNum="+campNum;
     }
     //삭제버튼
-  function goToDelete(campNum, memberNum) {
+    
+  function goToDeletebusiness(campNum, memberNum) {
         window.location.href = "/business/deleteCampRegistration.do?campNum="+campNum+"&memberNum="+memberNum;
     }

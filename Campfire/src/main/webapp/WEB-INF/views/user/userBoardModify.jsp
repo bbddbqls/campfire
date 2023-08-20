@@ -34,17 +34,18 @@
 				<!-- Content -->
 				<section>
 
-					<form action="/user/board/insertBoard.do" method="post" enctype="multipart/form-data">
+					<form action="/user/board/updateBoard.do" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="postNum" value="${board.postNum }">
 						<div class="mb-3 justify-content-center">
 							<label for="exampleFormControlInput1" class="form-label">제목</label>
-							<input type="text" class="form-control" name="postTitle" id="exampleFormControlInput1" placeholder="제목을 입력하세요.">
+							<input type="text" class="form-control" name="postTitle" id="exampleFormControlInput1" placeholder="제목을 입력하세요." value="${board.postTitle }">
 						</div>
 
 						<div class="mb-3 justify-content-center">
 							<label for="categorySelect" class="form-label">카테고리</label>
 							<select class="form-select" id="categorySelect" name="postCategory">
-								<option value="recommend">추천</option>
-								<option value="sharingInfo">정보공유</option>
+								<option value="recommend" ${board.postCategory == 'recommend' ? 'selected' : ''}>추천</option>
+								<option value="sharingInfo" ${board.postCategory == 'sharingInfo' ? 'selected' : ''}>정보공유</option>
 							</select>
 						</div>
 
@@ -52,11 +53,11 @@
 							<label for="postContent" class="form-label">내용</label>
 							<!-- <textarea name="content" id="editorTxt" class="form-control" value=""
 								placeholder="내용을 입력해주세요"></textarea> -->
-							<textarea name="postContent" id="postContent" rows="10" cols="20" style="width: 100%; height: 412px; min-width: 500px;"></textarea>
+							<textarea name="postContent" id="postContent" rows="10" cols="20" style="width: 100%; height: 412px; min-width: 500px;">${board.postContent }</textarea>
 						</div>
 						<div class="btn-box">
 							<button type="button" class="button small right-btn" onclick="history.back()">취소</button>
-							<button type="submit" class="button small primary right-btn" onclick="save()" class="btn btn-primary">작성</button>
+							<button type="submit" class="button small primary right-btn" onclick="save()" class="btn btn-primary">수정</button>
 						</div>
 					</form>
 				</section>

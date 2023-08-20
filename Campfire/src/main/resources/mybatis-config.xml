@@ -12,6 +12,7 @@
 		
 		<!-- User -->
 		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
+		<typeAlias type="kr.co.campfire.user.userBoard.dto.UserBoardDto" alias="board" />
 		
 		<!-- Business -->
 		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="businessRegistration" />
@@ -41,6 +42,7 @@
 	
 		<!-- User -->
 		<mapper resource="/mappers/user/campSearch-mapper.xml" />
+		<mapper resource="/mappers/user/board-mapper.xml" />
 		
 		<!-- Business -->
 		<mapper resource="/mappers/business/registration-mapper.xml" />

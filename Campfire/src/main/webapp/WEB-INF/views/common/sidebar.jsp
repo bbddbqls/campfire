@@ -31,13 +31,10 @@
 					<span class="opener">커뮤니티</span>
 					<ul>
 						<li>
-							<a href="../user/recommend.html">추천</a>
+							<a href="/user/board/showBoardList.do?postCategory=recommend">추천</a>
 						</li>
 						<li>
-							<a href="../user/sharingInfo.html">정보공유</a>
-						</li>
-						<li>
-							<a href="../user/recruitment.html">모임 결성</a>
+							<a href="/user/board/showBoardList.do?postCategory=sharingInfo">정보공유</a>
 						</li>
 					</ul>
 				</li>

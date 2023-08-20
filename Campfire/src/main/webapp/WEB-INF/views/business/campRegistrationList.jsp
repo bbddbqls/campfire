@@ -93,6 +93,7 @@
 								<hr>
 							</c:forEach>
 						</c:otherwise>
+						
 					</c:choose>
 					<button class="button small primary right-btn" onclick="location.href='showCampRegistration.do';">등록</button>
 					<div class="section-pagination">

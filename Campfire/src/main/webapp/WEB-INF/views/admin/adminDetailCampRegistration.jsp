@@ -231,10 +231,10 @@
 								<tbody class="t_c">
 									<tr>
 										<th scope="col">${campInfo.campType}</th>
-										<td data-cell-header="비성수기 주중：">${campInfo.campOffsdPrice == -1 ? '가격 정보 없음' : campInfo.campOffsdPrice '원'}</td>
-										<td data-cell-header="비성수기 주말：">${campInfo.campOffswPrice == -1 ? '가격 정보 없음' : campInfo.campOffswPrice '원'}</td>
-										<td data-cell-header="성수기 주중：">${campInfo.campSdPrice == -1 ? '가격 정보 없음' : campInfo.campSdPrice '원'}</td>
-										<td data-cell-header="성수기 주말：">${campInfo.campSwPrice == -1 ? '가격 정보 없음' : campInfo.campSwPrice '원'}</td>
+										<td data-cell-header="비성수기 주중：">${campInfo.campOffsdPrice == -1 ? '가격 정보 없음' : campInfo.campOffsdPrice}</td>
+										<td data-cell-header="비성수기 주말：">${campInfo.campOffswPrice == -1 ? '가격 정보 없음' : campInfo.campOffswPrice}</td>
+										<td data-cell-header="성수기 주중：">${campInfo.campSdPrice == -1 ? '가격 정보 없음' : campInfo.campSdPrice}</td>
+										<td data-cell-header="성수기 주말：">${campInfo.campSwPrice == -1 ? '가격 정보 없음' : campInfo.campSwPrice}</td>
 									</tr>
 								</tbody>
 							</table>
