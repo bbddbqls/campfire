@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.campfire.common.dto.PageInfo;
 import kr.co.campfire.user.userBoard.dto.UserBoardDto;
 import kr.co.campfire.user.userBoard.dto.UserBoardLikeDto;
+import kr.co.campfire.user.userBoard.dto.UserBoardReplyDto;
 
 @Repository
 public class UserBoardDao {
@@ -95,5 +96,38 @@ public class UserBoardDao {
 	// 좋아요 삭제
 	public int unlikePost(SqlSessionTemplate sqlSession, UserBoardLikeDto ubld) {
 		  return sqlSession.delete("boardMapper.unlikePost", ubld);
+	}
+	//댓글 수 구하기
+	public int selectReplyCount(SqlSessionTemplate sqlSession, int postNum) {
+		return sqlSession.selectOne("boardMapper.selectReplyCount", postNum);
+	}
+	//댓글 리스트
+	public List<UserBoardReplyDto> selectPostReply(SqlSessionTemplate sqlSession, int postNum){
+		return sqlSession.selectList("boardMapper.selectPostReply", postNum);
+	}
+	
+	//댓글 추가
+	public int insertReply(SqlSessionTemplate sqlSession, UserBoardReplyDto ubrd) {
+		  return sqlSession.insert("boardMapper.insertReply", ubrd);
+	}
+	public List<UserBoardReplyDto> selectReplyOne(SqlSessionTemplate sqlSession, String postReplyContent) {
+		return sqlSession.selectList("boardMapper.selectReplyOne", postReplyContent);
+	}
+	// 게시물 좋아요 했는지 체크
+	public int selectReplyCheckLike(SqlSessionTemplate sqlSession, UserBoardReplyDto ubrd) {
+		  return sqlSession.selectOne("boardMapper.selectReplyCheckLike", ubrd);
+	}
+	//댓글 좋아요 수 반환
+	public int selectReplyLikeCount(SqlSessionTemplate sqlSession, int postReplyNum) {
+		return sqlSession.selectOne("boardMapper.selectReplyLikeCount", postReplyNum);
+	}
+	
+	//댓글 좋아요 추가
+	public int replyLikePost(SqlSessionTemplate sqlSession, UserBoardReplyDto ubrd) {
+		  return sqlSession.insert("boardMapper.replyLikePost", ubrd);
+	}
+	//댓글 좋아요 삭제
+	public int replyUnlikePost(SqlSessionTemplate sqlSession, UserBoardReplyDto ubrd) {
+		  return sqlSession.delete("boardMapper.replyUnlikePost", ubrd);
 	}
 }

@@ -13,6 +13,14 @@
 		<result column="P_VIEW_COUNT" property="postViewCount"></result>
 	</resultMap>
 
+	<resultMap type="postReply" id="postReplyResulySet">
+		<result column="PR_NUM" property="postReplyNum"></result>
+		<result column="P_NUM" property="postNum"></result>
+		<result column="M_NUM" property="memberNum"></result>
+		<result column="M_USER_ID" property="memberId"></result>
+		<result column="PR_CONTENT" property="postReplyContent"></result>
+		<result column="PR_DATETIME_CREATED" property="postReplyCreateDate"></result>
+	</resultMap>
 
 	<insert id="insertBoard">
 		INSERT INTO POST (M_NUM, P_CATEGORY,
@@ -112,5 +120,46 @@
 	<!--좋아요 삭제 -->
 	<delete id="unlikePost">
 		DELETE FROM POST_LIKE WHERE M_NUM = #{memberNum} AND P_NUM = #{postNum}
+	</delete>
+	<!-- 댓글 갯수 구하기 -->
+	<select id="selectReplyCount" resultType="_int">
+		SELECT COUNT(*) FROM POST_REPLY WHERE P_NUM = #{postNum}
+	</select>
+	<!-- 댓글 리스트 -->
+	<select id="selectPostReply" resultMap="postReplyResulySet">
+		SELECT * FROM POST_REPLY 
+		INNER JOIN MEMBER ON POST_REPLY.M_NUM = MEMBER.M_NUM
+		WHERE POST_REPLY.P_NUM = #{postNum} ORDER BY POST_REPLY.PR_DATETIME_CREATED
+	</select>
+	
+	<!--댓글 추가 -->
+	<insert id="insertReply">
+		INSERT INTO POST_REPLY (p_num, m_num, pr_content) VALUES (#{postNum}, #{memberNum}, #{postReplyContent})
+	</insert>
+	
+	<select id="selectReplyOne" resultMap="postReplyResulySet">
+		SELECT *
+		FROM POST_REPLY
+		INNER JOIN MEMBER ON POST_REPLY.M_NUM = MEMBER.M_NUM
+		WHERE POST_REPLY.pr_content = #{postReplyContent}
+		ORDER BY POST_REPLY.pr_datetime_created DESC
+	</select>
+
+	<!--  댓글 좋아요 했는지 안했는제 체크-->
+	<select id="selectReplyCheckLike" resultType="_int">
+		SELECT COUNT(*) FROM POST_REPLY_LIKE WHERE PR_NUM = #{postReplyNum} AND M_NUM = #{memberNum}
+	</select>
+	<select id="selectReplyLikeCount" resultType="_int">
+		SELECT COUNT(*) FROM POST_REPLY_LIKE WHERE PR_NUM = #{postReplyNum}
+	</select>
+	
+		<!--좋아요 추가 -->
+	<insert id="replyLikePost">
+		INSERT INTO POST_REPLY_LIKE (m_num, pr_num) VALUES (#{memberNum}, #{postReplyNum})
+	</insert>
+	
+	<!--좋아요 삭제 -->
+	<delete id="replyUnlikePost">
+		DELETE FROM POST_REPLY_LIKE WHERE M_NUM = #{memberNum} AND PR_NUM = #{postReplyNum}
 	</delete>
 </mapper>

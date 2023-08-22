@@ -17,23 +17,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserBoardDto {
+public class UserBoardReplyDto {
+	private int postReplyNum;
 	private int postNum;
 	private int memberNum;
 	private String memberId;
-	private String postCategory;
-	private Timestamp postCreateDate;
-	private String postTitle;
-	private String postContent;
-	private int postViewCount;
-	private int likeCount;
-	private int replyCount;
-	private List<MultipartFile> files;
-	
-	private String imageName;
-	
-	private String searchCtg;
-	private String searchTxt;
-	
-	private String newCreateDate;
+	private String postReplyContent;
+	private Timestamp postReplyCreateDate;
+	private String newDate; 
+	private int replyLikeCount;
 }

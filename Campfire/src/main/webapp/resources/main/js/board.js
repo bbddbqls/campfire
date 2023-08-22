@@ -45,3 +45,59 @@
       }
     });
   }
+  
+$('.insert-reqly').on('click', function() {
+    let postNum = document.getElementById('comment-content').getAttribute('data-postNum-value');
+    console.log(postNum);
+    let commentText = $('#comment-content').val();
+    if (!commentText) {
+        window.alert("댓글을 입력해 주세요!!!!");
+    }
+    else {
+        // 서버에 AJAX 요청 보내기
+        $.ajax({
+            url: '/user/board/insertReply.do', 
+            method: 'POST',
+            data: { postNum: postNum, postReplyContent: commentText},
+            success: function(response) {
+                if (response && response !== null) {
+                    let newComment = 
+                        '<div class="comment-list">' +
+                            '<div class="comment">' +
+                                '<div class="comment-user">'+response[0].memberId+'</div>' +
+                                '<div class="comment-date">'+response[0].newDate+'</div>' +
+                            '</div>' +
+                            '<div class="comment">' +
+                                '<div class="comment-content">'+response[0].postReplyContent+'</div>' +
+                                '<div class="comment-like">' +
+                                    '<i class="fa-regular fa-thumbs-up" style="color: #1e6bf1;" onclick="likePostReply('+response[0].postReplyNum+');"></i> <span id="comment-like-count'+response[0].postReplyNum+'">0</span>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
+                    $('.comment-container').append(newComment);
+                } else {
+                    console.log('Error:', error);
+                }
+            },
+            error: function(error) {
+                console.log('Error:', error);
+            },
+        });
+    }
+});
+
+function likePostReply(postReplyNum) {
+    $.ajax({
+      type: 'POST',
+      url: '/user/board/replyLikePost.do', // insert 컨트롤러의 URL을 입력하세요
+      data: { postReplyNum: postReplyNum }, // 실제로 전송할 데이터를 지정하세요
+      success: function(response) {
+        let likeCount = document.getElementById('comment-like-count' + postReplyNum);
+        likeCount.textContent = response;
+        console.log(response);
+      },
+      error: function() {
+        console.log('Error occurred during likePost');
+      }
+    });
+  }

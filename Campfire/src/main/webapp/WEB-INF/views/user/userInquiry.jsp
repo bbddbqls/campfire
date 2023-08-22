@@ -20,7 +20,46 @@
 					<a href="u_inquiry.html" class="logo">
 						<strong>Campfire</strong> 문의사항
 					</a>
+					<div id="profile-box">
+						<c:choose>
+							<c:when test="${sessionScope.memberNum != null}">
+								<img src="/resources/images/프로필.png" class="profile" alt="" onclick="openModalLogin()" id="profile-box">
+							</c:when>
+							<c:otherwise>
+								<img src="/resources/images/프로필.png" class="profile" alt="" onclick="openModalUnlogin()" id="profile-box">
+							</c:otherwise>
+						</c:choose>
 
+						<div id="modalLogin" class="modal">
+							<div class="modal-content">
+								<span class="close" onclick="closeModalLogin()">&times;</span>
+								<ul>
+									<li>
+										<a href="#">회원 정보</a>
+									</li>
+									<li>
+										<a href="#">추천 목록</a>
+									</li>
+									<li>
+										<a href="#">찜 목록</a>
+									</li>
+									<li>
+										<a href="#">로그아웃</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="modalUnlogin" class="modal">
+							<div class="modal-content">
+								<span class="close" onclick="closeModalUnlogin()">&times;</span>
+								<ul>
+									<li>
+										<a href="#">로그인</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</header>
 
 				<!-- Content -->

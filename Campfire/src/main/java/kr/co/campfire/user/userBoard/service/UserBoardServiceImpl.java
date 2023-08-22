@@ -10,6 +10,7 @@ import kr.co.campfire.common.dto.PageInfo;
 import kr.co.campfire.user.userBoard.dao.UserBoardDao;
 import kr.co.campfire.user.userBoard.dto.UserBoardDto;
 import kr.co.campfire.user.userBoard.dto.UserBoardLikeDto;
+import kr.co.campfire.user.userBoard.dto.UserBoardReplyDto;
 
 @Service
 public class UserBoardServiceImpl implements UserBoardService{
@@ -108,5 +109,46 @@ public class UserBoardServiceImpl implements UserBoardService{
 	@Override
 	public int unlikePost(UserBoardLikeDto ubld) {
 		return userBoardDao.unlikePost(sqlSession, ubld);
+	}
+
+	@Override
+	public int selectReplyCount(int postNum) {
+		return userBoardDao.selectReplyCount(sqlSession, postNum);
+	}
+	
+	@Override
+	public List<UserBoardReplyDto> selectPostReply(int postNum){
+		return userBoardDao.selectPostReply(sqlSession, postNum);
+	}
+
+	
+	@Override
+	public int insertReply(UserBoardReplyDto ubrd) {
+		return userBoardDao.insertReply(sqlSession, ubrd);
+	}	
+
+	@Override
+	public  List<UserBoardReplyDto> selectReplyOne(String postReplyContent) {
+		return userBoardDao.selectReplyOne(sqlSession, postReplyContent);
+	}
+	
+	@Override
+	public int selectReplyLikeCount(int postReplyNum) {
+		return userBoardDao.selectReplyLikeCount(sqlSession, postReplyNum);
+	}
+	
+	@Override
+	public int selectReplyCheckLike(UserBoardReplyDto ubrd) {
+		return userBoardDao.selectReplyCheckLike(sqlSession, ubrd);
+	}
+	
+	@Override
+	public int replyLikePost(UserBoardReplyDto ubrd) {
+		return userBoardDao.replyLikePost(sqlSession, ubrd);
+	}
+	
+	@Override
+	public int replyUnlikePost(UserBoardReplyDto ubrd) {
+		return userBoardDao.replyUnlikePost(sqlSession, ubrd);
 	}
 }

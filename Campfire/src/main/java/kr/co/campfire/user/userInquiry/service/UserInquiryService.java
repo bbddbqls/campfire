@@ -29,4 +29,5 @@ public interface UserInquiryService {
 	int deleteInquiry(int inNum);
 	
 	int updateInquiry(UserInquiryDto uid);
+	
 }

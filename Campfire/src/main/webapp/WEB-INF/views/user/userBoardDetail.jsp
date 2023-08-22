@@ -34,17 +34,16 @@
 				<section>
 
 					<div class="board-info">
-						
+
 						<c:choose>
 							<c:when test="${ckeckLike eq 1}">
-								<i id="heart" class="fa-solid fa-heart fa-xl" data-jstl-value="${board.postNum}"style="color: #ff8fb6;"></i>
+								<i id="heart" class="fa-solid fa-heart fa-xl" data-jstl-value="${board.postNum}" style="color: #ff8fb6;"></i>
 							</c:when>
 							<c:otherwise>
 								<i id="heart" class="fa-regular fa-heart fa-xl" data-jstl-value="${board.postNum}" style="color: #ff8fb6;"></i>
 							</c:otherwise>
 						</c:choose>
-						<span id="like-count">${likeCount }</span> 
-						<i class="fa-solid fa-eye fa-lg" style="color: #5c5c5c; margin-right: 3px;"></i><span>${board.postViewCount }</span> <span>등록 날짜 : ${board.newCreateDate }</span>
+						<span id="like-count">${likeCount }</span> <i class="fa-solid fa-eye fa-lg" style="color: #5c5c5c; margin-right: 3px;"></i><span>${board.postViewCount }</span> <span>등록 날짜 : ${board.newCreateDate }</span>
 					</div>
 					<div class="board-title">
 						<c:choose>
@@ -64,6 +63,36 @@
 					<div id="main-text">
 						<br> ${board.postContent }
 					</div>
+
+					<div class="comment-container">
+						<h2>댓글</h2>
+						<c:choose>
+							<c:when test="${empty replyList}">
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${replyList}">
+									<div class="comment-list">
+										<div class="comment">
+											<div class="comment-user">${item.memberId }</div>
+											<div class="comment-date">${item.newDate }</div>
+										</div>
+										<div class="comment">
+											<div class="comment-content">${item.postReplyContent }</div>
+											<div class="comment-like">
+												<i class="fa-regular fa-thumbs-up" style="color: #1e6bf1;" onclick="likePostReply('${item.postReplyNum}')"></i> <span id="comment-like-count${item.postReplyNum}">${item.replyLikeCount }</span>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
+					</div>
+						<div class="comment-form">
+							<input type="text" id="comment-content" data-postNum-value="${board.postNum }" placeholder="댓글을 입력하세요">
+							<button type="button" class="button small insert-reqly" >등록</button>
+						</div>
+
 					<div class="btn-box">
 						<br>
 						<c:if test="${sessionScope.memberNum == board.memberNum}">
@@ -75,6 +104,7 @@
 						</c:if>
 						<button type="button" class="button small primary right-btn" onclick="location.href = '/user/board/showBoardList.do?postCategory=${board.postCategory}'">목록</button>
 					</div>
+					<br>
 				</section>
 
 			</div>
