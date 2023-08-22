@@ -162,4 +162,8 @@
 	<delete id="replyUnlikePost">
 		DELETE FROM POST_REPLY_LIKE WHERE M_NUM = #{memberNum} AND PR_NUM = #{postReplyNum}
 	</delete>
+	
+	<delete id="deleteReply">
+		DELETE FROM POST_REPLY WHERE PR_NUM = #{postReplyNum}
+	</delete>
 </mapper>

@@ -130,4 +130,8 @@ public class UserBoardDao {
 	public int replyUnlikePost(SqlSessionTemplate sqlSession, UserBoardReplyDto ubrd) {
 		  return sqlSession.delete("boardMapper.replyUnlikePost", ubrd);
 	}
+	
+	public int deleteReply(SqlSessionTemplate sqlSession, int postReplyNum) {
+		return sqlSession.delete("boardMapper.deleteReply", postReplyNum);
+	}
 }

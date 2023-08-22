@@ -43,7 +43,7 @@
 				<!-- Content -->
 				<section>
 					<div>
-						<strong style="font-size: 20px;">인기글</strong>
+						<h4>인기글</h4>
 					</div>
 					<div>
 						<div class="row gtr-50 gtr-uniform">
@@ -72,7 +72,7 @@
 					</div>
 					<div class="row all-content">
 						<div class="col-6">
-							<strong style="font-size: 20px;">전체글</strong>
+							<h4>전체글</h4>
 						</div>
 						<div class="col-6 menu-container">
 							<img class="menu-logo" id="menu-logo1" src="/resources/images/icon2-select.png" alt=""> <img class="menu-logo" id="menu-logo2" src="/resources/images/icon1.png" alt="">

@@ -60,12 +60,16 @@ $('.insert-reqly').on('click', function() {
             method: 'POST',
             data: { postNum: postNum, postReplyContent: commentText},
             success: function(response) {
-                if (response && response !== null) {
+                    if (response && response !== null && response.length > 0) {
                     let newComment = 
-                        '<div class="comment-list">' +
+                        '<div class="comment-list"id="comment-list-'+response[0].postReplyNum+'">' +
                             '<div class="comment">' +
                                 '<div class="comment-user">'+response[0].memberId+'</div>' +
-                                '<div class="comment-date">'+response[0].newDate+'</div>' +
+                                '<div class="comment-date">'+response[0].newDate +
+                                '<c:if test="${sessionScope.memberNum == '+response[0].memberNum+'}">' +
+                                ' <i class="fa-solid fa-trash-can" style="color: #8a8a8a;"onclick="deleteReply('+response[0].postReplyNum+')"></i>' +
+                                '</c:if>' +
+                                '</div>' +
                             '</div>' +
                             '<div class="comment">' +
                                 '<div class="comment-content">'+response[0].postReplyContent+'</div>' +
@@ -75,6 +79,8 @@ $('.insert-reqly').on('click', function() {
                             '</div>' +
                         '</div>';
                     $('.comment-container').append(newComment);
+                    
+                    $('#comment-content').val('');
                 } else {
                     console.log('Error:', error);
                 }
@@ -95,6 +101,26 @@ function likePostReply(postReplyNum) {
         let likeCount = document.getElementById('comment-like-count' + postReplyNum);
         likeCount.textContent = response;
         console.log(response);
+      },
+      error: function() {
+        console.log('Error occurred during likePost');
+      }
+    });
+  }
+  
+  function deleteReply(postReplyNum) {
+  let commentListId = `comment-list-${postReplyNum}`;
+    let commentList = document.getElementById(commentListId);
+    $.ajax({
+      type: 'POST',
+      url: '/user/board/deleteReply.do', // insert 컨트롤러의 URL을 입력하세요
+      data: { postReplyNum: postReplyNum }, // 실제로 전송할 데이터를 지정하세요
+      success: function(response) {
+        if(response == true){
+        	commentList.remove();
+        }else{
+        window.alert("댓글 삭제 실패");
+        }
       },
       error: function() {
         console.log('Error occurred during likePost');

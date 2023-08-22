@@ -59,4 +59,6 @@ public interface UserBoardService {
 	int replyLikePost(UserBoardReplyDto ubrd);
 
 	int replyUnlikePost(UserBoardReplyDto ubrd);
+	
+	int deleteReply(int postReplyNum);
 }

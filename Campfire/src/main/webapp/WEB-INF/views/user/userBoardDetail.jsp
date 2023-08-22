@@ -71,10 +71,14 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach var="item" items="${replyList}">
-									<div class="comment-list">
+									<div class="comment-list" id="comment-list-${item.postReplyNum }">
 										<div class="comment">
 											<div class="comment-user">${item.memberId }</div>
-											<div class="comment-date">${item.newDate }</div>
+											<div class="comment-date">${item.newDate }
+												<c:if test="${sessionScope.memberNum == item.memberNum}">
+													<i class="fa-solid fa-trash-can" style="color: #8a8a8a;"onclick="deleteReply('${item.postReplyNum}')"></i>
+												</c:if>
+											</div>
 										</div>
 										<div class="comment">
 											<div class="comment-content">${item.postReplyContent }</div>
@@ -88,10 +92,10 @@
 						</c:choose>
 
 					</div>
-						<div class="comment-form">
-							<input type="text" id="comment-content" data-postNum-value="${board.postNum }" placeholder="댓글을 입력하세요">
-							<button type="button" class="button small insert-reqly" >등록</button>
-						</div>
+					<div class="comment-form">
+						<input type="text" id="comment-content" data-postNum-value="${board.postNum }" placeholder="댓글을 입력하세요">
+						<button type="button" class="button small insert-reqly">등록</button>
+					</div>
 
 					<div class="btn-box">
 						<br>

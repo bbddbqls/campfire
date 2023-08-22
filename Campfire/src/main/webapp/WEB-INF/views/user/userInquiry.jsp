@@ -30,8 +30,8 @@
 							</c:otherwise>
 						</c:choose>
 
-						<div id="modalLogin" class="modal">
-							<div class="modal-content">
+						<div id="modalLogin" class="modal2">
+							<div class="modal2-content">
 								<span class="close" onclick="closeModalLogin()">&times;</span>
 								<ul>
 									<li>
@@ -49,8 +49,8 @@
 								</ul>
 							</div>
 						</div>
-						<div id="modalUnlogin" class="modal">
-							<div class="modal-content">
+						<div id="modalUnlogin" class="modal2">
+							<div class="modal2-content">
 								<span class="close" onclick="closeModalUnlogin()">&times;</span>
 								<ul>
 									<li>

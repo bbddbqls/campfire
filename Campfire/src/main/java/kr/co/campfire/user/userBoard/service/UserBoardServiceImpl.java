@@ -151,4 +151,9 @@ public class UserBoardServiceImpl implements UserBoardService{
 	public int replyUnlikePost(UserBoardReplyDto ubrd) {
 		return userBoardDao.replyUnlikePost(sqlSession, ubrd);
 	}
+
+	@Override
+	public int deleteReply(int postReplyNum) {
+		return userBoardDao.deleteReply(sqlSession, postReplyNum);
+	}
 }

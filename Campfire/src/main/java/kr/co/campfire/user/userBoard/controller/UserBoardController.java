@@ -556,4 +556,19 @@ public class UserBoardController {
 			return newLikeCount;
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteReply.do")
+	public boolean deleteReply(@RequestParam(value = "postReplyNum", defaultValue = "-1") int postReplyNum, HttpSession session,
+			Model model) {
+
+		int deleteResult = userBoardService.deleteReply(postReplyNum);
+		
+		if (deleteResult > 0) {
+			return true;
+
+		} else {
+			return false;
+		}
+	}
 }

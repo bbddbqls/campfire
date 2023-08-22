@@ -3389,7 +3389,7 @@ img {
 }
 
 /* 모달 창 스타일 */
-.modal {
+.modal2 {
 	display: none; /* 모달 창을 기본적으로 숨깁니다. */
 	position: absolute;
 	z-index: 1;
@@ -3399,7 +3399,7 @@ img {
 }
 
 /* 모달 내용 스타일 */
-.modal-content {
+.modal2-content {
 	width: 90px; /* 모달 창의 최대 너비를 지정합니다. */
 }
 
@@ -3425,13 +3425,13 @@ img {
 }
 
 /* 모달 창의 위치를 조정합니다. */
-.modal {
+.modal2 {
 	top: 110%; /* 프로필 아이콘 바로 밑에 위치하도록 top 값을 조정합니다. */
 	left: 100%; /* 가운데 정렬을 위해 left 값을 조정합니다. */
 	transform: translateX(-90%); /* 가운데 정렬을 위해 transform을 사용합니다. */
 	padding: 20px 0px 20px 0px;
 }
-.modal-content{
+.modal2-content{
 	position: relative;
 }
 .close {
@@ -3440,7 +3440,7 @@ img {
     right: 5px;
     cursor: pointer;
 }
-.modal ul{
+.modal2 ul{
 	list-style: none;
 	margin: 0px;
 	padding: 0px;	
@@ -3449,9 +3449,12 @@ img {
     flex-direction: column;
     align-items: center;
 }
-.modal li{
+.modal2 li{
 	padding: 0px;
 }
-.modal a{
+.modal2 a{
 	border: 0px;
+}
+i{
+	cursor: pointer;
 }
