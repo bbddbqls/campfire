@@ -184,7 +184,6 @@ public class CampSearchController {
 		}
 		
 		
-		session.setAttribute("memberNum", 2);
 		// 받아온값 넘겨주기
 		model.addAttribute("campAmenity", campAmenity);
 		model.addAttribute("searchTxt", searchTxt);

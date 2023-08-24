@@ -23,6 +23,12 @@
 		WHERE M_USER_ID = #{memberId}
 		<!-- AND M_REMOVE_DATE IS NULL -->
 	</select>
+	<select id="checkId" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_USER_ID = #{id}
+	</select>
+	<insert id="kakaoSingup">
+		INSERT INTO MEMBER (M_USER_ID, M_PW, M_NAME, M_GENDER, M_KAKAO, M_DIVISION) VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberGender}, #{memberKakao}, 'user') 
+	</insert>
 	
 <!-- 	<select id="checkEmail" resultType="_int">
 		SELECT COUNT(*) FROM M_MEMBER WHERE M_EMAIL = #{email}

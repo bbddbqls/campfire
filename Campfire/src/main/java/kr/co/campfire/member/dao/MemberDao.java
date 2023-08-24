@@ -18,4 +18,12 @@ public class MemberDao {
 //	public int singupMember(SqlSessionTemplate sqlSession, MemberDto m) {
 //		return sqlSession.insert("memberMapper.singupMember", m);
 //	}
+	
+	public int checkId(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.checkId", id);
+	}
+	
+	public int kakaoSingup(SqlSessionTemplate sqlSession, MemberDto md) {
+		return sqlSession.insert("memberMapper.kakaoSingup", md);
+	}
 }

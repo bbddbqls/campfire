@@ -264,21 +264,4 @@
 function goBack() {
 	window.history.back(); // 뒤로가기
   }
-function openModalLogin() {
-  var modal = document.getElementById("modalLogin");
-  modal.style.display = "block";
-}
-function openModalUnlogin() {
-  var modal = document.getElementById("modalUnlogin");
-  modal.style.display = "block";
-}
 
-// 모달 닫기
-function closeModalLogin() {
-  var modal = document.getElementById("modalLogin");
-  modal.style.display = "none";
-}
-function closeModalUnlogin() {
-  var modal = document.getElementById("modalUnlogin");
-  modal.style.display = "none";
-}
