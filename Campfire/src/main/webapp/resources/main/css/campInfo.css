@@ -1,20 +1,17 @@
 /*캠핑장 이름, 아이콘*/
-h2 {
-  display: flex;
-  justify-content: space-between;
+=
+.campinfo-title {
+  margin-right: auto; 
+  
 }
-
-.skip {
-  margin-right: auto; /* 다온숲을 왼쪽 끝으로 붙임 */
+.campinfo-title{
+	float: right;
 }
-
-.heart-icon,
-.star-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 5px; /* 아이콘과 숫자 사이 간격 조정 */
+.skip{
+	font-size: 20px;
+	font-weight: bold;
+	color: #4b4b4b;
 }
-
 
 /* 상단바 스타일링 */
 .campinfo-bar {
@@ -284,53 +281,67 @@ h2 {
 }
 
 /*댓글*/
-/* 댓글 작성 창 스타일 */
-#comment-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+/* 댓글 */
+.comment-container {
+	
 }
-#comment-text {
-  flex: 1;
-  padding: 5px;
-  margin: 10px;
-  border: 1px solid #ccc;
-}
-#comment-form button {
-  color: #fff;
-  border: none;
-  cursor: pointer;
+
+.comment-list {
+    border-top: 1px solid #ccc;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
 
 }
 
-/* 댓글 목록 스타일 */
-#comment-section {
-  margin-bottom: 10px;
-}
 .comment {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
 }
-.comment-text {
-  flex: 1;
-  padding: 5px;
-  border: 1px solid #ccc;
+
+.comment-user {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
-.comment-actions {
-  display: flex;
-  align-items: center;
+
+.comment-content {
+    color: #333;
+    background-color: #eef0ed;
+    background-border: 29px;
+    border-radius: 10px;
+    padding:5px;
+    margin-right: 10px;
+    flex-grow: 1;
+
+    
 }
-.comment-like-btn, .comment-delete-btn {
-  padding: 0px 8px 0px 8px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-right: 5px;
-  display: flex;
-  float: right;
+.comment-like{
+	background-color: white;
+	color: #777;
+	float: right;
+	height:30px;
+}
+
+.comment-form {
+    margin-top: 20px;
+       display: flex;
+    align-items: center;
+}
+
+.comment-form input[type="text"] {
+     flex: 1;
+     margin-right: 5px;
+}
+
+
+.comment-date {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
 /*사진 박스*/
@@ -409,7 +420,14 @@ h2 {
   transition: transform 0.3s ease;
   cursor: pointer;
 }
-/* 나윤님 제가 좀 끄적일게요 */
+
+.box_photo h4{
+	text-align: center;
+}
+
+.carousel-container h4{
+	text-align: center;
+}
 th{
 	padding: 0.75em 0.75em 0.75em 0.75em !important;
 }
@@ -430,4 +448,3 @@ th{
 	margin-left: 10px;
 	margin-right: 10px;
 }
-

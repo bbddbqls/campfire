@@ -275,7 +275,7 @@
 					<form id="refuseForm" action="/adminRegistration/refuseCampRegistration.do" method="post">
 						<div class="btn-container">
 							<div class="btn-box">
-								<button type="button" class="button small approval-btn" onclick="goToApproval(${campInfo.campNum})">승인</button>
+								<button type="button" class="button small approval-btn" onclick="goToApproval('${campInfo.campNum}')">승인</button>
 							</div>
 							<div class="btn-box">
 								<button type="submit" class="button small">거절</button>
@@ -298,7 +298,7 @@
 	<script src="../../resources/main/js/breakpoints.min.js"></script>
 	<script src="../../resources/main/js/util.js"></script>
 	<script src="../../resources/main/js/main.js"></script>
-	<script src="../../resources/main/js/adminDetailCampRegistration.js"></script>
+	<script src="../../resources/main/js/detailCampRegistration.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script> -->

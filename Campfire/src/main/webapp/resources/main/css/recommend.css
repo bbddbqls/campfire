@@ -68,7 +68,7 @@
 
 
 /* 댓글 */
-.comment-container {
+/* .comment-container {
 }
 
 .comment-list {
@@ -94,6 +94,63 @@
 
 .comment-content {
     color: #333;
+}
+
+.comment-form {
+    margin-top: 20px;
+       display: flex;
+    align-items: center;
+}
+
+.comment-form input[type="text"] {
+     flex: 1;
+     margin-right: 5px;
+}
+
+
+.comment-date {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 5px;
+} */
+.comment-list {
+    border-top: 1px solid #ccc;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+}
+
+.comment-user {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    color: #333;
+    background-color: #eef0ed;
+    background-border: 29px;
+    border-radius: 10px;
+    padding:5px;
+    margin-right: 10px;
+    flex-grow: 1;
+
+    
+}
+.comment-like{
+	background-color: white;
+	color: #777;
+	float: right;
+	height:30px;
 }
 
 .comment-form {

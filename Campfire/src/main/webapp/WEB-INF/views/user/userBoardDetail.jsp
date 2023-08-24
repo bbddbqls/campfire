@@ -65,7 +65,8 @@
 					</div>
 
 					<div class="comment-container">
-						<h2>댓글</h2>
+					<br>
+						<h3>댓글</h3>
 						<c:choose>
 							<c:when test="${empty replyList}">
 							</c:when>
@@ -73,7 +74,7 @@
 								<c:forEach var="item" items="${replyList}">
 									<div class="comment-list" id="comment-list-${item.postReplyNum }">
 										<div class="comment">
-											<div class="comment-user">${item.memberId }</div>
+											<div class="comment-user"><i class="fa-solid fa-tree fa-lg" style="color: #155b3a;"></i> ${item.memberId }</div>
 											<div class="comment-date">${item.newDate }
 												<c:if test="${sessionScope.memberNum == item.memberNum}">
 													<i class="fa-solid fa-trash-can" style="color: #8a8a8a;"onclick="deleteReply('${item.postReplyNum}')"></i>

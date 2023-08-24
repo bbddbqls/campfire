@@ -50,7 +50,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int listCount = adminRegistrationService.selectBusinessRegistrationListCount();
 			// 보여질 페이지 수
@@ -94,7 +94,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			if (brNum.equals("-1")) {
 				sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
@@ -124,7 +124,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			if (brNum.equals("-1")) {
 				sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
@@ -159,7 +159,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int listCount = adminRegistrationService.selectCampRegistrationListCount();
 			// 보여질 페이지 수
@@ -219,7 +219,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			if (campNum == -1) {
 				sessionManage.setSessionMessage("오류 발생 다시한번 확인해 주세요.", "error", session);
@@ -263,7 +263,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			if (campNum == -1) {
 				sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
@@ -293,7 +293,7 @@ public class AdminRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			if (campNum == -1) {
 				sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);

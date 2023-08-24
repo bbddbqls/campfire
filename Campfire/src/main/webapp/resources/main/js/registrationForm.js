@@ -190,7 +190,6 @@ function submitForm() {
         formData.append('files', photos[i]); // 'files'와 동일한 이름을 사용
     }
 
-
     fetch('/business/insertCampRegistration.do', {
         method: 'POST',
         body: formData
@@ -199,7 +198,7 @@ function submitForm() {
         console.log(response);
         if (response.ok) {
             // Handle successful submission, e.g., redirect or display a message
-            window.location.href = "/user/campSearch.do";
+            window.location.href = "/campSearch/camping.do";
             console.log(response.url);
         } else {
         	window.location.href = "/business/showCampRegistration.do";

@@ -22,10 +22,10 @@
 					<a href="../user/index.html">Homepage</a>
 				</li>
 				<li>
-					<a href="../user/campInfo.html">캠핑장 찾기</a>
+					<a href="/campSearch/camping.do">캠핑장 찾기</a>
 				</li>
 				<li>
-					<a href="../user/elements.html">당근</a>
+					<a href="/trading/list.do">당근</a>
 				</li>
 				<li>
 					<span class="opener">커뮤니티</span>

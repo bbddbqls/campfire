@@ -8,12 +8,20 @@
 	
 	<typeAliases>
 		<!-- 로그인,회원가입 -->
-		<typeAlias type="kr.co.campfire.member.dto.MemberDto" alias="member" />
+		<typeAlias type="kr.co.campfire.member.dto.MemberDto" alias="login" />
 		
 		<!-- User -->
-		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
 		<typeAlias type="kr.co.campfire.user.userBoard.dto.UserBoardDto" alias="board" />
 		<typeAlias type="kr.co.campfire.user.userBoard.dto.UserBoardReplyDto" alias="postReply" />
+		<typeAlias type="kr.co.campfire.user.campSearch.dto.CampSearchDto" alias="campSearch" />
+      	<typeAlias type="kr.co.campfire.user.campInfo.dto.CampInfoDto" alias="campInfo" />
+      	<typeAlias type="kr.co.campfire.user.campInfo.dto.CampInfoFunctionDto" alias="campReply" />
+      	
+      	<typeAlias type="kr.co.campfire.user.trading.dto.Trading" alias="Trading" />
+		<typeAlias type="kr.co.campfire.user.trading.dto.Category" alias="Category" />
+		<typeAlias type="kr.co.campfire.user.trading.dto.Region" alias="Region" />
+		<typeAlias type="kr.co.campfire.user.trading.dto.File" alias="File" />
+		<typeAlias type="kr.co.campfire.user.trading.dto.Member" alias="Member" />
 		
 		<!-- Business -->
 		<typeAlias type="kr.co.campfire.business.registration.dto.BusinessRegistrationDto" alias="businessRegistration" />
@@ -43,7 +51,9 @@
 	
 		<!-- User -->
 		<mapper resource="/mappers/user/campSearch-mapper.xml" />
+   		<mapper resource="/mappers/user/campInfo-mapper.xml" />
 		<mapper resource="/mappers/user/board-mapper.xml" />
+		<mapper resource="/mappers/user/trading-mapper.xml" />
 		
 		<!-- Business -->
 		<mapper resource="/mappers/business/registration-mapper.xml" />

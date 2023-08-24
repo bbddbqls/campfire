@@ -22,8 +22,27 @@
 	margin: 0px 5px;
 }
 
-.top_search_box .campfindtop {
-	margin: 20px 40px 0 40px;
+.top_search_box .tab-btn-box{
+	text-align: center;
+}
+
+.tab-button {
+	background-color: #d4d4cf;
+	color: #333333;
+	border: none;
+	margin: 5px;
+	font-size: 12px;
+	transition: transform 0.2s, box-shadow 0.2s;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button:first-child {
+	margin-left: 50px;
 }
 
 .camp_search_list .c_list {
@@ -56,6 +75,7 @@
 	background: #00571d;
 	width: 40%;
 	text-align: center;
+	font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .tagSearch .btn_reset {
@@ -66,6 +86,12 @@
 	margin-left: 11%;
 	text-align: center;
 	float: left;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.tagSearch .btn_reset:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tagSearch a {
@@ -73,7 +99,7 @@
 	line-height: 46px;
 	border-radius: 3px;
 	margin-bottom: 6px;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .div.select {
@@ -176,17 +202,36 @@
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	position: relative;
+	border-radius: 2px;
 }
 
 .camping_info img {
-	width: 200px;
+	width: 180px;
 	height: 150px;
 	margin-right: 20px;
 }
 
+  .camping_info:hover {
+        /* 호버 효과 */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
 .camping_data p {
 	margin: 5px 0;
 	font-size: 12px;
+}
+
+.empty{
+	text-align:center;
+}
+
+.section-pagination ul{
+	padding: 0;
+	text-align:center;
 }
 
 /*캠핑장정보*/
@@ -194,6 +239,10 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.ckeckbox-btn  {
+	text-align: right;
 }
 
 #map {
@@ -212,9 +261,8 @@
 	width: 100%;
 	border-radius: 20px;
 	background-color: white;
-	display: none;
+	display: block;
 	position: relative;
-	top: -73px;
 	left: 0%;
 }
 
@@ -227,8 +275,8 @@
 }
 
 .amenity-box>.div1 {
-	width: 90px;
-	height: 90px;
+	width: 80px;
+	height: 80px;
 	border: 2px solid #ccc;
 	border-radius: 10px;
 	display: flex;
@@ -274,17 +322,9 @@
 .selectedAmenity {
 	display: block;
 }
-
-/* 나윤님 제가 잠깐 끄적일게요... */
-.small-text {
-	font-size: 80%;
+input[type="checkbox"], input[type="radio"] {
+ opacity: 0; 
 }
-
-.camping_info {
-	border-radius: 5px;
-	cursor: pointer; /* 마우스 포인터 모양 변경 */
-	transition: background-color 0.5s; /* 배경색 변화에 트랜지션 적용 */
-}
-.camping_info:hover {
-  background-color: #ececec; /* 마우스를 올렸을 때 배경색 변경 */
+a{
+	border : 0;
 }

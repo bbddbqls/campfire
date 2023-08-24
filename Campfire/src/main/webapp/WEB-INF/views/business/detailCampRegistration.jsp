@@ -273,7 +273,7 @@
 					</div>
 					<hr>
 					<div class="btn-box">
-						<button type="button" class="button small approval-btn" onclick="goToDelete('${campInfo.campNum}','${campInfo.memberNum}')">삭제</button>
+						<button type="button" class="button small approval-btn" onclick="goToDeletebusiness('${campInfo.campNum}','${campInfo.memberNum}')">삭제</button>
 					</div>
 				</section>
 			</div>

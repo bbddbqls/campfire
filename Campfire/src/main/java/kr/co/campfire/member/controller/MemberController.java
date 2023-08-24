@@ -29,9 +29,11 @@ public class MemberController {
 
 		if (!Objects.isNull(loginUser)) {
 			session.setAttribute("memberNum", loginUser.getMemberNum());
+			String sessionMemberIdx = String.valueOf(loginUser.getMemberNum());
+			session.setAttribute("sessionMemberIdx", sessionMemberIdx);
 			session.setAttribute("memberName", loginUser.getMemberName());
 			session.setAttribute("memberDivision", loginUser.getMemberDivision());
-			return "redirect:/user/campSearch.do";
+			return "redirect:/campSearch/camping.do";
 		} else {
 //			model.addAttribute("msg", "아이디 비밀번호를 확인해 주세요!");
 //			model.addAttribute("status", "error");
@@ -41,6 +43,6 @@ public class MemberController {
  @GetMapping("/go.do")
 	public String godo() {
 		
-		return "redirect:/user/campSearch.do";
+		return "redirect:/campSearch/camping.do";
 	}
 }

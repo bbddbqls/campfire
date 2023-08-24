@@ -60,7 +60,7 @@ public class BusinessRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int memberNum = (int) session.getAttribute("memberNum");
 			if (businessRegistrationService.checkBusinessRegistration(memberNum) > 0) {
@@ -117,7 +117,7 @@ public class BusinessRegistrationController {
 					return "redirect:/business/showBusinessRegistration.do";
 				} else {
 					sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
-					return "redirect:/user/campSearch.do";
+					return "redirect:/campSearch/camping.do";
 				}
 			} else {
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
@@ -136,7 +136,7 @@ public class BusinessRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int loginMemberNum = (int) session.getAttribute("memberNum");
 			if (businessRegistrationService.checkBusinessRegistration(loginMemberNum) > 0) {
@@ -182,7 +182,7 @@ public class BusinessRegistrationController {
 					return "redirect:/business/showBusinessRegistration.do";
 				} else {
 					sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
-					return "redirect:/user/campSearch.do";
+					return "redirect:/campSearch/camping.do";
 				}
 			} else {
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
@@ -201,7 +201,7 @@ public class BusinessRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int loginMemberNum = (int) session.getAttribute("memberNum");
 			if (businessRegistrationService.checkBusinessRegistration(memberNum) > 0) {
@@ -238,7 +238,7 @@ public class BusinessRegistrationController {
 					return "redirect:/business/showBusinessRegistration.do";
 				} else {
 					sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
-					return "redirect:/user/campSearch.do";
+					return "redirect:/campSearch/camping.do";
 				}
 			} else {
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
@@ -257,7 +257,7 @@ public class BusinessRegistrationController {
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/campSearch/camping.do"; // 캠핑장 서치
 		} else {
 			int memberNum = (int) session.getAttribute("memberNum");
 			if (businessRegistrationService.checkBusinessRegistration(memberNum) > 0) {
@@ -278,7 +278,7 @@ public class BusinessRegistrationController {
 					return "redirect:/business/showBusinessRegistration.do";
 				} else {
 					sessionManage.setSessionMessage("잘못된 접근 입니다.", "error", session);
-					return "redirect:/user/campSearch.do";
+					return "redirect:/campSearch/camping.do";
 				}
 			} else {
 				sessionManage.setSessionMessage("사업자 승인이 되지 않은 사용자 입니다.", "error", session);
@@ -340,7 +340,7 @@ public class BusinessRegistrationController {
 
 								// 랜덤문자열 생성
 								int length = 8;
-								String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&()";
+								String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 								Random random = new Random();
 								String randomString = random.ints(length, 0, characters.length())
 										.mapToObj(characters::charAt).map(Object::toString)
@@ -375,7 +375,7 @@ public class BusinessRegistrationController {
 
 						session.removeAttribute("msg");
 						session.removeAttribute("status");
-						return "user/campSearch";
+						return "campSearch/camping";
 					} else {
 						return "common/errorPage";
 					}
@@ -408,7 +408,7 @@ public class BusinessRegistrationController {
 			return "user/userInquiry"; // 캠프서치로
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
-			return "user/userInquiry"; // 캠프서치로
+			return "redirect:/campSearch/camping.do"; // 캠프서치로
 		} else {
 			int memberNum = (int) session.getAttribute("memberNum");
 			int result = businessRegistrationService.checkBusinessRegistration(memberNum);
@@ -417,7 +417,12 @@ public class BusinessRegistrationController {
 			if (result > 0) {
 				BusinessRegistrationDto brd = businessRegistrationService.selectBusinessRegistration(memberNum);
 				model.addAttribute("businessList", brd);
+				
+				model.addAttribute("msg", (String) session.getAttribute("msg"));
+				model.addAttribute("status", (String) session.getAttribute("status"));
 
+				session.removeAttribute("msg");
+				session.removeAttribute("status");
 				return "business/businessList";
 			} else {
 				// 없으면 등록화면으로 이동
@@ -439,7 +444,7 @@ public class BusinessRegistrationController {
 			return "############################"; // 캠프서치 컨트롤러
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
-			return "############################"; // 캠프서치 컨트롤러
+			return "redirect:/campSearch/camping.do"; // 캠프서치 컨트롤러
 		} else {
 			// 입력 정보 확인
 			if (brd.getBrNum() == null || brd.getBrCompany() == null || brd.getBrSttCd() == null
@@ -472,7 +477,7 @@ public class BusinessRegistrationController {
 			return "############################"; // 캠프서치 컨트롤러
 		} else if (!((String) session.getAttribute("memberDivision")).equals("business")) {
 			sessionManage.setSessionMessage("사업자 로그인 후 이용할 수 있습니다.", "error", session);
-			return "############################"; // 캠프서치 컨트롤러
+			return "redirect:/campSearch/camping.do"; // 캠프서치 컨트롤러
 		} else {
 			int memberNum = (int) session.getAttribute("memberNum");
 

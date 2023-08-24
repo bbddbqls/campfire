@@ -109,7 +109,7 @@ function likePostReply(postReplyNum) {
   }
   
   function deleteReply(postReplyNum) {
-  let commentListId = `comment-list-${postReplyNum}`;
+  let commentListId = 'comment-list-'+postReplyNum;
     let commentList = document.getElementById(commentListId);
     $.ajax({
       type: 'POST',

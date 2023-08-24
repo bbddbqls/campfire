@@ -1,33 +1,45 @@
 package kr.co.campfire.user.campSearch.dto;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class CampSearchDto {
-	private int campNum;
 	private int memberNum;
-	private String campName;
+	private int campX;
+	private int campY;
+	private int campPhoneNum;
 	private int campPostCode;
-	private String campAddr;
-	private String campType;
-	private String campLink;
-	private String campAPlace;
-	private double campX;
-	private double campY;
+	private String campName;
 	private String campCheck;
-	private String campIntro;
-	private int campOffsdPrice;
-	private int campOffswPrice;
-	private int campSdPrice;
-	private int campSwPrice;
-	private String campPhoneNum;
+
+	private Date campCreateDate;
+	private int campNum;
+	private String campAPlace;
+	private String campType;
+	private String campAmenity;
+	private String campAddress;
+	private String campKeyword;
+	private String campTag;
+	private String campGroup;
+	private String status;
+
+	private String campPhotoName;
+	private String campPhotoURL;
+//	 private String ct_tag[];
+//	 private String  ca_amenity[];
+
+	private int campView;
+	private int likeCamp;
+
 }
