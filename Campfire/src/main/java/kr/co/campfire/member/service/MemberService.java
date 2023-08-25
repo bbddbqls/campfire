@@ -14,9 +14,13 @@ public interface MemberService {
 	//카카오 로그인
 	String getAccessTokenKakao(String authorize_code) throws Throwable;
 	
-	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
+	public HashMap<String, Object> getUserInfoKakao(String access_Token) throws Throwable;
 	
 	int checkId(String id);
 	
 	int kakaoSingup(MemberDto md);
+	
+	String getAccessTokenNaver(String authorize_code) throws Throwable;
+	
+	public HashMap<String, Object> getUserInfoNaver(String access_Token) throws Throwable;
 }
