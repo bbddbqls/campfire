@@ -54,7 +54,7 @@ public class MemberController {
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.GET)
 	public String kakaoLogin(@RequestParam(value = "code", required = false) String code, HttpSession session, Model model) throws Throwable {
 
-		String access_Token = memberService.getAccessToken(code);
+		String access_Token = memberService.getAccessTokenKakao(code);
 		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
 
 		HashMap<String, Object> userInfo = memberService.getUserInfo(access_Token);

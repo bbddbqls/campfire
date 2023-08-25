@@ -12,7 +12,8 @@ public interface MemberService {
 //	int singupMember(MemberDto m);
 	
 	//카카오 로그인
-	String getAccessToken(String authorize_code) throws Throwable;
+	String getAccessTokenKakao(String authorize_code) throws Throwable;
+	
 	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
 	
 	int checkId(String id);

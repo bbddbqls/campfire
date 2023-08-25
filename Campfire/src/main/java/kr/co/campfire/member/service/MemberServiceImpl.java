@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 //	}
 	// 카카오 로그인
 	@Override
-	public String getAccessToken(String authorize_code) throws Exception {
+	public String getAccessTokenKakao(String authorize_code) throws Exception {
 		String access_Token = "";
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -150,16 +150,19 @@ public class MemberServiceImpl implements MemberService {
 				String email = kakao_account.get("email").toString();
 				String gender = kakao_account.get("gender").toString();
 
-				String regex = "^(.+)@.*$";
 
-				// Compile the regular expression
-				Pattern pattern = Pattern.compile(regex);
+				int atIndex = email.indexOf('@'); // '@'의 인덱스를 찾습니다
 
-				// Create a Matcher object to match against the email
-				Matcher matcher = pattern.matcher(email);
-				String id = matcher.group(1);
+				if (atIndex != -1) {
+				    String id = email.substring(0, atIndex); // '@' 앞의 부분을 추출합니다
+				    userInfo.put("id", id);	    
+				    // 이제 'id' 변수를 사용할 수 있습니다
+				    System.out.println("추출된 ID: " + id);
+				} else {
+				    System.out.println("유효한 이메일 형식이 아닙니다.");
+				    userInfo.put("id", pw);	 
+				}
 				
-				userInfo.put("id", id);
 				userInfo.put("pw", pw);
 				userInfo.put("nickname", nickname);
 				userInfo.put("email", email);
@@ -184,4 +187,7 @@ public class MemberServiceImpl implements MemberService {
 	public int kakaoSingup(MemberDto md) {
 		return memberDao.kakaoSingup(sqlSession, md);
 	}
+	
+	//네이버 로그인
+	
 }

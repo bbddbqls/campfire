@@ -441,7 +441,7 @@ input, select, textarea {
 			justify-content: center;
 			align-items: center;
 			gap: 1rem;
-			margin-bottom: 100px;
+			/* margin-bottom: 100px; */
 			width: 100%;
 		}
 
