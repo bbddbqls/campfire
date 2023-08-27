@@ -1,0 +1,42 @@
+.list-bar {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: right;
+	justify-content: flex-end;
+}
+
+.list-bar li {
+	text-align: center;
+	background: #f2efab;
+	padding: 5px 20px 5px 20px;
+	border-radius: 50px;
+	font-size: 14px
+}
+
+.list-bar li:hover {
+	background-color: #224717;
+}
+
+.like-category {
+	text-align: center;
+	display: flex;
+	list-style: none;
+
+}
+
+.like-category-btn {
+	text-align: center;
+	display: flex;
+	display: flex;
+
+	
+}
+
+.list-bar li a{
+
+		padding: 10px;
+		color:gray;
+		border : 0px !important;
+}

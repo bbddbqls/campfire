@@ -64,7 +64,7 @@ $('.insert-reqly').on('click', function() {
                     let newComment = 
                         '<div class="comment-list"id="comment-list-'+response[0].postReplyNum+'">' +
                             '<div class="comment">' +
-                                '<div class="comment-user">'+response[0].memberId+'</div>' +
+                                '<div class="comment-user"><i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i> '+response[0].memberId+'</div>' +
                                 '<div class="comment-date">'+response[0].newDate +
                                 '<c:if test="${sessionScope.memberNum == '+response[0].memberNum+'}">' +
                                 ' <i class="fa-solid fa-trash-can" style="color: #8a8a8a;"onclick="deleteReply('+response[0].postReplyNum+')"></i>' +
