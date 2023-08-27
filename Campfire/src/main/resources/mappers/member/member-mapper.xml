@@ -29,6 +29,12 @@
 	<insert id="kakaoSingup">
 		INSERT INTO MEMBER (M_USER_ID, M_PW, M_NAME, M_GENDER, M_KAKAO, M_DIVISION) VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberGender}, #{memberKakao}, 'user') 
 	</insert>
+		<insert id="naverSingup">
+		INSERT INTO MEMBER (M_USER_ID, M_PW, M_NAME, M_GENDER, M_NAVER, M_DIVISION) VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberGender}, #{memberNaver}, 'user') 
+	</insert>
+		<insert id="googleSingup">
+		INSERT INTO MEMBER (M_USER_ID, M_PW, M_NAME, M_GENDER, M_GOOGLE, M_DIVISION) VALUES (#{memberId}, #{memberPassword}, #{memberName}, #{memberGender}, #{memberGoogle}, 'user') 
+	</insert>
 	
 <!-- 	<select id="checkEmail" resultType="_int">
 		SELECT COUNT(*) FROM M_MEMBER WHERE M_EMAIL = #{email}

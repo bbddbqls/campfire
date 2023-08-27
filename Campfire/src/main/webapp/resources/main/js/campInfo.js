@@ -281,7 +281,7 @@ $('.insert-reqly').on('click', function() {
                     let newComment = 
                         '<div class="comment-list" id="comment-list-'+response[0].postReplyNum+'">' +
                             '<div class="comment">' +
-                                '<div class="comment-user"><i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i>'+response[0].memberId+'</div>' +
+                                '<div class="comment-user"><i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i> '+ response[0].memberId+'</div>' +
                                 '<div class="comment-date">'+response[0].newDate+'</div>' +
                             '</div>' +
                             '<div class="comment">' +

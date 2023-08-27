@@ -124,7 +124,7 @@ public class MemberController {
 		String access_Token = memberService.getAccessTokenNaver(code);
 		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
 		System.out.println("access_Token" + access_Token);
-		
+
 		HashMap<String, Object> userInfo = memberService.getUserInfoNaver(access_Token);
 		System.out.println("###id#### : " + userInfo.get("id"));
 		System.out.println("###pw#### : " + userInfo.get("pw"));
@@ -160,7 +160,7 @@ public class MemberController {
 			md.setMemberGender((String) userInfo.get("gender"));
 			md.setMemberKakao((String) userInfo.get("email"));
 
-			int result = memberService.kakaoSingup(md);
+			int result = memberService.naverSingup(md);
 			if (result > 0) {
 				MemberDto m = new MemberDto();
 				m.setMemberId(id);
@@ -182,6 +182,70 @@ public class MemberController {
 			return "/member/login";
 		}
 	}
+
+	// 구글 로그인
+	@RequestMapping(value = "googleLogin", method = RequestMethod.GET)
+	public String googleLogin(@RequestParam(value = "code", required = false) String code, HttpSession session,
+			Model model) throws Throwable {
+
+		String access_Token = memberService.getAccessTokenGoogle(code);
+		// 위의 access_Token 받는 걸 확인한 후에 밑에 진행
+		System.out.println("access_Token" + access_Token);
+		HashMap<String, Object> userInfo = memberService.getUserInfoGoogle(access_Token);
+		System.out.println("###id#### : " + userInfo.get("id"));
+		System.out.println("###pw#### : " + userInfo.get("pw"));
+		System.out.println("###email#### : " + userInfo.get("email"));
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		String id = (String) userInfo.get("id");
+		int checkId = memberService.checkId(id);
+		if (checkId > 0) {
+			MemberDto m = new MemberDto();
+			m.setMemberId(id);
+			MemberDto loginUser = memberService.loginMember(m);
+			System.out.println(loginUser.toString());
+			if (!Objects.isNull(loginUser)) {
+				session.setAttribute("memberNum", loginUser.getMemberNum());
+				String sessionMemberIdx = String.valueOf(loginUser.getMemberNum());
+				session.setAttribute("sessionMemberIdx", sessionMemberIdx);
+				session.setAttribute("memberName", loginUser.getMemberName());
+				session.setAttribute("memberDivision", loginUser.getMemberDivision());
+				return "redirect:/campSearch/camping.do";
+			} else {
+//						model.addAttribute("msg", "아이디 비밀번호를 확인해 주세요!");
+//						model.addAttribute("status", "error");
+				return "/member/login";
+			}
+		} else {
+			MemberDto md = new MemberDto();
+			md.setMemberId(id);
+			md.setMemberPassword(id);
+			md.setMemberName((String) userInfo.get("nickname"));
+			md.setMemberGender((String) userInfo.get("gender"));
+			md.setMemberGoogle((String) userInfo.get("email"));
+
+			int result = memberService.googleSingup(md);
+			if (result > 0) {
+				MemberDto m = new MemberDto();
+				m.setMemberId(id);
+				MemberDto loginUser = memberService.loginMember(m);
+				System.out.println(loginUser.toString());
+				if (!Objects.isNull(loginUser)) {
+					session.setAttribute("memberNum", loginUser.getMemberNum());
+					String sessionMemberIdx = String.valueOf(loginUser.getMemberNum());
+					session.setAttribute("sessionMemberIdx", sessionMemberIdx);
+					session.setAttribute("memberName", loginUser.getMemberName());
+					session.setAttribute("memberDivision", loginUser.getMemberDivision());
+					return "redirect:/campSearch/camping.do";
+				} else {
+//							model.addAttribute("msg", "아이디 비밀번호를 확인해 주세요!");
+//							model.addAttribute("status", "error");
+					return "/member/login";
+				}
+			}
+			return "/member/login";
+		}
+	}
+
 	// return에 페이지를 해도 되고, 여기서는 코드가 넘어오는지만 확인할거기 때문에 따로 return 값을 두지는 않았음
 
 }

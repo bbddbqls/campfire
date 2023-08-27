@@ -20,7 +20,15 @@ public interface MemberService {
 	
 	int kakaoSingup(MemberDto md);
 	
+	int naverSingup(MemberDto md);
+	
+	int googleSingup(MemberDto md);
+	
 	String getAccessTokenNaver(String authorize_code) throws Throwable;
 	
 	public HashMap<String, Object> getUserInfoNaver(String access_Token) throws Throwable;
+	
+	String getAccessTokenGoogle(String authorize_code) throws Throwable;
+	
+	public HashMap<String, Object> getUserInfoGoogle(String access_Token) throws Throwable;
 }

@@ -26,4 +26,10 @@ public class MemberDao {
 	public int kakaoSingup(SqlSessionTemplate sqlSession, MemberDto md) {
 		return sqlSession.insert("memberMapper.kakaoSingup", md);
 	}
+	public int naverSingup(SqlSessionTemplate sqlSession, MemberDto md) {
+		return sqlSession.insert("memberMapper.naverSingup", md);
+	}
+	public int googleSingup(SqlSessionTemplate sqlSession, MemberDto md) {
+		return sqlSession.insert("memberMapper.googleSingup", md);
+	}
 }

@@ -211,7 +211,7 @@ margin:10px;
 						<a class="btn btn-naver" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&redirect_uri=http://localhost/member/naverLogin&client_id=KqnzzV13lgmW6NT6QATF">네이버로 시작하기</a>
 					</p>
 					<p class="txt_c">
-						<a class="btn-google" href="https://accounts.google.com/o/oauth2/auth?approval_prompt=auto&amp;response_type=code&amp;scope=email+profile&amp;redirect_uri=https%3A%2F%2Fwww.reluz.co.kr%2Foauth&amp;client_id=857559701228-f5cv5l8ib7phi5ir2a52nrcumnakiac5.apps.googleusercontent.com&amp;state=Lw%253D%253D%7Cgoogle%7CY%7C%7C">
+						<a class="btn-google" href="https://accounts.google.com/o/oauth2/v2/auth?client_id=40148344416-p4n6jrj21bhl3uk774ji4kr9uje2898t.apps.googleusercontent.com&redirect_uri=http://localhost/member/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline">
 							<i aria-hidden="true" class="social-icon fa fa-google-plus"></i> Google로 시작하기
 						</a>
 					</p>
@@ -377,6 +377,7 @@ margin:10px;
 	<div id="bg"></div>
 
 	<!-- Scripts -->
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<script src="/resources/login/js/jquery.min.js"></script>
 	<script src="/resources/login/js/browser.min.js"></script>
 	<script src="/resources/login/js/breakpoints.min.js"></script>
