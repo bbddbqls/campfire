@@ -1,18 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
-
 <head>
-	<%@ include file="../common/head.jsp"%>
-	<link rel="stylesheet" href="../../resources/css/inquiry.css" />
+<%@ include file="../common/head.jsp"%>
+<link rel="stylesheet" href="/resources/main/css/inquiry.css" />
 </head>
-
 <body class="is-preload">
 
 	<!-- Wrapper -->
@@ -23,15 +16,68 @@
 			<div class="inner">
 
 				<!-- Header -->
+				<!-- Header -->
 				<header id="header">
-					<a href="a_inquiry.html" class="logo"><strong>Campfire</strong> 문의사항</a>
+					<a href="/campSearch/camping.do" class="logo">
+						<strong>Campfire</strong> 문의사항 답변
+					</a>
+					<c:choose>
+						<c:when test="${sessionScope.memberNum != null}">
+							<ul class="list-bar">
+								<li>
+									<a href="/member/mypage.do">마이페이지</a>
+								</li>
+								<li>
+									<a href="/myList/likeList.do"> 찜 목록 </a>
+								</li>
+								<li>
+									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
+								</li>
+								<li>
+									<a href="/member/logout.do"> 로그아웃 </a>
+								</li>
+
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class="list-bar">
+
+								<li>
+									<a href="/">로그인 </a>
+								</li>
+
+							</ul>
+						</c:otherwise>
+					</c:choose>
 
 				</header>
 
 				<!-- Content -->
 				<section>
-					<div class="section_header">
-						<h4>문의사항</h4>
+					<div class="section-header">
+						<h4>문의사항 답변</h4>
+						<select name="category" id="category" onchange="handleCategoryChange(this)">
+							<c:choose>
+								<c:when test="${allList eq 'Y'}">
+									<option value="/admin/showAdminInquiry.do?allList=N">답변할 목록 보기</option>
+									<option value="/admin/showAdminInquiry.do?allList=Y" selected>전체 목록 보기</option>
+								</c:when>
+								<c:otherwise>
+									<option value="/admin/showAdminInquiry.do?allList=N" selected>답변할 목록 보기</option>
+									<option value="/admin/showAdminInquiry.do?allList=Y">전체 목록 보기</option>
+								</c:otherwise>
+							</c:choose>
+
+
+						</select>
+						<script>
+							function handleCategoryChange(selectElement) {
+								var selectedValue = selectElement.value;
+								if (selectedValue) {
+									window.location.href = selectedValue;
+								}
+							}
+						</script>
 					</div>
 					<div class="table-wrapper">
 						<!-- <ul class="list_tap">
@@ -48,86 +94,94 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr onclick="location.href='a_inquiryDetail.html'">
-									<td class="td-num">3</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
-									<td class="td-id">bbqdbqls</td>
-									<td class="td-time">07/18</td>
-								</tr>
-								<tr class="tr-reply">
-									<td class="td-num"></td>
-									<td class="td-title">&rarr;[답글]안녕하세요.안녀여여여여여ㅕㅇㅇㄴ ㄴ머ㅑㄴㅁㅇㄴ</td>
-									<td class="td-id">admin</td>
-									<td class="td-time">07/19</td>
-								</tr>
-								<tr>
-									<td class="td-num">2</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
-									<td class="td-id">29.99</td>
-									<td class="td-time">29.99</td>
-								</tr>
-								<tr>
-									<td class="td-num">2</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
-									<td class="td-id">29.99</td>
-									<td class="td-time">29.99</td>
-								</tr>
-								<tr>
-									<td class="td-num">1</td>
-									<td class="td-title">Ante turpis integ,Ante turpis integAnte turpis integAnte turpis
-										integ</td>
-									<td class="td-id">29.99</td>
-									<td class="td-time">29.99</td>
-								</tr>
+								<c:choose>
+									<c:when test="${empty list}">
+										<tr>
+											<td colspan="4">
+												<h3 class="text-center">등록된 글이 없습니다.</h3>
+											</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="item" items="${list}">
+											<tr onclick="location.href='/admin/detailAdminInquiry.do?inNum=${item.inquiryNum}'">
+												<td class="td-num">${row}</td>
+												<td class="td-title">${item.inquiryTitle}</td>
+												<td class="td-id">${item.memberId}</td>
+												<td class="td-time">${item.inquiryNewDate}</td>
+											</tr>
+											<c:if test="${item.inquiryAnswerFL eq 'Y'}">
+												<tr class="tr-reply" onclick="location.href='/admin/detailAdminInquiry.do?inNum=${item.inquiryNum}'">
+													<td class="td-num"></td>
+													<td class="td-title">&rarr;[답글]${item.answerTitle }</td>
+													<td class="td-id">${item.answerAdmin }</td>
+													<td class="td-time">${item.answerNewDate }</td>
+												</tr>
+											</c:if>
+											<c:set var="row" value="${row-1}" />
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
-						<button class="button small primary write-btn" onclick="location.href='a_inquiryEnroll.html'">글쓰기</button>
 					</div>
 					<div class="section-pagination">
 						<ul class="pagination">
-							<li><span class="button small disabled">Prev</span></li>
-							<li><a href="#" class="page active">1</a></li>
-							<li><a href="#" class="page">2</a></li>
-							<li><a href="#" class="page">3</a></li>
-							<li><span>…</span></li>
-							<li><a href="#" class="page">8</a></li>
-							<li><a href="#" class="page">9</a></li>
-							<li><a href="#" class="page">10</a></li>
-							<li><a href="#" class="button small">Next</a></li>
+							<c:choose>
+								<c:when test="${pi.currentPage eq 1}">
+									<li>
+										<a href="#" class="button small disabled">Prev</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<a href="showAdminInquiry.do?cpage=${ pi.currentPage - 1 }&allList=${allList}" class="button small">Prev</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endPage }">
+								<li>
+									<c:choose>
+										<c:when test="${page eq pi.currentPage}">
+											<a class="page active" href="showAdminInquiry.do?cpage=${ page }&allList=${allList}">${ page }</a>
+										</c:when>
+										<c:otherwise>
+											<a class="page" href="showAdminInquiry.do?cpage=${ page }&allList=${allList}">${ page }</a>
+										</c:otherwise>
+									</c:choose>
+								</li>
+							</c:forEach>
+
+							<c:choose>
+								<c:when test="${pi.currentPage eq pi.maxPage}">
+									<li>
+										<a href="#" class="button small disabled">Next</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<a href="showAdminInquiry.do?cpage=${ pi.currentPage + 1 }&allList=${allList}" class="button small">Next</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
 					</div>
-					<form action="">
-						<div class="section-search">
-
-							<select name="category" id="category">
-								<option value="">제목</option>
-								<option value="1">내용</option>
-								<option value="1">작성자</option>
-							</select>
-							<input type="text" name="demo-name" id="demo-name" value="" placeholder="검색어">
-							<button type="submit" class="button primary small icon solid fa-search"></button>
-						</div>
-					</form>
 				</section>
 
 			</div>
 		</div>
 
-		<!-- Sidebar -->
 		<%@ include file="../common/sidebar.jsp"%>
 
 	</div>
 
 	<!-- Scripts -->
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/browser.min.js"></script>
-	<script src="../../resources/js/breakpoints.min.js"></script>
-	<script src="../../resources/js/util.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources/main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
 
 </body>
-
 </html>

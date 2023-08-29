@@ -1,0 +1,15 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+th{
+    text-align: center !important;
+    padding: 9px !important;
+}
+td{
+    text-align: center !important;
+}
+
+.th-brNum{
+	width: 120px;
+}

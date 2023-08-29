@@ -7,6 +7,10 @@ table {
 table th {
     text-align: center;
 }
+tbody tr:hover {
+  background-color: #ececec !important;
+  cursor: pointer;
+}
 
 .td-num {
     width: 50px;
@@ -20,7 +24,7 @@ table th {
 }
 
 .td-time {
-    width: 80px;
+    width: 120px;
     text-align: center;
 }
 

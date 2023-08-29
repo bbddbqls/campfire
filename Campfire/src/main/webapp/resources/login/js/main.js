@@ -415,7 +415,7 @@
             "KakaoTalk_20230717_140006896.png"
         ];
         var randomIndex = Math.floor(Math.random() * images.length);
-        var imageUrl = "/resources/images/" + images[randomIndex];
+        var imageUrl = "resources/images/" + images[randomIndex];
         bgElement.style.backgroundImage = "url('" + imageUrl + "')";
 		bgElement.style.backgroundSize = "cover";
 		bgElement.style.backgroundPosition = "center";

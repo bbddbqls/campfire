@@ -156,64 +156,85 @@ function resetPhotos() {
 }
 
 function submitForm() {
-    let formData = new FormData(document.getElementById('myForm'));
+   var campOffsdPrice = document.getElementById("campOffsdPrice").value;
+            var campOffswPrice = document.getElementById("campOffswPrice").value;
+            var campSdPrice = document.getElementById("campSdPrice").value;
+            var campSwPrice = document.getElementById("campSwPrice").value;
+           var postcode = document.getElementById("postcode").value;
+
+            // 유효성 검사
+            if (campOffsdPrice === "") {
+                document.getElementById("campOffsdPrice").value = -1; // 빈 값일 경우 -1로 설정
+            }
+
+            if (campOffswPrice === "") {
+                document.getElementById("campOffswPrice").value = -1;
+            }
+
+            if (campSdPrice === "") {
+                document.getElementById("campSdPrice").value = -1;
+            }
+
+            if (campSwPrice === "") {
+                document.getElementById("campSwPrice").value = -1;
+            }
+            
+            if(postcode ===""){
+            	document.getElementById("postcode").value = -1;
+            }
+
+    const form = document.getElementById('myForm');
+    const formData = new FormData(form);
 
     for (let i = 0; i < photos.length; i++) {
-        formData.append("photoList" + i + "", photos[i]);
+        formData.append('files', photos[i]); // 'files'와 동일한 이름을 사용
     }
-    let photoListLength = photos.length;
-    formData.append("photoListLength", photoListLength);
 
-    console.log(selectedPhotos.length);
-    // FormData에 선택한 사진들을 추가
-    // for (let i = 0; i < selectedPhotos.length; i++) {
-    //     const dataURL = selectedPhotos[i].src;
-    //     const base64 = dataURL.split(',')[1]; // "data:image/png;base64," 부분 제거
-    //     const byteCharacters = atob(base64);
-    //     const byteNumbers = new Array(byteCharacters.length);
-    //     for (let j = 0; j < byteCharacters.length; j++) {
-    //         byteNumbers[j] = byteCharacters.charCodeAt(j);
-    //     }
-    //     const byteArray = new Uint8Array(byteNumbers);
-    //     const blob = new Blob([byteArray], { type: "image/png" }); // 이미지 타입에 맞게 변경
-
-    //     formData.append("photos", blob);
-
-    // }
-    for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-    // for (const [photos, value] of formData.entries()) {
-    //     console.log(photos, value);
-    // }
-    // 여기에서 formData를 서버로 전송하면 됩니다.
-    // AJAX를 사용하거나 form을 제출하는 방법 등을 이용할 수 있습니다.
-    // 예시: 
-    // fetch("/upload", {
-    //     method: "POST",
-    //     body: formData
-    // }).then(response => {
-    //     // 서버 응답 처리
-    // }).catch(error => {
-    //     // 에러 처리
-    // });
-
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'your_server_url'); // 서버 URL 입력
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // 서버 응답 처리
-            console.log(xhr.responseText);
+    fetch('/business/insertCampRegistration.do', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log(response);
+        if (response.ok) {
+            // Handle successful submission, e.g., redirect or display a message
+            window.location.href = "/campSearch/camping.do";
+            console.log(response.url);
         } else {
-            // 에러 처리
-            console.error('Error:', xhr.status);
+        	window.location.href = "/business/showCampRegistration.do";
         }
-    };
-    xhr.onerror = function () {
-        console.error('Request failed');
-    };
-    xhr.send(formData);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle any network or other errors
+    });
 }
+
+
+        function validateForm() {
+            var campOffsdPrice = document.getElementById("campOffsdPrice").value;
+            var campOffswPrice = document.getElementById("campOffswPrice").value;
+            var campSdPrice = document.getElementById("campSdPrice").value;
+            var campSwPrice = document.getElementById("campSwPrice").value;
+
+            // 유효성 검사
+            if (campOffsdPrice === "") {
+                document.getElementById("campOffsdPrice").value = -1; // 빈 값일 경우 -1로 설정
+            }
+
+            if (campOffswPrice === "") {
+                document.getElementById("campOffswPrice").value = -1;
+            }
+
+            if (campSdPrice === "") {
+                document.getElementById("campSdPrice").value = -1;
+            }
+
+            if (campSwPrice === "") {
+                document.getElementById("campSwPrice").value = -1;
+            }
+
+            return true; // 유효성 검사 후 폼 제출
+        }
 
 

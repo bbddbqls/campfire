@@ -60,19 +60,28 @@ idInputEl.addEventListener('change', () => {
   console.log(account)
 });
 
-idCheckBtn.addEventListener('click', () => {
-  const randVal = Math.floor(Math.random() * 10)
-  if(account.id !== null) {
-    if(randVal < 7) {
-      idErrorMsgEl.style.color = "green"
-      idErrorMsgEl.textContent = errMsg.id.success
+
+
+idCheck.addEventListener('click', () => {
+   const memberUserId = document.getElementsByName("memberUserId")[1].value;
+   
+   $.ajax({
+    url : "/member/idCheck",
+    type : "post",
+    data : {memberUserId : memberUserId},
+    success : function(data) {
+    
+     if(data == 1) {
+      $(".result .msg").text("중복 사용 불가");
+      $(".result .msg").attr("style", "color:#f00");      
+     } else {
+      $(".result .msg").text("중복 없음");
+      $(".result .msg").attr("style", "color:#00FF00");
+     }
     }
-    else {
-      idErrorMsgEl.style.color = "red"
-      idErrorMsgEl.textContent = errMsg.id.fail
-    }
-  }
+   });  // ajax 끝
 })
+
 
 /*** SECTION - PASSWORD ***/
 // pwVal: 패스워드, pwReVal: 패스워드 재입력, isPwValid: 패스워드 유효 여부
@@ -127,7 +136,7 @@ pwReInputEl.addEventListener('change', () => {
 /*** SECTION - ID ***/
 const idInputEl1 = document.querySelector('#info__id1 input');
 const idErrorMsgEl1 = document.querySelector('#info__id1 .error-msg');
-const idCheckBtn1 = document.querySelector('#id-check');
+const idCheck1 = document.querySelector('#id-check1');
 
 idInputEl1.addEventListener('change', () => {
   const idRegExp = /^[a-zA-Z0-9]{6,20}$/;
@@ -142,18 +151,28 @@ idInputEl1.addEventListener('change', () => {
   console.log(account);
 });
 
-idCheckBtn1.addEventListener('click', () => {
-  const randVal = Math.floor(Math.random() * 10);
-  if (account.id !== null) {
-    if (randVal < 7) {
-      idErrorMsgEl1.style.color = "green";
-      idErrorMsgEl1.textContent = errMsg.id.success;
-    } else {
-      idErrorMsgEl1.style.color = "red";
-      idErrorMsgEl1.textContent = errMsg.id.fail;
+
+idCheck1.addEventListener('click', () => { 
+   const memberUserId = document.getElementsByName("memberUserId")[2].value;
+   console.log(memberUserId);
+   
+   $.ajax({
+    url : "/member/idCheck",
+    type : "post",
+    data : {memberUserId : memberUserId},
+    success : function(data) {
+    	console.log(data);
+     if(data == 1) {
+      $(".result .msg").text("중복 사용 불가");
+      $(".result .msg").attr("style", "color:#f00");      
+     } else {
+      $(".result .msg").text("중복 없음");
+      $(".result .msg").attr("style", "color:#00FF00");
+     }
     }
-  }
-});
+   });  // ajax 끝
+})
+
 
 /*** SECTION - PASSWORD ***/
 // pwVal: 패스워드, pwReVal: 패스워드 재입력, isPwValid: 패스워드 유효 여부
@@ -240,6 +259,7 @@ function checkBirthValid(birthArr) {
     const birthErrorMsgEl = document.querySelector("#info__birth .error-msg");
     // '출생 연도' 셀렉트 박스 option 목록 동적 생성
     const birthYearEl = document.querySelector("#birth-year");
+    console.log(birthYearEl);
     // option 목록 생성 여부 확인
     isYearOptionExisted = false;
     birthYearEl.addEventListener("focus", function () {

@@ -264,3 +264,4 @@
 function goBack() {
 	window.history.back(); // 뒤로가기
   }
+

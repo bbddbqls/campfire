@@ -1,31 +1,32 @@
 package kr.co.campfire.member.dto;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MemberDto {
-	private String memberNum;
-	private String memberId;
-	private String memberPassword;
-	private String memberPasswordChk;
+	
+	
+	private int memberNum;
+	private String memberUserId;
+	private String memberPw;
 	private String memberName;
 	private String memberGender;
-	private String memberAddr1;
-	private String memberAddr2;
-	private Date memberBirthDate;	
-	private Timestamp memberCDT;	
-	private String memberGoogle;	
-	private String memberKakao;	
-	private String memberNaver;	
-	private String memberDivision;	
+	private String memberPostalcode;
+	private String memberAdd1;
+	private String memberAdd2;
+	private String memberDateBirth;
+	private String memberDatetimeCreated;
+	private String memberGoogle;
+	private String memberKakao;
+	private String memberNaver;
+	private String memberDivision;
 }
 
