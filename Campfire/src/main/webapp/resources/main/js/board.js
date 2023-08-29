@@ -16,11 +16,15 @@
       url: '/user/board/likePost.do', // insert 컨트롤러의 URL을 입력하세요
       data: { postNum: postNum }, // 실제로 전송할 데이터를 지정하세요
       success: function(response) {
+      if(response == -2){
+      window.location.href = "/";
+      }else{
         heartIcon.classList.remove('fa-regular');
         heartIcon.classList.add('fa-solid', 'solid-heart-icon');
         
         likeCount.textContent = response;
         console.log(response);
+      }
       },
       error: function() {
         console.log('Error occurred during likePost');
@@ -34,11 +38,15 @@
       url: '/user/board/unlikePost.do', // delete 컨트롤러의 URL을 입력하세요
       data: { postNum: postNum }, // 실제로 전송할 데이터를 지정하세요
       success: function(response) {
+            if(response == -2){
+      window.location.href = "/";
+      }else{
         heartIcon.classList.remove('fa-solid', 'solid-heart-icon');
         heartIcon.classList.add('fa-regular');
         
         likeCount.textContent = response;
         console.log(response);
+        }
       },
       error: function() {
         console.log('Error occurred during unlikePost');
@@ -82,7 +90,7 @@ $('.insert-reqly').on('click', function() {
                     
                     $('#comment-content').val('');
                 } else {
-                    console.log('Error:', error);
+      window.location.href = "/";
                 }
             },
             error: function(error) {
@@ -98,9 +106,13 @@ function likePostReply(postReplyNum) {
       url: '/user/board/replyLikePost.do', // insert 컨트롤러의 URL을 입력하세요
       data: { postReplyNum: postReplyNum }, // 실제로 전송할 데이터를 지정하세요
       success: function(response) {
+            if(response == -2){
+      window.location.href = "/";
+      }else{
         let likeCount = document.getElementById('comment-like-count' + postReplyNum);
         likeCount.textContent = response;
         console.log(response);
+        }
       },
       error: function() {
         console.log('Error occurred during likePost');

@@ -44,11 +44,15 @@ heartIcon.addEventListener('click', function() {
    url: '/campInfo/likeCamp.do', // insert 컨트롤러의 URL을 입력하세요
    data: { campNum: campNum }, // 실제로 전송할 데이터를 지정하세요
    success: function(response) {
+         if(response == -2){
+      window.location.href = "/";
+      }else{
      heartIcon.classList.remove('fa-regular');
      heartIcon.classList.add('fa-solid', 'solid-heart-icon');
      
      console.log(response);
      likeCount.textContent = response;
+     }
    },
    error: function() {
      console.log('Error occurred during likeCamp');
@@ -62,11 +66,15 @@ function unlikeCamp(campNum) {
    url: '/campInfo/unlikeCamp.do', // delete 컨트롤러의 URL을 입력하세요
    data: { campNum: campNum }, // 실제로 전송할 데이터를 지정하세요
    success: function(response) {
+         if(response == -2){
+      window.location.href = "/";
+      }else{
      heartIcon.classList.remove('fa-solid', 'solid-heart-icon');
      heartIcon.classList.add('fa-regular');
      
      console.log(response);
      likeCount.textContent = response;
+     }
    },
    error: function() {
      console.log('Error occurred during unlikeCamp');
@@ -94,11 +102,15 @@ starIcon.addEventListener('click', function() {
    url: '/campInfo/wishlist.do', // insert 컨트롤러의 URL을 입력하세요
    data: { campNum: campNumm }, // 실제로 전송할 데이터를 지정하세요
    success: function(response) {
+         if(response == -2){
+      window.location.href = "/";
+      }else{
 	   starIcon.classList.remove('fa-regular');
 	   starIcon.classList.add('fa-solid');
      
 	   wishlistCount.textContent = response;
      console.log(response);
+     }
    },
    error: function() {
      console.log('Error occurred during wishlist');
@@ -112,11 +124,15 @@ function unwishlist(campNumm) {
    url: '/campInfo/unwishlist.do', // delete 컨트롤러의 URL을 입력하세요
    data: { campNum: campNumm }, // 실제로 전송할 데이터를 지정하세요
    success: function(response) {
+         if(response == -2){
+      window.location.href = "/";
+      }else{
 	   starIcon.classList.remove('fa-solid');
 	   starIcon.classList.add('fa-regular');
      
      wishlistCount.textContent = response;
      console.log(response);
+     }
    },
    error: function() {
      console.log('Error occurred during unwishlist');
@@ -295,7 +311,7 @@ $('.insert-reqly').on('click', function() {
                     
                     $('#comment-content').val('');
                 } else {
-                    console.log('Error:', error);
+      window.location.href = "/";
                 }
             },
             error: function(error) {
@@ -311,9 +327,13 @@ function likePostReply(postReplyNum) {
       url: '/campInfo/replyLikePost.do', // insert 컨트롤러의 URL을 입력하세요
       data: { postReplyNum: postReplyNum }, // 실제로 전송할 데이터를 지정하세요
       success: function(response) {
+            if(response == -2){
+      window.location.href = "/";
+      }else{
         let likeCount = document.getElementById('comment-like-count' + postReplyNum);
         likeCount.textContent = response;
         console.log(response);
+        }
       },
       error: function() {
         console.log('Error occurred during likePost');

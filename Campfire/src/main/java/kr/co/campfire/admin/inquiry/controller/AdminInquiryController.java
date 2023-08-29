@@ -110,9 +110,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 
@@ -149,9 +149,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 
@@ -182,9 +182,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 
@@ -210,9 +210,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 
@@ -236,9 +236,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 	@GetMapping("/deleteAdminAnswer.do")
@@ -260,9 +260,9 @@ public class AdminInquiryController {
 				return "redirect:/campSearch/camping.do";
 			}
 		} else {
-			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "redirect:/user/showUserInquiry.do";
+			return "redirect:/";
 		}
 	}
 }

@@ -86,6 +86,7 @@
 				<li class="icon solid fa-envelope">nayooningg@gmail.com</li>
 				<li class="icon solid fa-envelope">sconscon2021@gmail.com</li>
 				<li class="icon solid fa-envelope">bbddbqls@gmail.com</li>
+				<li class="icon solid fa-envelope">jin900508@gmail.com</li>
 				<li class="icon solid fa-home">
 					<a href="https://github.com/bbddbqls/campfire/tree/yoobin">github.com/bbddbqls/campfire </a>
 				</li>

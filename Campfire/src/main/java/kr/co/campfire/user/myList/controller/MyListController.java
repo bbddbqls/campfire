@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.campfire.common.controller.LoginCheckController;
 import kr.co.campfire.common.controller.Pagination;
+import kr.co.campfire.common.controller.SessionManageController;
 import kr.co.campfire.common.dto.PageInfo;
 import kr.co.campfire.user.campSearch.dto.CampSearchDto;
 import kr.co.campfire.user.campSearch.service.CampSearchService;
@@ -36,12 +38,22 @@ public class MyListController {
 	@Autowired
 	private CampSearchServiceImpl campSearchService;
 	
+	@Autowired
+	private LoginCheckController loginCheck;
+
+	@Autowired
+	private SessionManageController sessionManage;
+	
 	@GetMapping("/likeList.do")
 	
 	public String likeList(
 			@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 			HttpSession session, Model model) {
-		
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+
+			return "redirect:/";
+		}
 		int memberNum = (int)session.getAttribute("memberNum");
 		int listCount = 0;
 		listCount = myListService.selectLikeListCount(memberNum);
@@ -82,7 +94,11 @@ public class MyListController {
 	public String likeBoardList(
 			@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 			HttpSession session, Model model) {
-		
+	if (!loginCheck.loginCheck(session)) {
+		sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+
+		return "redirect:/";
+	}
 		int memberNum = (int)session.getAttribute("memberNum");
 		int listCount = 0;
 		listCount = myListService.selectLikeBoardListCount(memberNum);
@@ -165,7 +181,11 @@ public class MyListController {
 			@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 			HttpSession session, Model model) {
 		
-		
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+
+			return "redirect:/";
+		}
 		int memberNum = (int)session.getAttribute("memberNum");
 		int listCount = 0;
 		listCount = myListService.selectWishListCount(memberNum);

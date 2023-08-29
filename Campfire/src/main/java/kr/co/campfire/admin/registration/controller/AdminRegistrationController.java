@@ -31,11 +31,9 @@ import kr.co.campfire.common.dto.PageInfo;
 public class AdminRegistrationController {
 	@Autowired
 	private AdminRegistrationServiceImpl adminRegistrationService;
+	
 	@Autowired
 	private SessionManageController sessionManage;
-
-	@Autowired
-	private DataValidationController dataValidation;
 
 	@Autowired
 	private LoginCheckController loginCheck;
@@ -46,7 +44,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -90,7 +88,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -120,7 +118,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -155,7 +153,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -215,7 +213,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -259,7 +257,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 
@@ -289,7 +287,7 @@ public class AdminRegistrationController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else if (!((String) session.getAttribute("memberDivision")).equals("admin")) {
 			sessionManage.setSessionMessage("관리자 로그인 후 이용할 수 있습니다.", "error", session);
 

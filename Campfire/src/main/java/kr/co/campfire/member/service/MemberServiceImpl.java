@@ -73,7 +73,7 @@ public class MemberServiceImpl implements MemberService {
 			sb.append("grant_type=authorization_code");
 
 			sb.append("&client_id=f56f8461b6c1bd3d445e592479cd7a79"); // REST_API키 본인이 발급받은 key 넣어주기
-			sb.append("&redirect_uri=http://localhost/member/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
+			sb.append("&redirect_uri=http://campfire.com/member/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
 
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());

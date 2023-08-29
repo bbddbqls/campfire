@@ -53,168 +53,163 @@ public class UserBoardController {
 			@RequestParam(value = "searchCtg", defaultValue = "") String searchCtg,
 			@RequestParam(value = "searchTxt", defaultValue = "") String searchTxt,
 			@RequestParam(value = "cpage", defaultValue = "1") int currentPage, HttpSession session, Model model) {
-		if (!loginCheck.loginCheck(session)) {
-			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
-		} else {
-			UserBoardDto ubd = new UserBoardDto();
-			ubd.setPostCategory(postCategory);
-			ubd.setSearchCtg(searchCtg);
-			ubd.setSearchTxt(searchTxt);
+		UserBoardDto ubd = new UserBoardDto();
+		ubd.setPostCategory(postCategory);
+		ubd.setSearchCtg(searchCtg);
+		ubd.setSearchTxt(searchTxt);
 
-			// 전체 게시글 수 구하기
-			int listCount = 0;
-			if (searchCtg.equals("")) {
-				listCount = userBoardService.selectListAllCount(ubd);
-			} else if (searchCtg.equals("title")) {
-				listCount = userBoardService.selectListTitleCount(ubd);
-			} else if (searchCtg.equals("context")) {
-				listCount = userBoardService.selectListContextCount(ubd);
-			} else if (searchCtg.equals("writer")) {
-				listCount = userBoardService.selectListWriterCount(ubd);
-			}
-			// 보여질 페이지 수
-			int pageLimit = 10;
-			System.out.println(listCount);
-			// 한 페이지에 보여질 게시글 수
-			int boardLimit = 6;
-
-			// 페이징 로직 처리
-			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
-			// 목록 불러오기
-
-			List<UserBoardDto> list = null;
-			if (searchCtg.equals("")) {
-				list = userBoardService.selectListAll(pi, ubd);
-			} else if (searchCtg.equals("title")) {
-				list = userBoardService.selectListTitle(pi, ubd);
-			} else if (searchCtg.equals("context")) {
-				list = userBoardService.selectListContext(pi, ubd);
-			} else if (searchCtg.equals("writer")) {
-				list = userBoardService.selectListWriter(pi, ubd);
-			}
-			for (UserBoardDto item : list) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-				Timestamp postTimestamp = item.getPostCreateDate(); //
-				Date postDate = new Date(postTimestamp.getTime());
-				String formattedinquiryDate = sdf.format(postDate);
-				item.setNewCreateDate(formattedinquiryDate);
-
-				item.setLikeCount(userBoardService.selectLikeCount(item.getPostNum()));
-
-				String postContent = item.getPostContent();
-
-				String imgTag = "<img src=\"";
-				int imgTagStart = postContent.indexOf(imgTag);
-				if (imgTagStart != -1) {
-					int srcStart = imgTagStart + imgTag.length();
-					int srcEnd = postContent.indexOf("\"", srcStart);
-					if (srcEnd != -1) {
-						String src = postContent.substring(srcStart, srcEnd);
-						System.out.println("Image Source: " + src);
-
-						String uploadPath = "/resources/upload";
-						if (src.startsWith(uploadPath)) {
-							String imageName = src.substring(uploadPath.length() + 1);
-							System.out.println("Image Name: " + imageName);
-							item.setImageName(imageName);
-						}
-					}
-				}
-
-				String input = item.getPostContent();
-				StringBuilder result = new StringBuilder();
-				boolean withinTag = false;
-
-				for (char c : input.toCharArray()) {
-					if (c == '<') {
-						withinTag = true;
-						continue;
-					}
-					if (c == '>') {
-						withinTag = false;
-						continue;
-					}
-					if (!withinTag) {
-						result.append(c);
-					}
-				}
-
-				String output = result.toString();
-				item.setPostContent(output);
-				
-				item.setReplyCount(userBoardService.selectReplyCount(item.getPostNum()));
-			}
-
-			List<UserBoardDto> popularList = userBoardService.selectListPopular(ubd);
-
-			for (UserBoardDto item : popularList) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-				Timestamp postTimestamp = item.getPostCreateDate(); //
-				Date postDate = new Date(postTimestamp.getTime());
-				String formattedinquiryDate = sdf.format(postDate);
-				item.setNewCreateDate(formattedinquiryDate);
-
-				item.setLikeCount(userBoardService.selectLikeCount(item.getPostNum()));
-
-				String postContent = item.getPostContent();
-
-				String imgTag = "<img src=\"";
-				int imgTagStart = postContent.indexOf(imgTag);
-				if (imgTagStart != -1) {
-					int srcStart = imgTagStart + imgTag.length();
-					int srcEnd = postContent.indexOf("\"", srcStart);
-					if (srcEnd != -1) {
-						String src = postContent.substring(srcStart, srcEnd);
-						System.out.println("Image Source: " + src);
-
-						String uploadPath = "/resources/upload";
-						if (src.startsWith(uploadPath)) {
-							String imageName = src.substring(uploadPath.length() + 1);
-							System.out.println("Image Name: " + imageName);
-							item.setImageName(imageName);
-						}
-					}
-				}
-
-				String input = item.getPostContent();
-				StringBuilder result = new StringBuilder();
-				boolean withinTag = false;
-
-				for (char c : input.toCharArray()) {
-					if (c == '<') {
-						withinTag = true;
-						continue;
-					}
-					if (c == '>') {
-						withinTag = false;
-						continue;
-					}
-					if (!withinTag) {
-						result.append(c);
-					}
-				}
-
-				String output = result.toString();
-				item.setPostContent(output);
-			}
-
-			model.addAttribute("boardList", list);
-			model.addAttribute("boardPopularList", popularList);
-			model.addAttribute("postCategory", postCategory);
-			model.addAttribute("pi", pi);
-
-			model.addAttribute("msg", (String) session.getAttribute("msg"));
-			model.addAttribute("status", (String) session.getAttribute("status"));
-
-			session.removeAttribute("msg");
-			session.removeAttribute("status");
-
-			return "user/userBoard";
+		// 전체 게시글 수 구하기
+		int listCount = 0;
+		if (searchCtg.equals("")) {
+			listCount = userBoardService.selectListAllCount(ubd);
+		} else if (searchCtg.equals("title")) {
+			listCount = userBoardService.selectListTitleCount(ubd);
+		} else if (searchCtg.equals("context")) {
+			listCount = userBoardService.selectListContextCount(ubd);
+		} else if (searchCtg.equals("writer")) {
+			listCount = userBoardService.selectListWriterCount(ubd);
 		}
+		// 보여질 페이지 수
+		int pageLimit = 10;
+		System.out.println(listCount);
+		// 한 페이지에 보여질 게시글 수
+		int boardLimit = 6;
+
+		// 페이징 로직 처리
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		// 목록 불러오기
+
+		List<UserBoardDto> list = null;
+		if (searchCtg.equals("")) {
+			list = userBoardService.selectListAll(pi, ubd);
+		} else if (searchCtg.equals("title")) {
+			list = userBoardService.selectListTitle(pi, ubd);
+		} else if (searchCtg.equals("context")) {
+			list = userBoardService.selectListContext(pi, ubd);
+		} else if (searchCtg.equals("writer")) {
+			list = userBoardService.selectListWriter(pi, ubd);
+		}
+		for (UserBoardDto item : list) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Timestamp postTimestamp = item.getPostCreateDate(); //
+			Date postDate = new Date(postTimestamp.getTime());
+			String formattedinquiryDate = sdf.format(postDate);
+			item.setNewCreateDate(formattedinquiryDate);
+
+			item.setLikeCount(userBoardService.selectLikeCount(item.getPostNum()));
+
+			String postContent = item.getPostContent();
+
+			String imgTag = "<img src=\"";
+			int imgTagStart = postContent.indexOf(imgTag);
+			if (imgTagStart != -1) {
+				int srcStart = imgTagStart + imgTag.length();
+				int srcEnd = postContent.indexOf("\"", srcStart);
+				if (srcEnd != -1) {
+					String src = postContent.substring(srcStart, srcEnd);
+					System.out.println("Image Source: " + src);
+
+					String uploadPath = "/resources/upload";
+					if (src.startsWith(uploadPath)) {
+						String imageName = src.substring(uploadPath.length() + 1);
+						System.out.println("Image Name: " + imageName);
+						item.setImageName(imageName);
+					}
+				}
+			}
+
+			String input = item.getPostContent();
+			StringBuilder result = new StringBuilder();
+			boolean withinTag = false;
+
+			for (char c : input.toCharArray()) {
+				if (c == '<') {
+					withinTag = true;
+					continue;
+				}
+				if (c == '>') {
+					withinTag = false;
+					continue;
+				}
+				if (!withinTag) {
+					result.append(c);
+				}
+			}
+
+			String output = result.toString();
+			item.setPostContent(output);
+
+			item.setReplyCount(userBoardService.selectReplyCount(item.getPostNum()));
+		}
+
+		List<UserBoardDto> popularList = userBoardService.selectListPopular(ubd);
+
+		for (UserBoardDto item : popularList) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Timestamp postTimestamp = item.getPostCreateDate(); //
+			Date postDate = new Date(postTimestamp.getTime());
+			String formattedinquiryDate = sdf.format(postDate);
+			item.setNewCreateDate(formattedinquiryDate);
+
+			item.setLikeCount(userBoardService.selectLikeCount(item.getPostNum()));
+
+			String postContent = item.getPostContent();
+
+			String imgTag = "<img src=\"";
+			int imgTagStart = postContent.indexOf(imgTag);
+			if (imgTagStart != -1) {
+				int srcStart = imgTagStart + imgTag.length();
+				int srcEnd = postContent.indexOf("\"", srcStart);
+				if (srcEnd != -1) {
+					String src = postContent.substring(srcStart, srcEnd);
+					System.out.println("Image Source: " + src);
+
+					String uploadPath = "/resources/upload";
+					if (src.startsWith(uploadPath)) {
+						String imageName = src.substring(uploadPath.length() + 1);
+						System.out.println("Image Name: " + imageName);
+						item.setImageName(imageName);
+					}
+				}
+			}
+
+			String input = item.getPostContent();
+			StringBuilder result = new StringBuilder();
+			boolean withinTag = false;
+
+			for (char c : input.toCharArray()) {
+				if (c == '<') {
+					withinTag = true;
+					continue;
+				}
+				if (c == '>') {
+					withinTag = false;
+					continue;
+				}
+				if (!withinTag) {
+					result.append(c);
+				}
+			}
+
+			String output = result.toString();
+			item.setPostContent(output);
+		}
+
+		model.addAttribute("boardList", list);
+		model.addAttribute("boardPopularList", popularList);
+		model.addAttribute("postCategory", postCategory);
+		model.addAttribute("pi", pi);
+
+		model.addAttribute("msg", (String) session.getAttribute("msg"));
+		model.addAttribute("status", (String) session.getAttribute("status"));
+
+		session.removeAttribute("msg");
+		session.removeAttribute("status");
+
+		return "user/userBoard";
 	}
 
 	@RequestMapping("/showBoardDetail.do")
@@ -223,7 +218,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/user/board/showBoardList.do";
 		} else {
 			UserBoardDto ubd = userBoardService.selectPost(postNum);
 
@@ -249,8 +244,7 @@ public class UserBoardController {
 			ubd.setPostViewCount(newViewCount);
 
 			userBoardService.updateViewCount(ubd);
-			
-			
+
 			List<UserBoardReplyDto> replyList = userBoardService.selectPostReply(postNum);
 
 			for (UserBoardReplyDto item : replyList) {
@@ -273,7 +267,7 @@ public class UserBoardController {
 					newDate = days + "일 전";
 				}
 				item.setNewDate(newDate);
-				
+
 				int replyLikeCount = userBoardService.selectReplyLikeCount(item.getPostReplyNum());
 				item.setReplyLikeCount(replyLikeCount);
 			}
@@ -285,7 +279,6 @@ public class UserBoardController {
 			model.addAttribute("ckeckLike", ckeckLike);
 
 			model.addAttribute("replyList", replyList);
-			
 
 			model.addAttribute("msg", (String) session.getAttribute("msg"));
 			model.addAttribute("status", (String) session.getAttribute("status"));
@@ -341,7 +334,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/user/board/showBoardList.do";
 		} else {
 			model.addAttribute("msg", (String) session.getAttribute("msg"));
 			model.addAttribute("status", (String) session.getAttribute("status"));
@@ -358,7 +351,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/user/board/showBoardList.do?postCategory=" + ubd.getPostCategory();
 		} else {
 
 			int memberNum = (int) session.getAttribute("memberNum");
@@ -378,7 +371,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/user/board/showBoardList.do?postCategory=" + postCategory;
 		} else {
 			int sessionMemberNum = (int) session.getAttribute("memberNum");
 
@@ -406,7 +399,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/user/board/showBoardList.do?postCategory=" + postCategory;
 		} else {
 			int sessionMemberNum = (int) session.getAttribute("memberNum");
 
@@ -434,7 +427,7 @@ public class UserBoardController {
 		if (!loginCheck.loginCheck(session)) {
 			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
 
-			return "#################################"; // 캠핑장 서치
+			return "redirect:/";
 		} else {
 
 			int result = userBoardService.updateBoard(ubd);
@@ -470,7 +463,10 @@ public class UserBoardController {
 	@RequestMapping("/unlikePost.do")
 	public int unikePost(@RequestParam(value = "postNum", defaultValue = "-1") int postNum, HttpSession session,
 			Model model) {
-
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			return -2;
+		}
 		int memberNum = (int) session.getAttribute("memberNum");
 
 		UserBoardLikeDto ubld = new UserBoardLikeDto();
@@ -489,18 +485,21 @@ public class UserBoardController {
 			return -1;
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/insertReply.do")
-	public List<UserBoardReplyDto> insertReply(UserBoardReplyDto ubrd, HttpSession session,
-			Model model) {
-
+	public List<UserBoardReplyDto> insertReply(UserBoardReplyDto ubrd, HttpSession session, Model model) {
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			List<UserBoardReplyDto> list = null;
+			return list;
+		}
 		int memberNum = (int) session.getAttribute("memberNum");
 
 		ubrd.setMemberNum(memberNum);
 		int result = userBoardService.insertReply(ubrd);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			List<UserBoardReplyDto> replyList = userBoardService.selectReplyOne(ubrd.getPostReplyContent());
 			for (UserBoardReplyDto item : replyList) {
 				Date replyDate = item.getPostReplyCreateDate();
@@ -524,19 +523,22 @@ public class UserBoardController {
 				item.setNewDate(newDate);
 			}
 			return replyList;
-			
-		}else{
+
+		} else {
 			List<UserBoardReplyDto> replyList = null;
 			return replyList;
 		}
-		
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/replyLikePost.do")
-	public int replyLikePost(@RequestParam(value = "postReplyNum", defaultValue = "-1") int postReplyNum, HttpSession session,
-			Model model) {
-
+	public int replyLikePost(@RequestParam(value = "postReplyNum", defaultValue = "-1") int postReplyNum,
+			HttpSession session, Model model) {
+		if (!loginCheck.loginCheck(session)) {
+			sessionManage.setSessionMessage("로그인 후 이용할 수 있습니다.", "error", session);
+			return -2;
+		}
 		int memberNum = (int) session.getAttribute("memberNum");
 
 		UserBoardReplyDto ubrd = new UserBoardReplyDto();
@@ -556,14 +558,14 @@ public class UserBoardController {
 			return newLikeCount;
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/deleteReply.do")
-	public boolean deleteReply(@RequestParam(value = "postReplyNum", defaultValue = "-1") int postReplyNum, HttpSession session,
-			Model model) {
+	public boolean deleteReply(@RequestParam(value = "postReplyNum", defaultValue = "-1") int postReplyNum,
+			HttpSession session, Model model) {
 
 		int deleteResult = userBoardService.deleteReply(postReplyNum);
-		
+
 		if (deleteResult > 0) {
 			return true;
 

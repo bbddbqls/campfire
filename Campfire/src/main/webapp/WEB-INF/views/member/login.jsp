@@ -16,6 +16,23 @@
 <!-- 네이버 로그인 연동 api start -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
+<script src="/resources/main/js/alert.js"></script>
+<script>
+	const msg = '<%=request.getAttribute("msg")%>'
+	const status = '<%=request.getAttribute("status")%>'
+
+	if ((msg !== null && msg !== "null")
+			&& (status !== null && status !== "null")) {
+		$(document).ready(function() {
+			alertFunction(msg, status);
+		});
+	}
+</script>
 <!-- 네이버 로그인 연동 api end-->
 <style>
 /* .kakao_i {
@@ -54,9 +71,10 @@
 a {
 	text-decoration: none;
 } */
-.txt_c{
-margin:10px;
+.txt_c {
+	margin: 10px;
 }
+
 .sns_login_form {
 	width: 100%;
 }
@@ -125,7 +143,7 @@ margin:10px;
 		<!-- Header -->
 		<header id="header">
 			<div class="logo">
-				<img src="/resources/images/logo4.png" alt="" />
+				<i class="fa-solid fa-fire fa-beat-fade fa-2xl" style="color: #ffffff;"></i>
 			</div>
 			<div class="content">
 				<div class="inner">
@@ -203,15 +221,13 @@ margin:10px;
 				</form>
 				<div class="sns_login_form">
 					<p class="txt_c">
-						<a class="btn btn-kakao" id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=f56f8461b6c1bd3d445e592479cd7a79&redirect_uri=http://localhost/member/kakaoLogin&response_type=code">카카오로 시작하기</a>
+						<a class="btn btn-kakao" id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=f56f8461b6c1bd3d445e592479cd7a79&redirect_uri=http://campfire.com/member/kakaoLogin&response_type=code">카카오로 시작하기</a>
 					</p>
 					<p class="txt_c">
-						<a class="btn btn-naver" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&redirect_uri=http://localhost/member/naverLogin&client_id=KqnzzV13lgmW6NT6QATF">네이버로 시작하기</a>
+						<a class="btn btn-naver" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&redirect_uri=http://campfire.com/member/naverLogin&client_id=KqnzzV13lgmW6NT6QATF">네이버로 시작하기</a>
 					</p>
 					<p class="txt_c">
-						<a class="btn-google" href="https://accounts.google.com/o/oauth2/v2/auth?client_id=40148344416-p4n6jrj21bhl3uk774ji4kr9uje2898t.apps.googleusercontent.com&redirect_uri=http://localhost/member/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline">
-							<i aria-hidden="true" class="social-icon fa fa-google-plus"></i> Google로 시작하기
-						</a>
+						<a class="btn-google" href="https://accounts.google.com/o/oauth2/v2/auth?client_id=40148344416-p4n6jrj21bhl3uk774ji4kr9uje2898t.apps.googleusercontent.com&redirect_uri=http://localhost/member/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline">Google로 시작하기 </a>
 					</p>
 				</div>
 			</article>
@@ -233,11 +249,11 @@ margin:10px;
 
 
 			</article>
-			
+
 
 
 			<!-- 사업자 회원가입 -->
-				<article id="businessjoin">
+			<article id="businessjoin">
 				<h3>정보입력</h3>
 				<div class="form-container">
 					<form class="businessjoinf" action="/member/signup.do" method="post">
@@ -245,52 +261,43 @@ margin:10px;
 						<section>
 							<div class="info" id="info__id">
 								<div id="id-input">
-									<input class="box" type="text" placeholder="아이디 입력(6~20자)"
-										name="memberUserId" />
+									<input class="box" type="text" placeholder="아이디 입력(6~20자)" name="memberUserId" />
 									<button type="button" id="idCheck">중복 확인</button>
-									
-								<p class="result">
-								 	<span class="msg">아이디를 확인해주십시오.</span>
-								</p>
+
+									<p class="result">
+										<span class="msg">아이디를 확인해주십시오.</span>
+									</p>
 								</div>
 								<div class="error-msg"></div>
 							</div>
 							<div class="info" id="info__pw">
-								<input class="box" type="password"
-									placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw" />
+								<input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw" />
 								<div class="error-msg"></div>
 							</div>
 							<div class="info" id="info__pwRe">
-								<input class="box" type="password" placeholder="비밀번호 재입력"
-									name="memberPwChk" />
+								<input class="box" type="password" placeholder="비밀번호 재입력" name="memberPwChk" />
 								<div class="error-msg"></div>
 							</div>
 
-						<!-- 	<input type="text" class="box" type="busineessnub"
+							<!-- 	<input type="text" class="box" type="busineessnub"
 								placeholder="사업자번호 :" name="memberBiznum" /> -->
-								
-						 <input type="text"
-								class="box" id="name" required placeholder="이름:"
-								name="memberName" />
+
+							<input type="text" class="box" id="name" required placeholder="이름:" name="memberName" />
 
 							<div style="display: flex; gap: 10px; align-items: baseline;">
-								<input type="text" class="box" id="sample6_postcode"
-									placeholder="우편번호" name="memberPostalcode"
-									style="flex-basis: 70%" /> 
-								<input type="button" id="search"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기" />
+								<input type="text" class="box" id="sample6_postcode" placeholder="우편번호" name="memberPostalcode" style="flex-basis: 70%" />
+								<input type="button" id="search" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" />
 							</div>
 
-							<input type="text" class="box" id="sample6_address"
-								placeholder="주소" name="memberAdd1" />
-							 <input type="text" id="sample6_detailAddress" placeholder="상세주소"
-								style="flex-basis: 70%" name="memberAdd2" /> <br />
-							
+							<input type="text" class="box" id="sample6_address" placeholder="주소" name="memberAdd1" />
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" style="flex-basis: 70%" name="memberAdd2" />
+							<br />
+
 							<div class="gender-container">
 								<input type="radio" id="male" name="memberGender" value="남성" />
-										<label for="male">남성</label>
-									 <input type="radio" id="female" name="memberGender" value="여성" />
-										 <label for="female">여성</label>
+								<label for="male">남성</label>
+								<input type="radio" id="female" name="memberGender" value="여성" />
+								<label for="female">여성</label>
 							</div>
 							<br />
 
@@ -298,9 +305,11 @@ margin:10px;
 								<div id="birth-flex">
 									<select class="box" id="birth-year" name="birth-year" style="width: 33%">
 										<option>년</option>
-									</select> <select class="box" id="birth-month" name="birth-month" style="width: 33%">
+									</select>
+									<select class="box" id="birth-month" name="birth-month" style="width: 33%">
 										<option>월</option>
-									</select> <select class="box" id="birth-day"  name="birth-day" style="width: 33%">
+									</select>
+									<select class="box" id="birth-day" name="birth-day" style="width: 33%">
 										<option>일</option>
 									</select>
 								</div>
@@ -325,19 +334,18 @@ margin:10px;
 						<section>
 							<div class="info" id="info__id1">
 								<div id="id-input1">
-									<input class="box" type="text" placeholder="아이디 입력(6~20자)" name="memberUserId"/>
+									<input class="box" type="text" placeholder="아이디 입력(6~20자)" name="memberUserId" />
 									<button type="button" id="id-check1">중복 확인</button>
-						
-								<p class="result">
-								 	<span class="msg">아이디를 확인해주십시오.</span>
-								</p>
-									
+
+									<p class="result">
+										<span class="msg">아이디를 확인해주십시오.</span>
+									</p>
+
 								</div>
 								<div class="error-msg"></div>
 							</div>
 							<div class="info" id="info__pw1">
-								<input class="box" type="password"
-									placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw"/>
+								<input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw" />
 								<div class="error-msg"></div>
 							</div>
 							<div class="info" id="info__pwRe1">
@@ -347,21 +355,18 @@ margin:10px;
 
 
 							<div style="display: flex; gap: 10px; align-items: baseline;">
-								<input type="text" class="box" id="sample6_postcode1"
-									placeholder="우편번호" name="memberPostalcode"
-									style="flex-basis: 70%" /> <input type="button" id="search"
-									onclick="sample6_execDaumPostcode1()" value="우편번호 찾기" />
+								<input type="text" class="box" id="sample6_postcode1" placeholder="우편번호" name="memberPostalcode" style="flex-basis: 70%" />
+								<input type="button" id="search" onclick="sample6_execDaumPostcode1()" value="우편번호 찾기" />
 							</div>
 
-							<input type="text" class="box" id="sample6_address1"
-								placeholder="주소" name="memberAdd1" /> 
-						<input type="text" id="sample6_detailAddress1" placeholder="상세주소"
-								style="flex-basis: 70%" name="memberAdd2" /> <br />
+							<input type="text" class="box" id="sample6_address1" placeholder="주소" name="memberAdd1" />
+							<input type="text" id="sample6_detailAddress1" placeholder="상세주소" style="flex-basis: 70%" name="memberAdd2" />
+							<br />
 							<div class="gender-container">
 								<input type="radio" id="male1" name="memberGender" value="남성" />
-								<label for="male1">남성</label> 
-								<input type="radio" id="female1" name="memberGender" value="여성" /> 
-									<label for="female1">여성</label>
+								<label for="male1">남성</label>
+								<input type="radio" id="female1" name="memberGender" value="여성" />
+								<label for="female1">여성</label>
 							</div>
 							<br />
 
@@ -369,9 +374,11 @@ margin:10px;
 								<div id="birth-flex">
 									<select class="box" id="birth-year1" name="birth-year" style="width: 33%">
 										<option>년</option>
-									</select> <select class="box" id="birth-month1" name="birth-month" style="width: 33%">
+									</select>
+									<select class="box" id="birth-month1" name="birth-month" style="width: 33%">
 										<option>월</option>
-									</select> <select class="box" id="birth-day1" name="birth-day" style="width: 33%">
+									</select>
+									<select class="box" id="birth-day1" name="birth-day" style="width: 33%">
 										<option>일</option>
 									</select>
 								</div>
@@ -382,7 +389,7 @@ margin:10px;
 						<br />
 						<button type="submit" id="submit">가입하기</button>
 					</form>
-					
+
 				</div>
 			</article>
 
@@ -411,6 +418,7 @@ margin:10px;
 	<script src="/resources/login/js/main.js"></script>
 	<script src="/resources/login/js/section.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
