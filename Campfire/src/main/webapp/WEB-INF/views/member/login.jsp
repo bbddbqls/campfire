@@ -344,9 +344,6 @@ margin:10px;
 								<input class="box" type="password" placeholder="비밀번호 재입력" name="memberPwChk" />
 								<div class="error-msg"></div>
 							</div>
-							<input type="hidden" class="box" type="busineessnub"
-								placeholder="사업자번호 :" name="memberBiznum" value="" /> <input
-								type="text" class="box" id="name" required placeholder="이름:" name="memberName"/>
 
 
 							<div style="display: flex; gap: 10px; align-items: baseline;">

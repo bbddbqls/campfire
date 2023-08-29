@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
@@ -26,9 +25,40 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="index.html" class="logo"><strong>Campfire</strong> 캠핑장
-						정보</a>
+					<a href="/campSearch/camping.do" class="logo">
+						<strong>Campfire</strong> 캠핑장 정보
+					</a>
+					<c:choose>
+						<c:when test="${sessionScope.memberNum != null}">
+							<ul class="list-bar">
+								<li>
+									<a href="/member/mypage.do">마이페이지</a>
+								</li>
+								<li>
+									<a href="/myList/likeList.do"> 찜 목록 </a>
+								</li>
+								<li>
+									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
+								</li>
+								<li>
+									<a href="/member/logout.do"> 로그아웃 </a>
+								</li>
+
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class="list-bar">
+
+								<li>
+									<a href="/">로그인 </a>
+								</li>
+
+							</ul>
+						</c:otherwise>
+					</c:choose>
+
 				</header>
+
 
 				<!-- Content -->
 				<section>
@@ -40,34 +70,27 @@
 							<div class="campinfo-title">
 								<c:choose>
 									<c:when test="${checkLike eq 1}">
-										<i id="heart" class="fa-solid fa-heart fa-xl"
-											data-jstl-value="${result.campNum}" style="color: #ff8fb6;"></i>
+										<i id="heart" class="fa-solid fa-heart fa-xl" data-jstl-value="${result.campNum}" style="color: #ff8fb6;"></i>
 									</c:when>
 									<c:otherwise>
-										<i id="heart" class="fa-regular fa-heart fa-xl"
-											data-jstl-value="${result.campNum}" style="color: #ff8fb6;"></i>
+										<i id="heart" class="fa-regular fa-heart fa-xl" data-jstl-value="${result.campNum}" style="color: #ff8fb6;"></i>
 									</c:otherwise>
 								</c:choose>
-								<span id="heart-count">${result.likeCamp }</span> <i
-									class="fa-solid fa-eye fa-lg"
-									style="color: #5c5c5c; margin-right: 3px;"></i><span>${result.campView }</span>
+								<span id="heart-count">${result.likeCamp }</span> <i class="fa-solid fa-eye fa-lg" style="color: #5c5c5c; margin-right: 3px;"></i><span>${result.campView }</span>
 
 								<c:choose>
 									<c:when test="${checkWishlist eq 1}">
-										<i id="star" class="fa-solid fa-star fa-xl"
-											data-jstl-value="${result.campNum}" style="color: #fff370;"></i>
+										<i id="star" class="fa-solid fa-star fa-xl" data-jstl-value="${result.campNum}" style="color: #fff370;"></i>
 									</c:when>
 									<c:otherwise>
-										<i id="star" class="fa-regular fa-star fa-xl"
-											data-jstl-value="${result.campNum}" style="color: #fff370;"></i>
+										<i id="star" class="fa-regular fa-star fa-xl" data-jstl-value="${result.campNum}" style="color: #fff370;"></i>
 									</c:otherwise>
 								</c:choose>
 								<span id="star-count">${result.wishlist }</span>
 
 							</div>
 
-							<br>
-							<br>
+							<br> <br>
 							<!-- 다른 사용자들의 정보도 추가 가능 -->
 							<!--사진-->
 							<div class="carousel-container">
@@ -82,8 +105,7 @@
 											<c:forEach var="item" items="${campPhotoList }">
 												<!-- 각 슬라이드 아이템들을 추가합니다. -->
 												<div class="carousel-slide active">
-													<img src="${item.campPhotoURL }${item.campPhotoName }"
-														alt="${item.campPhotoName }" class="img-fluid">
+													<img src="${item.campPhotoURL }${item.campPhotoName }" alt="${item.campPhotoName }" class="img-fluid">
 												</div>
 
 											</c:forEach>
@@ -118,22 +140,25 @@
 									</tr>
 									<tr>
 										<th scope="col">홈페이지</th>
-										<td><c:choose>
+										<td>
+											<c:choose>
 												<c:when test="${not empty result.campLink}">
-													<a href="${result.campLink}" target="_BLANK" title="새창열림">홈페이지
-														바로가기</a>
+													<a href="${result.campLink}" target="_BLANK" title="새창열림">홈페이지 바로가기</a>
 
 												</c:when>
 												<c:otherwise>
 													<!-- 링크가 없을 경우 아무것도 표시하지 않음 -->
 												</c:otherwise>
-											</c:choose></td>
+											</c:choose>
+										</td>
 									</tr>
 									<tr>
 										<th scope="col">태그</th>
-										<td><c:forEach var="item" items="${campTagList}">
+										<td>
+											<c:forEach var="item" items="${campTagList}">
 											${item.campTag}
-										</c:forEach></td>
+										</c:forEach>
+										</td>
 									</tr>
 									<tr>
 										<th scope="col">주변이용가능시설</th>
@@ -198,22 +223,16 @@
 								<br>
 							</div> -->
 							<p class="camp_intro_txt">
-								<span class="info_notice"> * campfire에 등록된 정보는 현장상황과 다소
-									다를 수 있으니 반려동물 동반 여부, 부가 시설물,추가차량 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에
-									미리 확인하시기 바랍니다. </span>
+								<span class="info_notice"> * campfire에 등록된 정보는 현장상황과 다소 다를 수 있으니 반려동물 동반 여부, 부가 시설물,추가차량 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리 확인하시기 바랍니다. </span>
 							</p>
 						</div>
 						<hr>
 					</div>
 					<div class="camp_intro_map">
-						<div id="mapX" data-jstl-value="${result.campX}"
-							style="display: none;"></div>
-						<div id="mapY" data-jstl-value="${result.campY}"
-							style="display: none;"></div>
-						<div id="campName" data-jstl-value="${result.campName}"
-							style="display: none;"></div>
-						<script type="text/javascript"
-							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b7e3f9163cbe6490f97df41fe3fab55&libraries=services"></script>
+						<div id="mapX" data-jstl-value="${result.campX}" style="display: none;"></div>
+						<div id="mapY" data-jstl-value="${result.campY}" style="display: none;"></div>
+						<div id="campName" data-jstl-value="${result.campName}" style="display: none;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b7e3f9163cbe6490f97df41fe3fab55&libraries=services"></script>
 						<div class="map_wrap">
 							<div id="map" style="overflow: hidden;"></div>
 						</div>
@@ -230,17 +249,17 @@
 										<div class="comment-list" id="comment-list-${item.postReplyNum }">
 											<div class="comment">
 												<div class="comment-user">
-													<i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i>
-													${item.memberId }
+													<i class="fa-solid fa-tree fa-xl" style="color: #155b3a;"></i> ${item.memberId }
 												</div>
 												<div class="comment-date">${item.newDate }</div>
 											</div>
 											<div class="comment comment-content1">
 												<div class="comment-content">${item.postReplyContent }</div>
 												<div class="comment-like">
-                                   					 <i class="fa-regular fa-thumbs-up" style="color: #1e6bf1;" onclick="likePostReply('${item.postReplyNum}')"></i> <span id="comment-like-count${item.postReplyNum}">${item.replyLikeCount }</span>                                     <c:if test="${sessionScope.memberNum == item.memberNum}">
-                                       <i class="fa-solid fa-trash-can" style="color: #8a8a8a;"onclick="deleteReply('${item.postReplyNum}')"></i>
-                                    </c:if>
+													<i class="fa-regular fa-thumbs-up" style="color: #1e6bf1;" onclick="likePostReply('${item.postReplyNum}')"></i> <span id="comment-like-count${item.postReplyNum}">${item.replyLikeCount }</span>
+													<c:if test="${sessionScope.memberNum == item.memberNum}">
+														<i class="fa-solid fa-trash-can" style="color: #8a8a8a;" onclick="deleteReply('${item.postReplyNum}')"></i>
+													</c:if>
 												</div>
 											</div>
 										</div>
@@ -250,8 +269,7 @@
 
 						</div>
 						<div class="comment-form">
-							<input type="text" id="comment-content"
-								data-campNum-value="${result.campNum }" placeholder="댓글을 입력하세요">
+							<input type="text" id="comment-content" data-campNum-value="${result.campNum }" placeholder="댓글을 입력하세요">
 							<button type="button" class="button small insert-reqly">등록</button>
 						</div>
 						<hr>
@@ -312,8 +330,7 @@
 								<c:otherwise>
 									<c:forEach var="item" items="${campPhotoList }">
 										<div class="grid-item">
-											<img src="${item.campPhotoURL }${item.campPhotoName }"" alt="${item.campPhotoName }"
-												width="100%" height="auto" data-index="0">
+											<img src="${item.campPhotoURL }${item.campPhotoName }" alt="${item.campPhotoName }" width="100%" height="auto" data-index="0">
 										</div>
 
 									</c:forEach>
@@ -334,28 +351,27 @@
 					</div>
 					<div>
 						<hr>
-						<button class="button small primary"
-							style="float: right; margin-right: 15px;"
-							onclick="history.back()">목록으로</button>
+						<button class="button small primary" style="float: right; margin-right: 15px;" onclick="history.back()">목록으로</button>
 					</div>
 				</section>
 			</div>
 		</div>
-
-
 		<!-- Sidebar -->
-				<%@ include file="../common/sidebar.jsp"%>
+		<%@ include file="../common/sidebar.jsp"%>
+	</div>
 
-		<!-- Scripts -->
-		<script src="../../resources/main/js/jquery.min.js"></script>
-		<script src="../../resources/main/js/browser.min.js"></script>
-		<script src="../../resources/main/js/breakpoints.min.js"></script>
-		<script src="../../resources/main/js/util.js"></script>
-		<script src="../../resources/main/js/main.js"></script>
-		<script src="../../resources/main/js/campInfo.js"></script>
-		<script src="https://kit.fontawesome.com/0cf27f7ac1.js"
-			crossorigin="anonymous"></script>
-		<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+
+
+
+	<!-- Scripts -->
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources/main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
+	<script src="../../resources/main/js/campInfo.js"></script>
+	<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script> -->
 </body>

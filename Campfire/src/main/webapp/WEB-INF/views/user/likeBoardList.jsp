@@ -34,7 +34,7 @@
 						<c:when test="${sessionScope.memberNum != null}">
 							<ul class="list-bar">
 								<li>
-									<a href="/member/mypage.jsp">마이페이지</a>
+									<a href="/member/mypage.do">마이페이지</a>
 								</li>
 								<li>
 									<a href="/myList/likeList.do"> 찜 목록 </a>
@@ -43,7 +43,7 @@
 									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
 								</li>
 								<li>
-									<a href="/"> 로그아웃 </a>
+									<a href="/member/logout.do"> 로그아웃 </a>
 								</li>
 
 							</ul>
@@ -164,6 +164,7 @@
 
 		<!-- Sidebar -->
 		<%@ include file="../common/sidebar.jsp"%>
+		</div>
 
 		<!-- Scripts -->
 		<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>

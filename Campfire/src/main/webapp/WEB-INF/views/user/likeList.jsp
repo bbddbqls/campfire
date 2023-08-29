@@ -33,7 +33,7 @@
 						<c:when test="${sessionScope.memberNum != null}">
 							<ul class="list-bar">
 								<li>
-									<a href="/member/mypage.jsp">마이페이지</a>
+									<a href="/member/mypage.do">마이페이지</a>
 								</li>
 								<li>
 									<a href="/myList/likeList.do"> 찜 목록 </a>
@@ -42,7 +42,7 @@
 									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
 								</li>
 								<li>
-									<a href="/"> 로그아웃 </a>
+									<a href="/member/logout.do"> 로그아웃 </a>
 								</li>
 
 							</ul>
@@ -87,7 +87,7 @@
 								<div class="camping_info" onclick="goToDetailPage('/campInfo/campInfo.do?campNum=${item.campNum}')">
 									<!-- 여기서 '/detail_page_url'은 상세 정보 페이지의 URL을 넣어주어야 합니다. -->
 									<img src="${item.campPhotoURL }${item.campPhotoName}" alt="캠핑장 이미지">
-									<div class="camping_data" name="캠핑장1">
+									<div class="camping_data">
 										<h4>${item.campName }</h4>
 										<p>
 											<i class="fa-regular fa-heart fa2xs" style="color: #ff8fb6;"></i> ${item.likeCamp}
@@ -150,17 +150,17 @@
 
 		<!-- Sidebar -->
 		<%@ include file="../common/sidebar.jsp"%>
-
-		<!-- Scripts -->
-		<script src="../../resources/main/js/campSearch.js"></script>
-		<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
-		<script src="../../resources/main/js/jquery.min.js"></script>
-		<script src="../../resources//main/js/browser.min.js"></script>
-		<script src="../../resources/main/js/breakpoints.min.js"></script>
-		<script src="../../resources/main/js/util.js"></script>
-		<script src="../../resources/main/js/main.js"></script>
-		<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
-		<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	</div>
+	<!-- Scripts -->
+	<script src="../../resources/main/js/campSearch.js"></script>
+	<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
+	<script src="../../resources/main/js/jquery.min.js"></script>
+	<script src="../../resources//main/js/browser.min.js"></script>
+	<script src="../../resources/main/js/breakpoints.min.js"></script>
+	<script src="../../resources/main/js/util.js"></script>
+	<script src="../../resources/main/js/main.js"></script>
+	<script src="https://kit.fontawesome.com/0cf27f7ac1.js" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script> -->
 </body>

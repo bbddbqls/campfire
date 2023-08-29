@@ -28,20 +28,30 @@
 				<!-- Header -->
 				<header id="header">
 					<a href="/campSearch/camping.do" class="logo"><strong>Campfire</strong>   my <i class="fa-solid fa-star fa2xl" style="color: #fff370;"></i> list</a>
-				<c:choose>
+					<c:choose>
 						<c:when test="${sessionScope.memberNum != null}">
 							<ul class="list-bar">
-								<li><a href="/member/mypage.do">마이페이지</a></li>
-								<li><a href="/myList/likeList.do"> 찜 목록 </a></li>
-								<li><a href="/myList/wishList.do"> 즐겨찾기 목록 </a></li>
-								<li><a href="/"> 로그아웃 </a></li>
+								<li>
+									<a href="/member/mypage.do">마이페이지</a>
+								</li>
+								<li>
+									<a href="/myList/likeList.do"> 찜 목록 </a>
+								</li>
+								<li>
+									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
+								</li>
+								<li>
+									<a href="/member/logout.do"> 로그아웃 </a>
+								</li>
 
 							</ul>
 						</c:when>
 						<c:otherwise>
-												<ul class="list-bar">
+							<ul class="list-bar">
 
-								<li><a href="/">로그인 </a></li>
+								<li>
+									<a href="/">로그인 </a>
+								</li>
 
 							</ul>
 						</c:otherwise>
@@ -67,7 +77,7 @@
 									onclick="goToDetailPage('/campInfo/campInfo.do?campNum=${item.campNum}')">
 									<!-- 여기서 '/detail_page_url'은 상세 정보 페이지의 URL을 넣어주어야 합니다. -->
 									<img src="${item.campPhotoURL }${item.campPhotoName}" alt="캠핑장 이미지">
-									<div class="camping_data" name="캠핑장1">
+									<div class="camping_data">
 										<h4>${item.campName }</h4>
 										<p>
 											<i class="fa-regular fa-heart fa2xs" style="color: #ff8fb6;"></i>

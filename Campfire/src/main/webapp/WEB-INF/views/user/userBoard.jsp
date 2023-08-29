@@ -27,17 +27,44 @@
 				<header id="header">
 					<c:choose>
 						<c:when test="${postCategory eq 'recommend'}">
-							<a href="recommend.html" class="logo">
+							<a href="/campSearch/camping.do" class="logo">
 								<strong>Campfire</strong> 커뮤니티(추천)
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href="recommend.html" class="logo">
+							<a href="/campSearch/camping.do" class="logo">
 								<strong>Campfire</strong> 커뮤니티(정보공유)
 							</a>
 						</c:otherwise>
 					</c:choose>
+					<c:choose>
+						<c:when test="${sessionScope.memberNum != null}">
+							<ul class="list-bar">
+								<li>
+									<a href="/member/mypage.do">마이페이지</a>
+								</li>
+								<li>
+									<a href="/myList/likeList.do"> 찜 목록 </a>
+								</li>
+								<li>
+									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
+								</li>
+								<li>
+									<a href="/member/logout.do"> 로그아웃 </a>
+								</li>
 
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class="list-bar">
+
+								<li>
+									<a href="/">로그인 </a>
+								</li>
+
+							</ul>
+						</c:otherwise>
+					</c:choose>
 				</header>
 
 				<!-- Content -->
@@ -89,7 +116,7 @@
 								<c:otherwise>
 									<c:forEach var="item" items="${boardList}">
 										<div class="col-6 items" onclick="location.href='/user/board/showBoardDetail.do?postNum=${item.postNum}'">
-											<div class="img-box ls1Img"">
+											<div class="img-box ls1Img">
 												<c:choose>
 													<c:when test="${empty item.imageName}">
 														<img class="photoImage" src="/resources\images\noimage.jpg" alt="이미지 오류" />

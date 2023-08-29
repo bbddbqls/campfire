@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -24,9 +25,39 @@
 		<div id="main">
 			<div class="inner">
 
-				<!-- Header -->
+						<!-- Header -->
 				<header id="header">
-					<a href="../business/b_registration.html" class="logo"><strong>Campfire</strong> 캠핑장 등록</a>
+					<a href="/campSearch/camping.do" class="logo">
+						<strong>Campfire</strong> 캠핑장 등록
+					</a>
+					<c:choose>
+						<c:when test="${sessionScope.memberNum != null}">
+							<ul class="list-bar">
+								<li>
+									<a href="/member/mypage.do">마이페이지</a>
+								</li>
+								<li>
+									<a href="/myList/likeList.do"> 찜 목록 </a>
+								</li>
+								<li>
+									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
+								</li>
+								<li>
+									<a href="/member/logout.do"> 로그아웃 </a>
+								</li>
+
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class="list-bar">
+
+								<li>
+									<a href="/">로그인 </a>
+								</li>
+
+							</ul>
+						</c:otherwise>
+					</c:choose>
 
 				</header>
 

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tw/mainTw.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tw/chat.css" />
-
+<link rel="stylesheet" href="/resources/main/css/myList.css" />
 
 
 <!-- alert.js (Alert Script) -->
