@@ -40,14 +40,14 @@
                     <!-- 'Divider' have no id -->
                     <div class="wrapper" id="firstRowWrapper">
                         <div class="container" id="backButtonContainer">
-                            <a class="button" href="/trading/list.do?currentPage=${backPageNumber}">뒤로가기</a>
+                            <a class="button" href="/kenel/trading/list.do?currentPage=${backPageNumber}">뒤로가기</a>
                         </div>
                         <div class="titleSellerDivider">
                             <div class="container" id="titleContainer">
                                 <strong>${trading.sold eq true? '[거래 완료] ' : ''}${trading.title}</strong>
                             </div>
                             <div class="container" id="sellerContainer">
-                                <h4>판매자</h3>
+                                <h4>판매자</h4>
                                     <h3>${member.name}</h3>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                         <c:choose>
                             <c:when test="${sessionMemberIdx != null and sessionMemberIdx != 'null' and sessionMemberIdx == trading.memberIdx}">
                                 <a class="button" onclick="deleteSubmit('게시글을 삭제할까요?', '${trading.idx}')">상품 삭제</a>
-                                <a class="button" onclick="location.href='/trading/modifyForm.do?tradingIdx=${trading.idx}'">상품 수정</a>
+                                <a class="button" onclick="location.href='/kenel/trading/modifyForm.do?tradingIdx=${trading.idx}'">상품 수정</a>
                                 <c:choose>
                                     <c:when test="${trading.sold eq false}">
                                         <a class="button primary" onclick="soldToggleSubmit('거래를 완료할까요?', '${trading.idx}', 1)">거래 완료</a>
@@ -160,9 +160,19 @@
                         <c:otherwise>
                             <c:choose>
                                 <c:when test="${trading.sold eq false}">
-                                    <div class="container" id="chatButtonContainer">
-                                        <a href="#" class="button primary">판매자 '${member.name}'님과 채팅하기</a>
-                                    </div>
+                                    <c:choose>
+                                        <c:when test="${chatRoomIdx == null}">
+                                            <div class="container" id="chatButtonContainer">
+                                                <a onclick="makeChatRoom('${trading.idx}', '${sessionMemberIdx}', '${member.name}')" class="button primary">판매자 '${member.name}'님과 채팅하기</a>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="container" id="chatButtonContainer" style="display: none;">
+                                                <a href="#" class="button primary">새 메시지</a>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </c:when>
                                 <c:otherwise>
                                     <div class="container" id="chatButtonContainer">
@@ -219,5 +229,44 @@
     numberWrap.textContent = formattedNumber + '₩';
     });
 
+    // // 판매완료 처리 및 채팅 나감처리
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     if(('${sessionMemberIdx}' != '${trading.memberIdx}') && ('${trading.sold}' != 'true')) {
+    //         checkSold();
+    //     }
+    // });
+
+//     async function checkSold() {
+//     console.log("checkSold() 수행됨");
+
+// 	var formData = new FormData();
+// 	formData.append("tradingIdx", '${trading.idx}');
+
+// 	// 데이터 보내기
+// 	fetch('http://localhost/kenel/trading/checkSold.do', {
+// 		method: 'POST',
+// 		body: formData,
+// 		redirect: 'manual',
+// 		// headers: {
+// 		//     'Accept': 'application/json'
+// 		// }
+// 	})
+// 	.then(response => {        
+// 		return response.text();
+// 	})
+// 	.then(result => {
+//         console.log('(checkSold) result: ' + result)
+//         if(result == 'sold') {
+//             window.location.reload();
+//             return;
+//         }
+// 	})
+// 	.catch(error => {
+// 	});
+
+//     await new Promise(resolve => setTimeout(resolve, 500)); // 0.5초 대기
+//     await checkSold(); // 재귀 호출
+
+// } // End of checkSold()
 
 </script>

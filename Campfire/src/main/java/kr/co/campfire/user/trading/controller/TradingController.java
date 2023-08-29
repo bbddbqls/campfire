@@ -35,6 +35,8 @@ import kr.co.campfire.user.trading.dto.Member;
 import kr.co.campfire.user.trading.dto.Region;
 import kr.co.campfire.user.trading.dto.Trading;
 import kr.co.campfire.user.trading.service.TradingServiceImpl;
+import kr.co.campfire.chat.model.service.ChatServiceImpl;
+
 
 @Controller
 @RequestMapping("/trading")
@@ -42,6 +44,9 @@ public class TradingController {
 	
 	@Autowired
 	private TradingServiceImpl tradingService;
+	
+	@Autowired
+	private ChatServiceImpl chatService;
 	
 	@Autowired
 	private UploadFileController uploadFileController;
@@ -438,8 +443,6 @@ public class TradingController {
 		paramMap.put("category2", category2);
 		paramMap.put("region1", region1);
 		paramMap.put("region2", region2);
-		
-		System.out.println(paramMap.toString());
 		trading.setCategoryIdx(tradingService.selectCategoryIdx(paramMap));
 		trading.setRegionIdx(tradingService.selectRegionIdx(paramMap));
 		trading.setTitle(title);
@@ -490,6 +493,7 @@ public class TradingController {
 	@GetMapping("/detail.do")
 	public String detail(
 			@RequestParam(value="tradingIdx") String tradingIdx,
+			@RequestParam(value="chatDrawerOn", defaultValue="false") String chatDrawerOn,
 			Model model, 
 			HttpSession session
 			) {
@@ -497,6 +501,7 @@ public class TradingController {
 		// 로그인 정보
 		String sessionMemberIdx = (String) session.getAttribute("sessionMemberIdx");
 		model.addAttribute("sessionMemberIdx", sessionMemberIdx); // 로그인 정보
+		System.out.println("(detail.do) sessionMemberIdx: " + sessionMemberIdx);
 		
 		Trading trading = tradingService.selectTrading(Integer.parseInt(tradingIdx));
 		List<File> listOfFile = tradingService.selectFileAll(Integer.parseInt(tradingIdx));
@@ -536,11 +541,50 @@ public class TradingController {
 		int backPageNumber = Pagination.getCurrentPage(descPositionOnPost, 6);
 				
 		model.addAttribute("backPageNumber", backPageNumber);
-
+		
+		if(sessionMemberIdx != null ) {
+			System.out.println("tradingIdx: " + tradingIdx);
+			System.out.println("sessionMemberIdx: " + sessionMemberIdx);
+			
+			if(chatService.selectChatRoomIdxCount(Integer.parseInt(tradingIdx), Integer.parseInt(sessionMemberIdx)) != 0) {
+				int cidx = chatService.selectChatRoomIdx(Integer.parseInt(tradingIdx), Integer.parseInt(sessionMemberIdx));
+				model.addAttribute("chatRoomIdx", cidx);
+				System.out.println("chatRoomIdx: " + Integer.toString(cidx));
+			} else {
+				System.out.println("chatRoom doesnt exist");
+			}
+			
+		}
+		
+		if(chatDrawerOn.equals("true")) {
+			model.addAttribute("chatDrawerOn", chatDrawerOn);
+		}
+		
 		
 		return "user/product_detail";
 	}
 	
+	@ResponseBody
+	@PostMapping(value = "/checkSold.do", produces = "text/plain;charset=UTF-8")
+	public String checkChatAndSold(
+			HttpServletRequest request,
+			HttpSession session
+			) {
+
+        String tradingIdx = request.getParameter("tradingIdx");
+        
+        String isSold = tradingService.checkSold(Integer.parseInt(tradingIdx));
+        System.out.println("(checkSold) isSold: " + isSold);
+        
+        if(isSold.equals("1")) {
+    		session.setAttribute("tw_msg", "방금 해당 상품이 판매완료 되었어요.");
+    		session.setAttribute("tw_status", "info");
+    		return "sold";
+        }
+
+		
+		return "";
+	}
 	
 	// 게시글 삭제
 	@ResponseBody
@@ -551,7 +595,9 @@ public class TradingController {
 			) {
 
         String tradingIdx = request.getParameter("tradingIdx");
+        
         Trading trading = tradingService.selectTrading(Integer.parseInt(tradingIdx));
+        
         String memberIdx = Integer.toString(trading.getMemberIdx()); 
         System.out.println("(delete) memberIdx of trading: " + memberIdx);
         
@@ -564,6 +610,13 @@ public class TradingController {
 		
 		if(!sessionMemberIdx.equals(memberIdx)) {
 			return "작성자만 글을 삭제할 수 있어요.";
+		}
+		
+		//채팅 관련 삭제
+		List<Integer> chatRoomIdxList = chatService.listOfChatRoomIdx(Integer.parseInt(tradingIdx));
+		for(int chatRoomIdx : chatRoomIdxList) {
+			chatService.deleteChatMessages(chatRoomIdx);
+			chatService.deleteChatRoom(chatRoomIdx);
 		}
 		
 		tradingService.deleteFiles(Integer.parseInt(tradingIdx));

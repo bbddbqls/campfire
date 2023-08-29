@@ -8,7 +8,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.co.campfire.user.trading.dto.*;
+import kr.co.campfire.user.trading.dto.Category;
+import kr.co.campfire.user.trading.dto.File;
+import kr.co.campfire.user.trading.dto.Member;
+import kr.co.campfire.user.trading.dto.Region;
+import kr.co.campfire.user.trading.dto.Trading;
 
 @Repository
 public class TradingDao {
@@ -136,6 +140,10 @@ public class TradingDao {
 		paramMap.put("tradingSold", tradingSold);
 		
 		return sqlSession.update("tradingMapper.soldToggle", paramMap);
+	}
+
+	public String checkSold(SqlSessionTemplate sqlSession, int tradingIdx) {
+		return sqlSession.selectOne("tradingMapper.checkSold", tradingIdx);
 	}
 
 

@@ -220,4 +220,34 @@ function soldToggleSubmit(msg, tradingIdx, status) {
     
 }
 
+function makeChatRoom(tradingIdx, sessionMemberIdx, sellerName) {
+    if(sessionMemberIdx == '') {
+        alertFunction(('로그인 후에 '.concat(sellerName) + '님과 채팅할 수 있어요.'), '로그인이 필요해요', 'info');
+        return;
+    }
 
+	var formData = new FormData();
+	formData.append("tradingIdx", tradingIdx);
+	formData.append("sessionMemberIdx", sessionMemberIdx);
+
+	// 데이터 보내기
+	fetch('http://localhost/chat/makeChatRoom.do', {
+		method: 'POST',
+		body: formData,
+		redirect: 'manual'
+	})
+	.then(response => {
+		
+		return response.text();
+	})
+	.then(result => {
+		if (result === "") {
+			window.location.href = "/trading/detail.do" + "?tradingIdx=" + tradingIdx + '&chatDrawerOn=true';
+		} else {
+			alertFunction(result, 'warning', 'warning');
+		}
+	})
+	.catch(error => {
+		alertFunction('서버가 응답하지 않습니다. 잠시 후 다시 시도해주세요.', 'error', 'error');
+	});
+}

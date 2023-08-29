@@ -14,7 +14,6 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-		<%@ include file="../chat/chat.jsp" %>
 			<!-- Main -->
 			<div id="main">
 				<div class="inner">
@@ -46,7 +45,6 @@
 														alt="arrow">
 													</c:otherwise>
 												</c:choose>
-
 											</a>
 										</div>
 									</div>
@@ -208,7 +206,7 @@
 							<!-- 네비게이션 바 및 글쓰기 버튼 -->
 							<div class="nav-writ-wrap">
 								<%@ include file="../common/navigationBar.jsp" %>
-								<a href="/trading/enrollForm.do" class="button primary write_button">
+								<a href="/kenel/trading/enrollForm.do" class="button primary write_button">
 									상품 등록하기
 								</a>
 							</div>

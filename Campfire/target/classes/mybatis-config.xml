@@ -42,6 +42,11 @@
 		<!-- Common -->
 		<typeAlias type="kr.co.campfire.user.userInquiry.dto.UserInquiryDto" alias="inquiry" />
 		
+		
+		<typeAlias type="kr.co.campfire.chat.model.dto.ChatRoom" alias="ChatRoom" />
+		<typeAlias type="kr.co.campfire.chat.model.dto.ChatMessage" alias="ChatMessage" />
+		<typeAlias type="kr.co.campfire.chat.model.dto.ChatMessage2" alias="ChatMessage2" />
+		
 		<!-- <typeAlias type="kr.co.campfire.user.dto.userDto" alias="user" /> -->
 <!-- 		<typeAlias type="kr.co.greenart.board.model.dto.Board" alias="board" />
 		<typeAlias type="kr.co.greenart.free.model.dto.Free" alias="free" /> -->
@@ -67,6 +72,8 @@
 		
 		<!-- Common -->
 		<mapper resource="/mappers/common/inquiry-mapper.xml" />
+		
+		<mapper resource="/mappers/chat/chat-mapper.xml" />
 		
 		<!-- <mapper resource="/mappers/user/user-mapper.xml" /> -->
 <!-- 		<mapper resource="/mappers/board/board-mapper.xml" />

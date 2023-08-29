@@ -27,7 +27,7 @@
 <script>
 
 	// 데이터 보내기
-	fetch('http://localhost/user/trading/alert.do', {
+	fetch('http://localhost/trading/alert.do', {
 		method: 'POST',
 		credentials: "same-origin" // 쿠키와 세션을 공유하기 위해 필요
     })

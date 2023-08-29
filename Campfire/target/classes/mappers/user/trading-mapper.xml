@@ -315,4 +315,10 @@
 		WHERE
     		SP_NUM = #{tradingIdx}
 	</update>
+	
+	<select id="checkSold" resultType="String" parameterType="int">
+		SELECT SP_IS_SOLD
+		FROM SECONDHAND_POST sp
+		WHERE sp.SP_NUM = #{tradingIdx}
+	</select>
 </mapper>

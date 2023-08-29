@@ -129,6 +129,11 @@ public class TradingServiceImpl implements TradingService {
 		return tradingDao.soldToggle(sqlSession, tradingIdx, tradingSold);
 		
 	}
+	
+	@Override
+	public String checkSold(int tradingIdx) {
+		return tradingDao.checkSold(sqlSession, tradingIdx);
+	}
 
 
 

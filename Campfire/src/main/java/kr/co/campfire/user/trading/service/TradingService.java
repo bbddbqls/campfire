@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.campfire.user.trading.dto.*;
+import kr.co.campfire.*;
 
 public interface TradingService {
 	
@@ -52,6 +53,7 @@ public interface TradingService {
 	List<Integer> selectFileIndexes(int tradingIdx);
 	int selectDescPositionOnPost(int tradingIdx);
 	int soldToggle(int tradingIdx, int tradingSold);
+	String checkSold(int tradingIdx);
 	
 
 }
