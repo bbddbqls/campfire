@@ -3,10 +3,11 @@ package kr.co.campfire.member.controller;
 import java.util.HashMap;
 import java.util.Objects;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.campfire.member.dto.*;
 import kr.co.campfire.member.service.*;
@@ -26,7 +26,7 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl memberService;
 
-	@PostMapping("/login.do")
+	@RequestMapping("/login.do")
 	public String loginIndex(MemberDto m, HttpSession session, Model model) {
 		MemberDto loginUser = memberService.loginMember(m);
 		System.out.println(loginUser.toString());
@@ -68,7 +68,7 @@ public class MemberController {
 		int checkId = memberService.checkId(id);
 		if (checkId > 0) {
 			MemberDto m = new MemberDto();
-			m.setMemberId(id);
+			m.setMemberUserId(id);
 			MemberDto loginUser = memberService.loginMember(m);
 			System.out.println(loginUser.toString());
 			if (!Objects.isNull(loginUser)) {
@@ -85,8 +85,8 @@ public class MemberController {
 			}
 		} else {
 			MemberDto md = new MemberDto();
-			md.setMemberId(id);
-			md.setMemberPassword(id);
+			md.setMemberUserId(id);
+			md.setMemberPw(id);
 			md.setMemberName((String) userInfo.get("nickname"));
 			md.setMemberGender((String) userInfo.get("gender"));
 			md.setMemberKakao((String) userInfo.get("email"));
@@ -94,7 +94,7 @@ public class MemberController {
 			int result = memberService.kakaoSingup(md);
 			if (result > 0) {
 				MemberDto m = new MemberDto();
-				m.setMemberId(id);
+				m.setMemberUserId(id);
 				MemberDto loginUser = memberService.loginMember(m);
 				System.out.println(loginUser.toString());
 				if (!Objects.isNull(loginUser)) {
@@ -137,7 +137,7 @@ public class MemberController {
 		int checkId = memberService.checkId(id);
 		if (checkId > 0) {
 			MemberDto m = new MemberDto();
-			m.setMemberId(id);
+			m.setMemberUserId(id);
 			MemberDto loginUser = memberService.loginMember(m);
 			System.out.println(loginUser.toString());
 			if (!Objects.isNull(loginUser)) {
@@ -154,8 +154,8 @@ public class MemberController {
 			}
 		} else {
 			MemberDto md = new MemberDto();
-			md.setMemberId(id);
-			md.setMemberPassword(id);
+			md.setMemberUserId(id);
+			md.setMemberPw(id);
 			md.setMemberName((String) userInfo.get("nickname"));
 			md.setMemberGender((String) userInfo.get("gender"));
 			md.setMemberKakao((String) userInfo.get("email"));
@@ -163,7 +163,7 @@ public class MemberController {
 			int result = memberService.naverSingup(md);
 			if (result > 0) {
 				MemberDto m = new MemberDto();
-				m.setMemberId(id);
+				m.setMemberUserId(id);
 				MemberDto loginUser = memberService.loginMember(m);
 				System.out.println(loginUser.toString());
 				if (!Objects.isNull(loginUser)) {
@@ -200,7 +200,7 @@ public class MemberController {
 		int checkId = memberService.checkId(id);
 		if (checkId > 0) {
 			MemberDto m = new MemberDto();
-			m.setMemberId(id);
+			m.setMemberUserId(id);
 			MemberDto loginUser = memberService.loginMember(m);
 			System.out.println(loginUser.toString());
 			if (!Objects.isNull(loginUser)) {
@@ -217,8 +217,8 @@ public class MemberController {
 			}
 		} else {
 			MemberDto md = new MemberDto();
-			md.setMemberId(id);
-			md.setMemberPassword(id);
+			md.setMemberUserId(id);
+			md.setMemberPw(id);
 			md.setMemberName((String) userInfo.get("nickname"));
 			md.setMemberGender((String) userInfo.get("gender"));
 			md.setMemberGoogle((String) userInfo.get("email"));
@@ -226,7 +226,7 @@ public class MemberController {
 			int result = memberService.googleSingup(md);
 			if (result > 0) {
 				MemberDto m = new MemberDto();
-				m.setMemberId(id);
+				m.setMemberUserId(id);
 				MemberDto loginUser = memberService.loginMember(m);
 				System.out.println(loginUser.toString());
 				if (!Objects.isNull(loginUser)) {
@@ -247,5 +247,175 @@ public class MemberController {
 	}
 
 	// return에 페이지를 해도 되고, 여기서는 코드가 넘어오는지만 확인할거기 때문에 따로 return 값을 두지는 않았음
+	
+
+
+	
+	//비밀번호 변경  DB출력
+	@GetMapping("/pwup.do")
+	public String pwupread(HttpSession session,Model model) { 
+		int mnum = (int) session.getAttribute("memberNum");
+		MemberDto au2 = memberService.pwupread(mnum);
+		model.addAttribute("member",au2);
+		return "member/pwup"; 
+	}
+	
+	//비밀번호 변경
+	@PostMapping("/pwup.do")
+	public String pwup(HttpSession session, MemberDto pwup) {
+		int mnum = (int) session.getAttribute("memberNum");
+	  int result = memberService.pwup(mnum, pwup.getMemberPw());
+	    
+	  return "redirect:/member/mypage.do"; 
+	}
+	
+	//회원수정정보 보기
+	@GetMapping("/mypageup.do")
+	public String mypageupread(HttpSession session,Model model) { 
+		int mnum = (int) session.getAttribute("memberNum");
+		MemberDto au1 = memberService.mypageupread(mnum);
+		model.addAttribute("member",au1);
+		
+		  // 생일데이터 분리
+		if (au1.getMemberDateBirth() != null) {
+		    String[] birthParts = au1.getMemberDateBirth().split("-");
+		    model.addAttribute("birthYear", birthParts[0]);
+		    model.addAttribute("birthMonth", birthParts[1]);
+		    model.addAttribute("birthDay", birthParts[2]);	
+		    // 여기서 birthParts 배열을 사용한 원하는 작업을 수행
+		}
+		return "member/mypageup"; 
+	}
+	
+	//회원수정 
+	 @PostMapping("/mypageup.do")
+	    public String mypageup(@RequestParam(value = "birth-year") String year,
+				@RequestParam(value = "birth-month") String month, 
+				@RequestParam(value = "birth-day") String day,HttpSession session, MemberDto mypageup
+	    		){ 
+	        int mnum = (int) session.getAttribute("memberNum");
+
+	        String date = year + "-" + month + "-" + day;
+	        mypageup.setMemberDateBirth(date);
+
+	        int result = memberService.mypageup(mnum, mypageup.getMemberName(),
+	                                            mypageup.getMemberPostalcode(),
+	                                            mypageup.getMemberAdd1(),
+	                                            mypageup.getMemberAdd2(),
+	                                            mypageup.getMemberGender(),
+	                                            mypageup.getMemberDateBirth());
+		return "redirect:/member/mypage.do"; 
+	}
+	
+	
+	
+
+	
+	//회원정보 보기
+	@GetMapping("/mypage.do")
+	public String mypage(HttpSession session,Model model) { 
+		int mnum = (int) session.getAttribute("memberNum");
+		MemberDto au = memberService.readMember(mnum);
+		model.addAttribute("member",au);
+		
+	    // 생일데이터 분리
+		if (au.getMemberDateBirth() != null) {
+		    String[] birthParts = au.getMemberDateBirth().split("-");
+		    model.addAttribute("birthYear", birthParts[0]);
+		    model.addAttribute("birthMonth", birthParts[1]);
+		    model.addAttribute("birthDay", birthParts[2]);	
+		    // 여기서 birthParts 배열을 사용한 원하는 작업을 수행
+		}
+
+		return "member/mypage"; }
+	 
+	
+	//회원가입
+	@PostMapping("/signup.do")
+	public String signup(@RequestParam(value = "birth-year") String year,
+			@RequestParam(value = "birth-month") String month, @RequestParam(value = "birth-day") String day,
+			MemberDto memberjojn, HttpSession session) {
+
+		String date = year + "-" + month + "-" + day;
+
+		memberjojn.setMemberDateBirth(date);
+
+		System.out.println(date);
+
+		int result = memberService.signupMember(memberjojn);
+
+		if (result > 0) {
+			return "redirect:/member/login.do"; 
+
+		} else {
+			return "blank/fail";
+		}
+
+	}
+
+	
+	//아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(HttpServletRequest req) throws Exception {
+	   String memberUserId = req.getParameter("memberUserId");
+	   MemberDto idCheck =  memberService.idCheck(memberUserId);
+	   
+	   int result = 0;
+	   
+	   if(idCheck != null) {
+	    result = 1;
+	   }   
+	   
+	   return result;
+	}
+
+	
+
+		
+
+	    
+		//아이디 비빌번호 찾기 페이지
+		@GetMapping("/idpw.do")
+		public String idpw() { 
+			
+			return "member/idpw"; 
+		}  
+		
+		//아이디 찾기 페이지
+		@GetMapping("/search_id.do")
+		public String search_id() { 
+			
+			return "/member/search_id"; 
+		}
+		
+		// 아이디 찾기
+		@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
+		public String find_id(HttpServletResponse response, @RequestParam("memberName") String memberName,@RequestParam("memberDateBirth") String memberDateBirth, Model md) throws Exception{
+			md.addAttribute("id", memberService.find_id(response, memberName,memberDateBirth));
+			return "/member/find_id";
+		}
+
+	
+		//비밀번호 찾기 페이지
+		@GetMapping("/search_pwd.do")
+		public String search_pwd() { 
+			
+			return "/member/search_pwd"; 
+		}
+		// 아비밀번호 찾기
+		@RequestMapping(value = "/find_pw.do", method = RequestMethod.POST)
+		public String find_pw(HttpServletResponse response, @RequestParam("memberUserId") String memberUserId,@RequestParam("memberName") String memberName, Model md) throws Exception{
+			md.addAttribute("pw", memberService.find_pw(response,memberUserId,memberName));
+			return "/member/find_pw";
+		}
+		
+		@RequestMapping("/logout.do")
+	    public String logout(Model model, HttpSession session) {
+	        // 세션 무효화를 통해 모든 세션 정보 삭제
+	        session.invalidate();
+	        
+	        return "member/login"; // 로그아웃 후 이동할 페이지
+	    }
 
 }

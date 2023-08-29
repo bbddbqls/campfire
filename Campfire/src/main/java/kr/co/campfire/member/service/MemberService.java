@@ -2,6 +2,8 @@ package kr.co.campfire.member.service;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+
 import kr.co.campfire.member.dto.*;
 
 public interface MemberService {
@@ -31,4 +33,19 @@ public interface MemberService {
 	String getAccessTokenGoogle(String authorize_code) throws Throwable;
 	
 	public HashMap<String, Object> getUserInfoGoogle(String access_Token) throws Throwable;
+	
+	//은연님 로그인
+	
+	int signupMember(MemberDto memberjojn);
+	MemberDto readMember(int mnum);
+	MemberDto pwupread(int mnum);
+	MemberDto mypageupread(int mnum);
+	int pwup(int mnum, String memberPw);
+	int mypageup(int mnum, String memberName, String memberPostalcode,
+			String memberAdd1, String memberAdd2, String memberGender, 
+			String memberDateBirth);
+	MemberDto idCheck(String memberUserId);
+	
+	String find_id(HttpServletResponse response, String memberName, String memberDateBirth);
+	String find_pw(HttpServletResponse response, String  memberUserId, String memberName);
 }

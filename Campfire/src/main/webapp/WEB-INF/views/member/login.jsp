@@ -12,9 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/resources/login/css/main.css" />
 
-<noscript>
-	<link rel="stylesheet" href="/resources/login/css/noscript.css" />
-</noscript>
+
 <!-- 네이버 로그인 연동 api start -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -158,16 +156,16 @@ margin:10px;
 
 				<h2 align="center">Login</h2>
 
-				<form method="post" action="member/login.do">
+				<form method="post" action="/member/login.do">
 					<div class="fields">
 						<div class="field">
 							<label for="id">ID</label>
-							<input type="text" name="memberId" id="id" />
+							<input type="text" name="memberUserId" id="id" />
 						</div>
 
 						<div class="field">
 							<label for="password">Password</label>
-							<input type="password" name="memberPassword" id="password" />
+							<input type="password" name="memberPw" id="password" />
 						</div>
 
 
@@ -182,7 +180,7 @@ margin:10px;
 								<span>회원가입</span>
 							</a>
 							&nbsp; &nbsp;
-							<a href="#" style="font-size: 0.6rem; margin-right: 5.5rem; margin-top: 0.5rem;">
+							<a href="/member/idpw.do" style="font-size: 0.6rem; margin-right: 5.5rem; margin-top: 0.5rem;">
 								<span>ID·PW 찾기</span>
 							</a>
 							&nbsp; &nbsp;
@@ -235,67 +233,84 @@ margin:10px;
 
 
 			</article>
+			
 
 
 			<!-- 사업자 회원가입 -->
-			<article id="businessjoin">
+				<article id="businessjoin">
 				<h3>정보입력</h3>
 				<div class="form-container">
-					<section>
-						<div class="info" id="info__id">
-							<div id="id-input">
-								<input class="box" type="text" placeholder="아이디 입력(6~20자)" />
-								<button id="id-check">중복 확인</button>
+					<form class="businessjoinf" action="/member/signup.do" method="post">
+						<input type="hidden" name="memberDivision" value="사업자">
+						<section>
+							<div class="info" id="info__id">
+								<div id="id-input">
+									<input class="box" type="text" placeholder="아이디 입력(6~20자)"
+										name="memberUserId" />
+									<button type="button" id="idCheck">중복 확인</button>
+									
+								<p class="result">
+								 	<span class="msg">아이디를 확인해주십시오.</span>
+								</p>
+								</div>
+								<div class="error-msg"></div>
 							</div>
-							<div class="error-msg"></div>
-						</div>
-						<div class="info" id="info__pw">
-							<input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" />
-							<div class="error-msg"></div>
-						</div>
-						<div class="info" id="info__pwRe">
-							<input class="box" type="password" placeholder="비밀번호 재입력" />
-							<div class="error-msg"></div>
-						</div>
-
-						<input type="text" class="box" type="busineessnub" placeholder="사업자번호 :" />
-						<input type="text" class="box" id="name" required placeholder="이름:" />
-
-						<div style="display: flex; gap: 10px">
-							<input type="text" class="box" id="sample6_postcode" placeholder="우편번호" style="flex-basis: 70%" />
-							<input type="button" id="search" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" />
-						</div>
-
-						<input type="text" class="box" id="sample6_address" placeholder="주소" />
-						<input type="text" id="sample6_detailAddress" placeholder="상세주소" style="flex-basis: 70%" />
-						<br />
-						<div class="gender-container">
-							성별:
-							<input type="radio" id="male" name="gender" value="남성" />
-							<label for="male">남성</label>
-							<input type="radio" id="female" name="gender" value="여성" />
-							<label for="female">여성</label>
-						</div>
-						<br />
-
-						<div class="info" id="info__birth">
-							<div id="birth-flex">
-								<select class="box" id="birth-year" style="width: 100px">
-									<option>년</option>
-								</select>
-								<select class="box" id="birth-month" style="width: 100px">
-									<option>월</option>
-								</select>
-								<select class="box" id="birth-day" style="width: 100px">
-									<option>일</option>
-								</select>
+							<div class="info" id="info__pw">
+								<input class="box" type="password"
+									placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw" />
+								<div class="error-msg"></div>
 							</div>
-							<div class="error-msg"></div>
-						</div>
-					</section>
+							<div class="info" id="info__pwRe">
+								<input class="box" type="password" placeholder="비밀번호 재입력"
+									name="memberPwChk" />
+								<div class="error-msg"></div>
+							</div>
 
-					<br />
-					<button type="submit" id="submit">가입하기</button>
+						<!-- 	<input type="text" class="box" type="busineessnub"
+								placeholder="사업자번호 :" name="memberBiznum" /> -->
+								
+						 <input type="text"
+								class="box" id="name" required placeholder="이름:"
+								name="memberName" />
+
+							<div style="display: flex; gap: 10px; align-items: baseline;">
+								<input type="text" class="box" id="sample6_postcode"
+									placeholder="우편번호" name="memberPostalcode"
+									style="flex-basis: 70%" /> 
+								<input type="button" id="search"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기" />
+							</div>
+
+							<input type="text" class="box" id="sample6_address"
+								placeholder="주소" name="memberAdd1" />
+							 <input type="text" id="sample6_detailAddress" placeholder="상세주소"
+								style="flex-basis: 70%" name="memberAdd2" /> <br />
+							
+							<div class="gender-container">
+								<input type="radio" id="male" name="memberGender" value="남성" />
+										<label for="male">남성</label>
+									 <input type="radio" id="female" name="memberGender" value="여성" />
+										 <label for="female">여성</label>
+							</div>
+							<br />
+
+							<div class="info" id="info__birth">
+								<div id="birth-flex">
+									<select class="box" id="birth-year" name="birth-year" style="width: 33%">
+										<option>년</option>
+									</select> <select class="box" id="birth-month" name="birth-month" style="width: 33%">
+										<option>월</option>
+									</select> <select class="box" id="birth-day"  name="birth-day" style="width: 33%">
+										<option>일</option>
+									</select>
+								</div>
+								<div class="error-msg"></div>
+							</div>
+						</section>
+
+						<br />
+						<button type="submit" id="submit">가입하기</button>
+					</form>
 				</div>
 			</article>
 
@@ -304,59 +319,73 @@ margin:10px;
 			<article id="personaljoin">
 				<h3>정보입력</h3>
 				<div class="form-container">
-					<section>
-						<div class="info" id="info__id1">
-							<div id="id-input1">
-								<input class="box" type="text" placeholder="아이디 입력(6~20자)" />
-								<button id="id-check1">중복 확인</button>
+
+					<form class="personaljoinf" action="member/signup.do" method="post">
+						<input type="hidden" name="memberDivision" value="개인">
+						<section>
+							<div class="info" id="info__id1">
+								<div id="id-input1">
+									<input class="box" type="text" placeholder="아이디 입력(6~20자)" name="memberUserId"/>
+									<button type="button" id="id-check1">중복 확인</button>
+						
+								<p class="result">
+								 	<span class="msg">아이디를 확인해주십시오.</span>
+								</p>
+									
+								</div>
+								<div class="error-msg"></div>
 							</div>
-							<div class="error-msg"></div>
-						</div>
-						<div class="info" id="info__pw1">
-							<input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" />
-							<div class="error-msg"></div>
-						</div>
-						<div class="info" id="info__pwRe1">
-							<input class="box" type="password" placeholder="비밀번호 재입력" />
-							<div class="error-msg"></div>
-						</div>
-						<input type="text" class="box" id="name" required placeholder="이름:" />
-
-						<div style="display: flex; gap: 10px">
-							<input type="text" class="box" id="sample6_postcode1" placeholder="우편번호" style="flex-basis: 70%" />
-							<input type="button" id="search" onclick="sample6_execDaumPostcode1()" value="우편번호 찾기" />
-						</div>
-
-						<input type="text" class="box" id="sample6_address1" placeholder="주소" />
-						<input type="text" id="sample6_detailAddress1" placeholder="상세주소" style="flex-basis: 70%" />
-						<br />
-						<div class="gender-container">
-							성별:
-							<input type="radio" id="male1" name="gender" value="남성" />
-							<label for="male1">남성</label>
-							<input type="radio" id="female1" name="gender" value="여성" />
-							<label for="female1">여성</label>
-						</div>
-						<br />
-
-						<div class="info" id="info__birth1">
-							<div id="birth-flex">
-								<select class="box" id="birth-year1" style="width: 100px">
-									<option>년</option>
-								</select>
-								<select class="box" id="birth-month1" style="width: 100px">
-									<option>월</option>
-								</select>
-								<select class="box" id="birth-day1" style="width: 100px">
-									<option>일</option>
-								</select>
+							<div class="info" id="info__pw1">
+								<input class="box" type="password"
+									placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)" name="memberPw"/>
+								<div class="error-msg"></div>
 							</div>
-							<div class="error-msg"></div>
-						</div>
-					</section>
+							<div class="info" id="info__pwRe1">
+								<input class="box" type="password" placeholder="비밀번호 재입력" name="memberPwChk" />
+								<div class="error-msg"></div>
+							</div>
+							<input type="hidden" class="box" type="busineessnub"
+								placeholder="사업자번호 :" name="memberBiznum" value="" /> <input
+								type="text" class="box" id="name" required placeholder="이름:" name="memberName"/>
 
-					<br />
-					<button type="submit" id="submit">가입하기</button>
+
+							<div style="display: flex; gap: 10px; align-items: baseline;">
+								<input type="text" class="box" id="sample6_postcode1"
+									placeholder="우편번호" name="memberPostalcode"
+									style="flex-basis: 70%" /> <input type="button" id="search"
+									onclick="sample6_execDaumPostcode1()" value="우편번호 찾기" />
+							</div>
+
+							<input type="text" class="box" id="sample6_address1"
+								placeholder="주소" name="memberAdd1" /> 
+						<input type="text" id="sample6_detailAddress1" placeholder="상세주소"
+								style="flex-basis: 70%" name="memberAdd2" /> <br />
+							<div class="gender-container">
+								<input type="radio" id="male1" name="memberGender" value="남성" />
+								<label for="male1">남성</label> 
+								<input type="radio" id="female1" name="memberGender" value="여성" /> 
+									<label for="female1">여성</label>
+							</div>
+							<br />
+
+							<div class="info" id="info__birth1">
+								<div id="birth-flex">
+									<select class="box" id="birth-year1" name="birth-year" style="width: 33%">
+										<option>년</option>
+									</select> <select class="box" id="birth-month1" name="birth-month" style="width: 33%">
+										<option>월</option>
+									</select> <select class="box" id="birth-day1" name="birth-day" style="width: 33%">
+										<option>일</option>
+									</select>
+								</div>
+								<div class="error-msg"></div>
+							</div>
+						</section>
+
+						<br />
+						<button type="submit" id="submit">가입하기</button>
+					</form>
+					
 				</div>
 			</article>
 

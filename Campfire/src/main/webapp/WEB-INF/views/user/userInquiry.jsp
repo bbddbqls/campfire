@@ -17,14 +17,14 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="u_inquiry.html" class="logo">
+					<a href="/campSearch/camping.do" class="logo">
 						<strong>Campfire</strong> 문의사항
 					</a>
 					<c:choose>
 						<c:when test="${sessionScope.memberNum != null}">
 							<ul class="list-bar">
 								<li>
-									<a href="/member/mypage.jsp">마이페이지</a>
+									<a href="/member/mypage.do">마이페이지</a>
 								</li>
 								<li>
 									<a href="/myList/likeList.do"> 찜 목록 </a>
@@ -33,7 +33,7 @@
 									<a href="/myList/wishList.do"> 즐겨찾기 목록 </a>
 								</li>
 								<li>
-									<a href="/"> 로그아웃 </a>
+									<a href="/member/logout.do"> 로그아웃 </a>
 								</li>
 
 							</ul>

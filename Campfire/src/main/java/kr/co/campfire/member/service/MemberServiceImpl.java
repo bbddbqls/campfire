@@ -5,12 +5,15 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import kr.co.campfire.member.dao.MemberDao;
 import kr.co.campfire.member.dto.MemberDto;
@@ -480,5 +486,128 @@ public class MemberServiceImpl implements MemberService {
 	         }
 			return userInfo;
 		}
+		
+		
+		//은연님 로그인
+		@Override
+		public int signupMember(MemberDto memberjojn) {
+			
+			return memberDao.signupMember(sqlSession,memberjojn);
+		}
+
+		//회원정보보기
+			@Override
+			public MemberDto readMember(int mnum) {
+			
+				MemberDto au = null;
+				
+				try {
+					au = memberDao.readMember(sqlSession, mnum);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return au;
+			}
+			
+	//비밀번호 변경
+			@Override
+			public int pwup(int mnum, String memberPw) {
+				return memberDao.pwup(sqlSession, mnum, memberPw);
+			}
+			
+			
+			//회원수정 
+			@Override
+			public int mypageup(int mnum, String memberName, String memberPostalcode, String memberAdd1, String memberAdd2,
+					String memberGender, String memberDateBirth) {
+				return memberDao.mypageup(sqlSession, mnum, memberName,memberPostalcode,memberAdd1,memberAdd2,memberGender,memberDateBirth);
+			}
+			
+			
+			//비밀번호 변경정보 보기
+				public MemberDto pwupread(int mnum) {
+	         	MemberDto au = null;
+				
+				try {
+					au = memberDao.pwupread(sqlSession, mnum);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return au;
+			
+			}
+			//회원수정정보 보기
+				public MemberDto mypageupread(int mnum) {
+					MemberDto au = null;
+					
+					try {
+						au = memberDao.mypageupread(sqlSession, mnum);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					return au;
+				}
+				
+		//아이디 중복체크	
+				@Override
+				public MemberDto idCheck(String memberUserId) {
+					return memberDao.idCheck(sqlSession,memberUserId);
+				}
+				
+				
+		//아이디 찾기	
+				@Override
+				public String find_id(HttpServletResponse response,String memberName, String memberDateBirth) {
+					response.setContentType("text/html;charset=utf-8");
+					PrintWriter out;
+					try {
+						out = response.getWriter();
+						String id = memberDao.find_id(sqlSession,memberName,memberDateBirth);
+						
+						if (id == null) {
+							out.println("<script>");
+							out.println("alert('가입된 아이디가 없습니다.');");
+							out.println("history.go(-1);");
+							out.println("</script>");
+							out.close();
+							return null;
+						} else {
+							return id;
+						}
+					} catch (IOException e) {
+					
+						e.printStackTrace();
+					}
+					return null;
+				}
+				
+				//비밀번호 찾기	
+				@Override
+				public String find_pw(HttpServletResponse response, String memberUserId,String memberName) {
+					response.setContentType("text/html;charset=utf-8");
+					PrintWriter out;
+					try {
+						out = response.getWriter();
+						String pw = memberDao.find_pw(sqlSession,memberUserId,memberName);
+						
+						if (pw == null) {
+							out.println("<script>");
+							out.println("alert('가입된 비밀번호가 없습니다.');");
+							out.println("history.go(-1);");
+							out.println("</script>");
+							out.close();
+							return null;
+						} else {
+							return pw;
+						}
+					} catch (IOException e) {
+					
+						e.printStackTrace();
+					}
+					return null;
+				}
 
 }
