@@ -199,6 +199,7 @@
 					<div class="camp_intro_map">
 						<div id="mapX" data-jstl-value="${campInfo.campX}" style="display: none;"></div>
 						<div id="mapY" data-jstl-value="${campInfo.campY}" style="display: none;"></div>
+						<div id="campName" data-jstl-value="${campInfo.campName}" style="display: none;"></div>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b7e3f9163cbe6490f97df41fe3fab55&libraries=services"></script>
 						<div class="map_wrap">
 							<div id="map" style="overflow: hidden;"></div>

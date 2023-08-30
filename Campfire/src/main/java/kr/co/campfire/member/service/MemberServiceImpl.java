@@ -609,5 +609,19 @@ public class MemberServiceImpl implements MemberService {
 					}
 					return null;
 				}
+				
+				// 회원 탈퇴
+				@Override
+				public int memberDelete(MemberDto vo) {
+					return memberDao.memberDelete(sqlSession, vo);
+					
+				}
+				
+				// 회원 탈퇴
+				@Override
+				public String selectMemberPw(int memberNum) {
+					return memberDao.selectMemberPw(sqlSession, memberNum);
+					
+				}
 
 }

@@ -45,6 +45,7 @@
 
 		SELECT * FROM post
 		LEFT JOIN post_LIKE ON post.p_NUM = post_like.p_NUM
+		JOIN MEMBER ON post.m_NUM = MEMBER.m_num
 		WHERE post_like.M_NUM = #{memberNum}
 	</select>
 	<select id="selectWishList" resultMap="myListResultSet">

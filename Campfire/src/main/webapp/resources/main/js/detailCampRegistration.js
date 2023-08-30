@@ -55,6 +55,8 @@ const mapTest = document.getElementById('map');
 let mapX = document.getElementById('mapX').getAttribute('data-jstl-value');
 let mapY = document.getElementById('mapY').getAttribute('data-jstl-value');
 
+  let campName = document.getElementById('campName').getAttribute('data-jstl-value');
+
 function apicall() {
   mapTest.innerHTML='';
 	console.log(mapX);
@@ -78,9 +80,8 @@ function apicall() {
   // 마커가 지도 위에 표시되도록 설정합니다
   marker.setMap(map);
 
-  var iwContent = 
-  '<div style="padding:5px;">💚다온숲💚 <br><a href="https://map.kakao.com/link/map/다온숲,36.6424,127.2541" style="color:blue" target="_blank">큰지도보기</a><a href="https://map.kakao.com/link/to/Hello World!,36.6424,127.2541" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition = new kakao.maps.LatLng(mapY, mapX); //인포윈도우 표시 위치입니다
+  var iwContent = '<div style="padding:5px;">💚'+campName+'💚 <br><a href="https://map.kakao.com/link/map/'+campName+','+mapY+','+mapX+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+campName+','+mapY+','+mapX+'" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = new kakao.maps.LatLng(mapX,mapY); //인포윈도우 표시 위치입니다
 
   // 인포윈도우를 생성합니다
   var infowindow = new kakao.maps.InfoWindow({

@@ -187,34 +187,36 @@ function showSlide(n) {
 //지도
 const mapTest = document.getElementById('map');
 function apicall() {
+//jstl변수 사용하기
+  let mapX = document.getElementById('mapX').getAttribute('data-jstl-value');
+  let mapY = document.getElementById('mapY').getAttribute('data-jstl-value');
+  let campName = document.getElementById('campName').getAttribute('data-jstl-value');
+  
   mapTest.innerHTML='';
 
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-      center: new kakao.maps.LatLng(36.6424, 127.2541), // 지도의 중심좌표
+      center: new kakao.maps.LatLng(mapY, mapX), // 지도의 중심좌표
       level: 3 // 지도의 확대 레벨
     };
 
   var map = new kakao.maps.Map(mapContainer, mapOption);
 
   // 마커가 표시될 위치입니다 
-  var markerPosition = new kakao.maps.LatLng(36.6424, 127.2541);
+  var markerPosition = new kakao.maps.LatLng(mapY, mapX);
 
   // 마커를 생성합니다
   var marker = new kakao.maps.Marker({
     position: markerPosition
   });
-//jstl변수 사용하기
-  let mapX = document.getElementById('mapX').getAttribute('data-jstl-value');
-  let mapY = document.getElementById('mapY').getAttribute('data-jstl-value');
-  let campName = document.getElementById('campName').getAttribute('data-jstl-value');
+
   
   console.log(mapX);
   console.log(mapY);
   // 마커가 지도 위에 표시되도록 설정합니다
   marker.setMap(map);
 
-  var iwContent = '<div style="padding:5px;">💚'+campName+'💚 <br><a href="https://map.kakao.com/link/map/다온숲,'+mapX+','+mapY+' style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,36.6424,127.2541" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+  var iwContent = '<div style="padding:5px;">💚'+campName+'💚 <br><a href="https://map.kakao.com/link/map/'+campName+','+mapY+','+mapX+'" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/'+campName+','+mapY+','+mapX+'" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
     iwPosition = new kakao.maps.LatLng(mapX,mapY); //인포윈도우 표시 위치입니다
 
   // 인포윈도우를 생성합니다

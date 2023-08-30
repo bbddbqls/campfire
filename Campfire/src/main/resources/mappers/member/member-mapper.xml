@@ -140,4 +140,13 @@
 		and
 		m_name = #{memberName}
 	</select>
+	<!-- 회원탈퇴 -->
+<delete id="memberDelete">
+	DELETE FROM member
+	WHERE m_user_id = #{memberUserId}
+	  AND m_pw = #{memberPw} 
+</delete>
+<select id="selectMemberPw" resultType="String">
+	select m_pw from member where m_num = #{memberNum}
+</select>
 </mapper>

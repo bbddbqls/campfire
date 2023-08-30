@@ -3,6 +3,54 @@ function handleButtonClick1() {
 window.location.href = "#businessjoin";
 }
 
+//가입하기 체크
+function checkForm() {
+	const memberUserId = document.getElementById("memberUserId");
+    const memberPw = document.getElementById("memberPw");
+    const memberPwChk = document.getElementById("memberPwChk");
+
+ 	const userIdPattern = /^[a-z0-9]{6,20}$/;
+    if (!userIdPattern.test(memberUserId.value)) {
+        alert("6~20자의 영문 소문자와 숫자만 사용 가능한 아이디를 입력해주세요");
+        return false;
+    }
+     if (memberPw.value !== memberPwChk.value) {
+        alert("비밀번호가 일치하지 않습니다");
+        return false;
+    }
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+    if (!passwordPattern.test(memberPw.value)) {
+        alert("8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요");
+        return false;
+    }
+    return true;
+}
+
+//가입하기 체크
+function checkForm1() {
+ 	const memberUserId = document.getElementById("memberUserId1");
+    const memberPw = document.getElementById("memberPw1");
+    const memberPwChk = document.getElementById("memberPwChk1");
+
+
+	const userIdPattern = /^[a-z0-9]{6,20}$/;
+    if (!userIdPattern.test(memberUserId.value)) {
+        alert("6~20자의 영문 소문자와 숫자만 사용 가능한 아이디를 입력해주세요");
+        return false;
+    }
+     if (memberPw.value !== memberPwChk.value) {
+        alert("비밀번호가 일치하지 않습니다");
+        return false;
+    }
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+    if (!passwordPattern.test(memberPw.value)) {
+        alert("8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요");
+        return false;
+    }
+    return true;
+}
+
+
 // 개인회원가입창 이동
 function handleButtonClick2() {
 window.location.href = "#personaljoin";
@@ -28,7 +76,7 @@ const errMsg = {
   },
   pw: "8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요",
   pwRe: {
-    success: "비밀번호가 일치합니다",
+    
     fail: "비밀번호가 일치하지 않습니다"
   },
   birth: "생년월일을 다시 확인해주세요"
@@ -74,9 +122,11 @@ idCheck.addEventListener('click', () => {
      if(data == 1) {
       $(".result .msg").text("중복 사용 불가");
       $(".result .msg").attr("style", "color:#f00");      
+      $("#submit1").attr("disabled", true);
      } else {
       $(".result .msg").text("중복 없음");
       $(".result .msg").attr("style", "color:#00FF00");
+      $("#submit1").attr("disabled", false);
      }
     }
    });  // ajax 끝
@@ -164,10 +214,12 @@ idCheck1.addEventListener('click', () => {
     	console.log(data);
      if(data == 1) {
       $(".result .msg").text("중복 사용 불가");
-      $(".result .msg").attr("style", "color:#f00");      
+      $(".result .msg").attr("style", "color:#f00");
+      $("#submit2").attr("disabled", true);      
      } else {
       $(".result .msg").text("중복 없음");
       $(".result .msg").attr("style", "color:#00FF00");
+      $("#submit2").attr("disabled", false);
      }
     }
    });  // ajax 끝

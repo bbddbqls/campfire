@@ -83,7 +83,7 @@
 									<c:set var="campPhotos" value="${item.campPhotoList}" />
 									<c:choose>
 										<c:when test="${empty campPhotos}">
-											<img src="/resources/images/KakaoTalk_20230717_140006896_02.png" alt="기본사진대체텍스트">
+											<img src="/resources/images/noimage.jpg" alt="기본사진대체텍스트">
 										</c:when>
 										<c:otherwise>
 											<img src="${campPhotos[0].campPhotoURL}${campPhotos[0].campPhotoName}" alt="${campPhotos[0].campPhotoName}">

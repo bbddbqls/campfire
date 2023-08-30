@@ -48,4 +48,8 @@ public interface MemberService {
 	
 	String find_id(HttpServletResponse response, String memberName, String memberDateBirth);
 	String find_pw(HttpServletResponse response, String  memberUserId, String memberName);
+	
+	int memberDelete(MemberDto vo);
+	
+	String selectMemberPw(int memberNum);
 }

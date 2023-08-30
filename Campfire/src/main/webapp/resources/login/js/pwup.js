@@ -1,3 +1,24 @@
+function checkForm() {
+    const memberPw = document.getElementById("memberPw");
+    const memberPwChk = document.getElementById("memberPwChk");
+
+    if (memberPw.value === "" || memberPwChk.value === "") {
+        alert("비밀번호를 입력하세요");
+        return false;
+    }
+
+    if (memberPw.value !== memberPwChk.value) {
+        alert("비밀번호가 일치하지 않습니다");
+        return false;
+    }
+
+    return true;
+}
+  
+  
+  
+  
+  
     // 에러 메세지 객체
 const errMsg = {
   id: { 

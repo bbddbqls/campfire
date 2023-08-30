@@ -196,17 +196,11 @@ function submitForm() {
     })
     .then(response => {
         console.log(response);
-        if (response.ok) {
-            // Handle successful submission, e.g., redirect or display a message
-            window.location.href = "/campSearch/camping.do";
-            console.log(response.url);
-        } else {
-        	window.location.href = "/business/showCampRegistration.do";
-        }
+        	window.location.href = "/business/showMyCampList.do";
+
     })
     .catch(error => {
-        console.error('Error:', error);
-        // Handle any network or other errors
+       window.location.href = "/business/showCampRegistration.do";
     });
 }
 

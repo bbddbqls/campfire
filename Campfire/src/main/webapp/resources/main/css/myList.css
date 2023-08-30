@@ -30,7 +30,7 @@
 	text-align: center;
 	display: flex;
 	display: flex;
-
+list-style:none;
 	
 }
 
@@ -39,4 +39,11 @@
 		padding: 10px;
 		color:gray;
 		border : 0px !important;
+}
+
+.like-category-btn .button  {
+	border-radius: 1.875em;
+	padding: 1.25em;
+    line-height: 0.7em;
+    height: 3.1em;
 }

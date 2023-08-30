@@ -69,10 +69,10 @@
 
 						<ul class="like-category-btn">
 							<li>
-								<a href="/myList/likeList.do">캠핑장</a>
+								<a href="/myList/likeList.do" class="button">캠핑장</a>
 							</li>
 							<li>
-								<a href="/myList/likeBoardList.do">커뮤니티</a>
+								<a href="/myList/likeBoardList.do" class="button">커뮤니티</a>
 							</li>
 						</ul>
 					</div>

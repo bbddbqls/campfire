@@ -410,12 +410,12 @@
     function changeBackgroundImage() {
         var bgElement = document.getElementById("bg");
         var images = [
-            "KakaoTalk_20230717_140006896_01.png",
-            "KakaoTalk_20230717_140006896_02.png",
-            "KakaoTalk_20230717_140006896.png"
+            "bg1.jpg",
+            "bg2.jpg",
+            "bg3.jpg"
         ];
         var randomIndex = Math.floor(Math.random() * images.length);
-        var imageUrl = "resources/images/" + images[randomIndex];
+        var imageUrl = "/resources/images/" + images[randomIndex];
         bgElement.style.backgroundImage = "url('" + imageUrl + "')";
 		bgElement.style.backgroundSize = "cover";
 		bgElement.style.backgroundPosition = "center";

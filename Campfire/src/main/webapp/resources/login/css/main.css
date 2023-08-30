@@ -14,7 +14,7 @@
   top: 0;
   bottom: 0;
   right: 5px;
-  margin: auto 0;
+  margin: 0;
   border-radius: 3px;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
   font-size: 10px;
@@ -273,7 +273,6 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-		border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
 		text-decoration: none;
 		color: inherit;
 	}

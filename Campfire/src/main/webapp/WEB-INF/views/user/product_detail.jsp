@@ -74,7 +74,7 @@
                     <!-- 'Divider' have no id -->
                     <div class="wrapper" id="firstRowWrapper">
                         <div class="container" id="backButtonContainer">
-                            <a class="button" href="/kenel/trading/list.do?currentPage=${backPageNumber}">뒤로가기</a>
+                            <a class="button" href="/trading/list.do?currentPage=${backPageNumber}">뒤로가기</a>
                         </div>
                         <div class="titleSellerDivider">
                             <div class="container" id="titleContainer">
@@ -174,7 +174,7 @@
                         <c:choose>
                             <c:when test="${sessionMemberIdx != null and sessionMemberIdx != 'null' and sessionMemberIdx == trading.memberIdx}">
                                 <a class="button" onclick="deleteSubmit('게시글을 삭제할까요?', '${trading.idx}')">상품 삭제</a>
-                                <a class="button" onclick="location.href='/kenel/trading/modifyForm.do?tradingIdx=${trading.idx}'">상품 수정</a>
+                                <a class="button" onclick="location.href='/trading/modifyForm.do?tradingIdx=${trading.idx}'">상품 수정</a>
                                 <c:choose>
                                     <c:when test="${trading.sold eq false}">
                                         <a class="button primary" onclick="soldToggleSubmit('거래를 완료할까요?', '${trading.idx}', 1)">거래 완료</a>

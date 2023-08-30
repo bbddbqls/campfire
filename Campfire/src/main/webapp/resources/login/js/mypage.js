@@ -1,4 +1,7 @@
-
+    var button = document.getElementById("deleteButton");
+    button.addEventListener("click", function() {
+        window.location.href = "memberDeleteView.do"; 
+    }); 
  //비밀번호변경
 
     var button = document.getElementById("pwupButton");

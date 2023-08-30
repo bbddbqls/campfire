@@ -64,16 +64,16 @@
 
 				</header>
 				<section>
-					<!--검색박스-->
-					<div class="top_search_box">
-						<div class="tab-btn-box">
-							<button class="tab-button" data-tab-section="tab-section-1" onclick="toggleDetailSearch()">상세 조건 검색</button>
-							<button class="tab-button" data-tab-section="tab-section-2" onclick="toggleTagSearch()">버튼 검색</button>
-							<button class="tab-button" data-tab-section="tab-section-3" onclick="toggleKeywordSearch()">키워드 검색</button>
-						</div>
-						<!-- 상세 조건 검색 영역 -->
+					<form id="campSearchForm" action="/campSearch/camping.do" method="post">
+						<!--검색박스-->
+						<div class="top_search_box">
+							<div class="tab-btn-box">
+								<button type="button" class="tab-button" data-tab-section="tab-section-1" onclick="toggleDetailSearch()">상세 조건 검색</button>
+								<button type="button" class="tab-button" data-tab-section="tab-section-2" onclick="toggleTagSearch()">버튼 검색</button>
+								<button type="button" class="tab-button" data-tab-section="tab-section-3" onclick="toggleKeywordSearch()">키워드 검색</button>
+							</div>
+							<!-- 상세 조건 검색 영역 -->
 
-						<form id="campSearchForm" action="/campSearch/camping.do" method="post">
 							<div id="campfindtop">
 								<ul>
 									<br>
@@ -127,203 +127,204 @@
 							</div>
 							<!-- <nav id="tab-button-nav"></nav> -->
 							<!-- 키워드 검색 영역 -->
-					</div>
-					<div id="keywordSearchBox" style="display: none;">
-						<div class="input_search">
-
-							<fieldset class="totalSearch">
-								<label for="searchKwd" class="skip">키워드 검색어를 입력하세요.</label>
-								<input id="searchKwd" class="m_search_in" name="campKeyword" style="vertical-align: middle;" title="검색어를 입력하세요." placeholder="검색어를 입력하세요." type="text" value="">
-								<br>
-							</fieldset>
 						</div>
-					</div>
+						<div id="keywordSearchBox" style="display: none;">
+							<div class="input_search">
 
-					<!-- 버검색영역-->
-					<div class="tagSearchBox" id="tagSearchBox" style="display: none;">
-						<label class="tag_stt">버튼을 클릭하여 검색해보세요. 원하는 유형의 캠핑장 정보를 확인하실 수 있습니다.</label>
-
-						<div class="tag_title"></div>
-						<div id="tag">
-							<div class="tag-box">
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#야경"><span>#야경</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#물맑은"><span>#물맑은</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#깨끗한"><span>#깨끗한</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#가족"><span>#가족</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#커플"><span>#커플</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#계곡"><span>#계곡</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#바다"><span>#바다</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#축제"><span>#축제</span>
-									</label>
-								</div>
-								<div class="div2" onclick="toggleCheckbox(this)">
-									<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#힐링"><span>#힐링</span>
-									</label>
-								</div>
-								<br>
+								<fieldset class="totalSearch">
+									<label for="searchKwd" class="skip">키워드 검색어를 입력하세요.</label>
+									<input id="searchKwd" class="m_search_in" name="campKeyword" style="vertical-align: middle;" title="검색어를 입력하세요." placeholder="검색어를 입력하세요." type="text" value="">
+									<br>
+								</fieldset>
 							</div>
 						</div>
-						<br>
-						<!--편의시설-->
-						<div id="amenity">
-							<div class="amenity-box">
-								<div class="div1" id="mart" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="마트"><img src="/resources/images/마트.png" alt="" onclick="parentCheckBox('mart')">
-									</label> <span>마트</span>
-								</div>
-								<div class="div1" id="bbq" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="바베큐"><img src="/resources/images/바베큐.png" onclick="parentCheckBox('bbq')" alt="">
-									</label> <span>바베큐</span>
-								</div>
-								<div class="div1" id="walk" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="산책"><img src="/resources/images/산책.png" onclick="parentCheckBox('walk')" alt="">
-									</label> <span>산책</span>
-								</div>
-								<div class="div1" id="swim" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="수영장"><img src="/resources/images/수영장.png" onclick="parentCheckBox('swim')" alt="">
-									</label> <span>수영장</span>
-								</div>
-								<div class="div1" id="wifi" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="와이파이"><img src="/resources/images/와이파이.png" onclick="parentCheckBox('wifi')" alt="">
-									</label> <span>와이파이</span>
-								</div>
-								<div class="div1" id="playground" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="운동장"><img src="/resources/images/운동장.png" onclick="parentCheckBox('playground')" alt="">
-									</label> <span>운동장</span>
-								</div>
-								<div class="div1" id="breakfast" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="조식"><img src="/resources/images/조식.png" onclick="parentCheckBox('breakfast')" alt="">
-									</label> <span>조식</span>
-								</div>
-								<div class="div1" id="tv" onclick="toggleCheckbox(this)">
-									<label> <input type="checkbox" name="campAmenity" value="TV"><img src="/resources/images/티비.png" onclick="parentCheckBox('tv')" alt="">
-									</label> <span>TV</span>
+
+						<!-- 버검색영역-->
+						<div class="tagSearchBox" id="tagSearchBox" style="display: none;">
+							<label class="tag_stt">버튼을 클릭하여 검색해보세요. 원하는 유형의 캠핑장 정보를 확인하실 수 있습니다.</label>
+
+							<div class="tag_title"></div>
+							<div id="tag">
+								<div class="tag-box">
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#야경"><span>#야경</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#물맑은"><span>#물맑은</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#깨끗한"><span>#깨끗한</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#가족"><span>#가족</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#커플"><span>#커플</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#계곡"><span>#계곡</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#바다"><span>#바다</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#축제"><span>#축제</span>
+										</label>
+									</div>
+									<div class="div2" onclick="toggleCheckbox(this)">
+										<label onclick="toggleCheckbox(this)"> <input type="checkbox" name="tagItem" value="#힐링"><span>#힐링</span>
+										</label>
+									</div>
+									<br>
 								</div>
 							</div>
-							<div class="ckeckbox-btn">
-								<button type="button" class="small primary" onclick="showSelectedAmenity(1)">선택</button>
-							</div>
-						</div>
-						<hr>
-						<label id="selectedTag">선택된 태그: </label> <label id="selectedAmenity">선택된 편의시설: </label>
-
-					</div>
-
-
-					<div class="tagSearch">
-						<a type="#" class="btn_search" onclick="submitForm()">
-							<img src="/resources/images/btn_search.png" style="vertical-align: middle" alt="검색하기"> 검색하기
-						</a>
-						<a type="#" class="btn_reset" onclick="reset()">
-							<img src="/resources/images/btn_reset.png" style="vertical-align: middle" alt="초기화"> 초기화
-						</a>
-					</div>
-
-					<hr />
-					<div class="selectList">
-						<select class="form-select" name="selectCategory" id="category" onchange="submitCategory(this.value)" title="정렬하기">
-							<option value="campLastUpdate" selected="selected">업데이트순</option>
-							<option value="campFirstUpdate" ${category == 'campFirstUpdate' ? 'selected' : ''}>등록일순</option>
-							<option value="campViews" ${category == 'campViews' ? 'selected' : ''}>조회순</option>
-							<option value="likesCamp" ${category == 'likesCamp' ? 'selected' : ''}>하트순</option>
-						</select>
-					</div>
-
-					<!-- 검색 및 캠핑장 정보를 표시하는 영역 -->
-					<div id="campingInfo" style="display: none;">
-						<!-- /resources. (기존 캠핑장 정보를 표시하는 HTML 코드) /resources. -->
-					</div>
-
-					<c:choose>
-						<c:when test="${empty campList }">
-							<div>
-								<h4 class="empty">등록된 글이 없습니다.</h4>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach var="item" items="${campList }">
-								<div class="camping_info" onclick="goToDetailPage('/campInfo/campInfo.do?campNum=${item.campNum}')">
-									<!-- 여기서 '/detail_page_url'은 상세 정보 페이지의 URL을 넣어주어야 합니다. -->
-									<img src="${item.campPhotoURL }${item.campPhotoName }" alt="캠핑장 이미지">
-									<div class="camping_data">
-										<h4>${item.campName }</h4>
-										<p>
-											<i class="fa-regular fa-heart fa2xs" style="color: #ff8fb6;"></i> ${item.likeCamp}
-										</p>
-										<p>
-											<i class="fa-solid fa-eye fa-xs" style="color: #5c5c5c; margin-right: 3px;"></i> ${item.campView }
-										</p>
-										<p>${item.campCreateDate }</p>
+							<br>
+							<!--편의시설-->
+							<div id="amenity">
+								<div class="amenity-box">
+									<div class="div1" id="mart" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="마트"><img src="/resources/images/마트.png" alt="" onclick="parentCheckBox('mart')">
+										</label> <span>마트</span>
+									</div>
+									<div class="div1" id="bbq" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="바베큐"><img src="/resources/images/바베큐.png" onclick="parentCheckBox('bbq')" alt="">
+										</label> <span>바베큐</span>
+									</div>
+									<div class="div1" id="walk" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="산책"><img src="/resources/images/산책.png" onclick="parentCheckBox('walk')" alt="">
+										</label> <span>산책</span>
+									</div>
+									<div class="div1" id="swim" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="수영장"><img src="/resources/images/수영장.png" onclick="parentCheckBox('swim')" alt="">
+										</label> <span>수영장</span>
+									</div>
+									<div class="div1" id="wifi" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="와이파이"><img src="/resources/images/와이파이.png" onclick="parentCheckBox('wifi')" alt="">
+										</label> <span>와이파이</span>
+									</div>
+									<div class="div1" id="playground" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="운동장"><img src="/resources/images/운동장.png" onclick="parentCheckBox('playground')" alt="">
+										</label> <span>운동장</span>
+									</div>
+									<div class="div1" id="breakfast" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="조식"><img src="/resources/images/조식.png" onclick="parentCheckBox('breakfast')" alt="">
+										</label> <span>조식</span>
+									</div>
+									<div class="div1" id="tv" onclick="toggleCheckbox(this)">
+										<label> <input type="checkbox" name="campAmenity" value="TV"><img src="/resources/images/티비.png" onclick="parentCheckBox('tv')" alt="">
+										</label> <span>TV</span>
 									</div>
 								</div>
-								<hr>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-					<div class="section-pagination">
-						<ul class="pagination">
-							<c:choose>
-								<c:when test="${ pi.currentPage eq 1 }">
-									<li>
-										<a href="#" class="button">Prev</a>
-									</li>
-								</c:when>
-								<c:otherwise>
-									<li>
-										<a href="camping.do?cpage=${ pi.startPage -1 }" class="button">Prev</a>
-									</li>
+								<div class="ckeckbox-btn">
+									<button type="button" class="small primary" onclick="showSelectedAmenity(1)">선택</button>
+								</div>
+							</div>
+							<hr>
+							<label id="selectedTag">선택된 태그: </label> <label id="selectedAmenity">선택된 편의시설: </label>
 
-								</c:otherwise>
-							</c:choose>
+						</div>
 
-							<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-								<li>
-									<a class="page" href="camping.do?cpage=${page}">${page} </a>
-								</li>
-							</c:forEach>
 
-							<c:choose>
-								<c:when test="${pi.currentPage eq pi.maxPage}">
-									<li>
-										<a href="#" class="button">Next</a>
-									</li>
+						<div class="tagSearch">
+							<a type="#" class="btn_search" onclick="submitForm()">
+								<img src="/resources/images/btn_search.png" style="vertical-align: middle" alt="검색하기"> 검색하기
+							</a>
+							<a type="#" class="btn_reset" onclick="reset()">
+								<img src="/resources/images/btn_reset.png" style="vertical-align: middle" alt="초기화"> 초기화
+							</a>
+						</div>
 
-								</c:when>
-								<c:when test="${pi.endPage eq pi.maxPage}">
+						<hr />
+						<div class="selectList">
+							<select class="form-select" name="selectCategory" id="category" onchange="submitCategory(this.value)" title="정렬하기">
+								<option value="campLastUpdate" selected="selected">업데이트순</option>
+								<option value="campFirstUpdate" ${category == 'campFirstUpdate' ? 'selected' : ''}>등록일순</option>
+								<option value="campViews" ${category == 'campViews' ? 'selected' : ''}>조회순</option>
+								<option value="likesCamp" ${category == 'likesCamp' ? 'selected' : ''}>하트순</option>
+							</select>
+						</div>
+
+						<!-- 검색 및 캠핑장 정보를 표시하는 영역 -->
+						<div id="campingInfo" style="display: none;">
+							<!-- /resources. (기존 캠핑장 정보를 표시하는 HTML 코드) /resources. -->
+						</div>
+
+						<c:choose>
+							<c:when test="${empty campList }">
+								<div>
+									<h4 class="empty">등록된 글이 없습니다.</h4>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${campList }">
+									<div class="camping_info" onclick="goToDetailPage('/campInfo/campInfo.do?campNum=${item.campNum}')">
+										<!-- 여기서 '/detail_page_url'은 상세 정보 페이지의 URL을 넣어주어야 합니다. -->
+										<img src="${item.campPhotoURL }${item.campPhotoName }" alt="캠핑장 이미지">
+										<div class="camping_data">
+											<h4>${item.campName }</h4>
+											<p>
+												<i class="fa-regular fa-heart fa2xs" style="color: #ff8fb6;"></i> ${item.likeCamp}
+											</p>
+											<p>
+												<i class="fa-solid fa-eye fa-xs" style="color: #5c5c5c; margin-right: 3px;"></i> ${item.campView }
+											</p>
+											<p>${item.campCreateDate }</p>
+										</div>
+									</div>
+									<hr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						<div class="section-pagination">
+							<ul class="pagination">
+								<c:choose>
+									<c:when test="${ pi.currentPage eq 1 }">
+										<li>
+											<a href="#" class="button">Prev</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li>
+											<a href="camping.do?cpage=${ pi.startPage -1 }" class="button">Prev</a>
+										</li>
+
+									</c:otherwise>
+								</c:choose>
+
+								<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 									<li>
-										<a href="camping.do?cpage=${pi.maxPage}" class="button">Next</a>
+										<a class="page" href="camping.do?cpage=${page}">${page} </a>
 									</li>
-								</c:when>
-								<c:otherwise>
-									<li>
-										<a href="camping.do?cpage=${pi.currentPage + 1}&campAmenity=${campAmenity}&searchTxt=${searchTxt}&campTag=${campTag}&campAddress${campAdderess}&category${category}&campKeyword${campKeyword}&campType${campType}" class="button">Next</a>
-									</li>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-					</div>
+								</c:forEach>
+
+								<c:choose>
+									<c:when test="${pi.currentPage eq pi.maxPage}">
+										<li>
+											<a href="#" class="button">Next</a>
+										</li>
+
+									</c:when>
+									<c:when test="${pi.endPage eq pi.maxPage}">
+										<li>
+											<a href="camping.do?cpage=${pi.maxPage}" class="button">Next</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li>
+											<a href="camping.do?cpage=${pi.currentPage + 1}&campAmenity=${campAmenity}&searchTxt=${searchTxt}&campTag=${campTag}&campAddress${campAdderess}&category${category}&campKeyword${campKeyword}&campType${campType}" class="button">Next</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</div>
+					</form>
 					<hr>
 					<h2>지도로 캠핑장 검색하기</h2>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b7e3f9163cbe6490f97df41fe3fab55&libraries=services"></script>
@@ -345,7 +346,6 @@
 						</div>
 					</div>
 					<div id="map"></div>
-					</form>
 				</section>
 			</div>
 		</div>

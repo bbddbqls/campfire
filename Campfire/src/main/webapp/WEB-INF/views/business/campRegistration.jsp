@@ -201,7 +201,7 @@
 										<div class="div1" onclick="toggleCheckbox(this)">
 											<label>
 												<input type="checkbox" name="campAmenity" value="TV"><img
-													src="/resources/images/tv.png" alt="">
+													src="/resources/images/TV.png" alt="">
 											</label>
 											<span>TV</span>
 										</div>

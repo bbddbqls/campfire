@@ -157,10 +157,10 @@
 		
 			</div>
 		</div>
+		<%@ include file="../common/sidebar.jsp"%>
 
 </div>
 
-		<%@ include file="../common/sidebar.jsp"%>
 		<!-- Scripts -->
 		<script src="/resources/login/js/mypageup.js"></script>
 		<script src="/resources/main/js/jquery.min.js"></script>
